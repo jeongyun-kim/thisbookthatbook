@@ -28,6 +28,9 @@
 		E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81FB2C6B7E63009E4B40 /* LoginViewController.swift */; };
 		E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81FD2C6B7ED6009E4B40 /* BaseViewModel.swift */; };
 		E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82002C6B7F0E009E4B40 /* ReusableIdentifier.swift */; };
+		E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82022C6B9D14009E4B40 /* TabBarController.swift */; };
+		E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82042C6B9E5C009E4B40 /* FeedViewController.swift */; };
+		E06B82072C6B9E6D009E4B40 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		E06B81FB2C6B7E63009E4B40 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E06B81FD2C6B7ED6009E4B40 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E06B82002C6B7F0E009E4B40 /* ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableIdentifier.swift; sourceTree = "<group>"; };
+		E06B82022C6B9D14009E4B40 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E06B82042C6B9E5C009E4B40 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B81F22C6B7D56009E4B40 /* PlusButton.swift */,
+				E06B82022C6B9D14009E4B40 /* TabBarController.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 		E06B81F52C6B7E0C009E4B40 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				E06B82042C6B9E5C009E4B40 /* FeedViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 		E06B81F82C6B7E44009E4B40 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -273,15 +282,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
+				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
 				E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E06B81C22C6B7AA0009E4B40 /* ViewController.swift in Sources */,
+				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
 				E06B81D42C6B7ADE009E4B40 /* APIKey.swift in Sources */,
 				E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */,
+				E06B82072C6B9E6D009E4B40 /* ProfileViewController.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B81F32C6B7D56009E4B40 /* PlusButton.swift in Sources */,
 			);
@@ -429,6 +441,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = thisbookthatbook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "이책저책";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -460,6 +473,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = thisbookthatbook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "이책저책";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
