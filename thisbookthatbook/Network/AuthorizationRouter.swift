@@ -11,11 +11,7 @@ import Alamofire
 enum AuthorizationRouter {
     case login(query: LoginQuery)
     case validateEmail(email: String)
-    
-    private func encoding<T: Encodable>(_ data: T) -> Data? {
-        let encoder = JSONEncoder()
-        return try? encoder.encode(data)
-    }
+    case refreshToken
 }
 
 extension AuthorizationRouter: TargetType {
@@ -29,6 +25,8 @@ extension AuthorizationRouter: TargetType {
             return "v1/users/login"
         case .validateEmail:
             return "v1/validation/email"
+        case .refreshToken:
+            return "v1/auth/refresh"
         }
     }
     
@@ -38,6 +36,10 @@ extension AuthorizationRouter: TargetType {
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .validateEmail:
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
+        case .refreshToken:
+            let accessToken = UserDefaultsManager.shared.accessToken
+            let refreshToken = UserDefaultsManager.shared.refreshToken
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.refresh: refreshToken]
         }
     }
     
@@ -47,6 +49,8 @@ extension AuthorizationRouter: TargetType {
             return .post
         case .validateEmail:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -57,6 +61,8 @@ extension AuthorizationRouter: TargetType {
             return encoding(query)
         case .validateEmail(let email):
             return encoding(["email": email])
+        case .refreshToken:
+            return nil
         }
     }
 }

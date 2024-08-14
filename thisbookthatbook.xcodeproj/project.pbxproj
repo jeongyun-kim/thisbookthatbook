@@ -46,6 +46,8 @@
 		E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82662C6CD694009E4B40 /* TargetType.swift */; };
 		E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */; };
 		E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */; };
+		E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826D2C6CE893009E4B40 /* RefreshToken.swift */; };
+		E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82712C6CED3D009E4B40 /* SignupQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		E06B82662C6CD694009E4B40 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCase.swift; sourceTree = "<group>"; };
 		E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E06B826D2C6CE893009E4B40 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
+		E06B82712C6CED3D009E4B40 /* SignupQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82112C6BA553009E4B40 /* LoginQuery.swift */,
+				E06B82712C6CED3D009E4B40 /* SignupQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82642C6CCD59009E4B40 /* Login.swift */,
+				E06B826D2C6CE893009E4B40 /* RefreshToken.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
 				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
@@ -396,6 +403,7 @@
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
+				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
 				E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,

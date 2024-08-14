@@ -7,9 +7,18 @@
 
 import Foundation
 
-enum ErrorCase {
+enum ErrorCase: String, Error {
+    case defaultError = "toast_default_error"
+    
     enum LoginError: String, Error {
         case emptyData = "toast_login_empty"
         case invalidData = "toast_login_error"
     }
+    
+    enum RefreshTokenError: String, Error {
+        case invalidToken
+        case forbidden
+        case expiredToken = "alert_msg_expiredToken"
+    }
 }
+

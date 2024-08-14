@@ -25,4 +25,9 @@ extension TargetType {
         request.httpBody = body
         return request
     }
+    
+    func encoding<T: Encodable>(_ data: T) -> Data? {
+        let encoder = JSONEncoder()
+        return try? encoder.encode(data)
+    }
 }
