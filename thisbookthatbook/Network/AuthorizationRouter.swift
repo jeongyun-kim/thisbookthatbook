@@ -49,7 +49,7 @@ extension AuthorizationRouter: TargetType {
         case .singUp:
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .withdraw:
-            return [API.Headers.auth: "dafdaf", API.Headers.sesacKey: API.key]
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
