@@ -154,7 +154,24 @@
         }
       }
     },
-    "toast_loginError" : {
+    "toast_login_empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enter your email and password without whitespace"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이메일, 비밀번호 모두 공백없이 입력해주세요"
+          }
+        }
+      }
+    },
+    "toast_login_error" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

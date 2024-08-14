@@ -34,7 +34,6 @@
 		E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B820C2C6BA517009E4B40 /* NetworkService.swift */; };
 		E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B820E2C6BA51C009E4B40 /* AuthorizationRouter.swift */; };
 		E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82112C6BA553009E4B40 /* LoginQuery.swift */; };
-		E06B82142C6BA581009E4B40 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82132C6BA581009E4B40 /* TargetType.swift */; };
 		E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82162C6BAEF3009E4B40 /* LoginViewModel.swift */; };
 		E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82182C6BB14E009E4B40 /* CustomTextField.swift */; };
 		E06B821B2C6BB401009E4B40 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B821A2C6BB401009E4B40 /* Text.swift */; };
@@ -43,6 +42,9 @@
 		E06B82222C6C3D46009E4B40 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82212C6C3D46009E4B40 /* Toast.swift */; };
 		E06B825D2C6C5B0A009E4B40 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E06B825C2C6C5B0A009E4B40 /* Localizable.xcstrings */; };
 		E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82612C6C5CBE009E4B40 /* String + Extension.swift */; };
+		E06B82652C6CCD59009E4B40 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82642C6CCD59009E4B40 /* Login.swift */; };
+		E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82662C6CD694009E4B40 /* TargetType.swift */; };
+		E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +71,6 @@
 		E06B820C2C6BA517009E4B40 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E06B820E2C6BA51C009E4B40 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		E06B82112C6BA553009E4B40 /* LoginQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQuery.swift; sourceTree = "<group>"; };
-		E06B82132C6BA581009E4B40 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		E06B82162C6BAEF3009E4B40 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E06B82182C6BB14E009E4B40 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E06B821A2C6BB401009E4B40 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
@@ -79,6 +80,9 @@
 		E06B825C2C6C5B0A009E4B40 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E06B825E2C6C5B22009E4B40 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E06B82612C6C5CBE009E4B40 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		E06B82642C6CCD59009E4B40 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		E06B82662C6CD694009E4B40 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +228,7 @@
 			children = (
 				E06B81FD2C6B7ED6009E4B40 /* BaseViewModel.swift */,
 				E06B82002C6B7F0E009E4B40 /* ReusableIdentifier.swift */,
-				E06B82132C6BA581009E4B40 /* TargetType.swift */,
+				E06B82662C6CD694009E4B40 /* TargetType.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -240,9 +244,11 @@
 		E06B820B2C6BA510009E4B40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E06B82632C6CCD56009E4B40 /* Model */,
 				E06B82102C6BA54B009E4B40 /* Query */,
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
 				E06B820E2C6BA51C009E4B40 /* AuthorizationRouter.swift */,
+				E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -270,6 +276,14 @@
 				E06B82612C6C5CBE009E4B40 /* String + Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		E06B82632C6CCD56009E4B40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E06B82642C6CCD59009E4B40 /* Login.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E06B82142C6BA581009E4B40 /* TargetType.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
 				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
@@ -373,8 +386,11 @@
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
+				E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */,
+				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
+				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,

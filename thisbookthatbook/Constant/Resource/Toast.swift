@@ -10,5 +10,6 @@ import Foundation
 extension Resource {
     enum Toast: String {
         case loginError = "toast_loginError"
+        case emptyLoginData = "toast_login_empty"
     }
 }
