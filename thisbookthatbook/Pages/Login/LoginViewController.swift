@@ -17,16 +17,18 @@ final class LoginViewController: BaseViewController {
     private let emailTextField = CustomTextField(Resource.Placeholder.email.rawValue.localized)
     private let passwordTextField = CustomTextField(Resource.Placeholder.password.rawValue.localized)
     private let loginButton = UIButton()
+    private let signUpButton = UIButton()
     
     override func setupHierarchy() {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
+        view.addSubview(signUpButton)
     }
     
     override func setupConstraints() {
         emailTextField.snp.makeConstraints { make in
-            make.centerY.equalTo(view.safeAreaLayoutGuide).offset(-100)
+            make.centerY.equalTo(view.safeAreaLayoutGuide).offset(-120)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(24)
         }
         
@@ -40,6 +42,11 @@ final class LoginViewController: BaseViewController {
             make.top.equalTo(passwordTextField.snp.bottom).offset(36)
             make.height.equalTo(56)
         }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(24)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func setupUI() {
@@ -50,28 +57,41 @@ final class LoginViewController: BaseViewController {
         loginButton.setTitle(Resource.ButtonTitle.login.rawValue.localized, for: .normal)
         loginButton.titleLabel?.font = Resource.Fonts.bold18
         loginButton.backgroundColor = Resource.Colors.primaryColor
+        let attributedTitle = NSAttributedString(string: Resource.ButtonTitle.signup.rawValue.localized, attributes: [.font: Resource.Fonts.regular18])
+        signUpButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     override func bind() {
         let email = emailTextField.rx.text.orEmpty
         let pw = passwordTextField.rx.text.orEmpty
         let loginBtnTapped = loginButton.rx.tap
+        let signupBtnTapped = signUpButton.rx.tap
         
-        let input = LoginViewModel.Input(email: email, pw: pw, loginBtnTapped: loginBtnTapped)
+        let input = LoginViewModel.Input(email: email, pw: pw, loginBtnTapped: loginBtnTapped, signupBtnTapped: signupBtnTapped)
         let output = vm.transform(input)
         
         // 에러 시 토스트메시지
         output.toastMessage
-            .bind(with: self) { owner, message in
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, message in
                 owner.showToast(message: message)
             }.disposed(by: disposeBag)
         
         // 로그인 성공했을 때(true) FeedVC 불러오기 
         output.loginResult
-            .bind(with: self) { owner, value in
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
                 guard value else { return }
                 let vc = UINavigationController(rootViewController: TabBarController())
                 owner.setNewScene(vc)
+            }.disposed(by: disposeBag)
+        
+        // 회원가입 버튼 눌렀을 때
+        output.signupBtnTapped
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                let vc = SignUpViewController()
+                owner.transition(vc)
             }.disposed(by: disposeBag)
     }
 }

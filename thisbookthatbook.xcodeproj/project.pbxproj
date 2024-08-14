@@ -45,6 +45,7 @@
 		E06B82652C6CCD59009E4B40 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82642C6CCD59009E4B40 /* Login.swift */; };
 		E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82662C6CD694009E4B40 /* TargetType.swift */; };
 		E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */; };
+		E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		E06B82642C6CCD59009E4B40 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		E06B82662C6CD694009E4B40 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		E06B82682C6CDBD2009E4B40 /* ErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCase.swift; sourceTree = "<group>"; };
+		E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		E06B81F42C6B7E07009E4B40 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E06B826A2C6CE589009E4B40 /* SignUp */,
 				E06B81F62C6B7E12009E4B40 /* Login */,
 				E06B81F52C6B7E0C009E4B40 /* Feed */,
 				E06B81F82C6B7E44009E4B40 /* Profile */,
@@ -284,6 +287,14 @@
 				E06B82642C6CCD59009E4B40 /* Login.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E06B826A2C6CE589009E4B40 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +401,7 @@
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
+				E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */,
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,

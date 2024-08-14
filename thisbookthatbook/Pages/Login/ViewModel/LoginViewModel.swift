@@ -17,11 +17,13 @@ final class LoginViewModel: BaseViewModel {
         let email: ControlProperty<String>
         let pw: ControlProperty<String>
         let loginBtnTapped: ControlEvent<Void>
+        let signupBtnTapped: ControlEvent<Void>
     }
     
     struct Output {
         let toastMessage: PublishRelay<String>
         let loginResult: PublishRelay<Bool>
+        let signupBtnTapped: ControlEvent<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -69,7 +71,7 @@ final class LoginViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        return Output(toastMessage: toastMessage, loginResult: loginResult)
+        return Output(toastMessage: toastMessage, loginResult: loginResult, signupBtnTapped: input.signupBtnTapped)
     }
     
     

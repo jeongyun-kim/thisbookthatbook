@@ -15,5 +15,6 @@ extension Resource {
     
     enum ButtonTitle: String {
         case login = "button_title_login"
+        case signup = "button_title_signup"
     }
 }
