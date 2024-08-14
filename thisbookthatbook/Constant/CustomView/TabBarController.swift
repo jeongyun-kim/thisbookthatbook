@@ -10,13 +10,13 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     enum TabInActiveImage {
-        static let feedInActive = UIImage(named: "house")
-        static let profileInactive = UIImage(named: "person")
+        static let feedInActive = UIImage(systemName: "house")
+        static let profileInactive = UIImage(systemName: "person")
     }
     
     enum TabActiveImage {
-        static let feedActive = UIImage(named: "house.fill")
-        static let profileActive = UIImage(named: "person.fill")
+        static let feedActive = UIImage(systemName: "house.fill")
+        static let profileActive = UIImage(systemName: "person.fill")
     }
     
     override func viewDidLoad() {
