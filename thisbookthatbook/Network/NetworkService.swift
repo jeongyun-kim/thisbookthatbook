@@ -68,8 +68,6 @@ final class NetworkService {
             print("get refreshToken request error")
         }
     }
-    
-
 
     func postSignUp(email: String, password: String, nickname: String) -> Single<Result<Signup, ErrorCase.SignupError>> {
         return Single.create { single -> Disposable in
@@ -90,6 +88,30 @@ final class NetworkService {
                 }
             } catch {
                 print("post signup request error")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func validateEmail(email: String) -> Single<Result<EmailValidation, ErrorCase.EmailValidationError>> {
+        return Single.create { single -> Disposable in
+            do {
+                let query = EmailQuery(email: email)
+                let request = try AuthorizationRouter.validateEmail(query: query).asURLRequest()
+                self.fetchData(model: EmailValidation.self, request: request) { value, statusCode in
+                    if let statusCode {
+                        switch statusCode {
+                        case 400: single(.success(.failure(.emptyEmail)))
+                        case 409: single(.success(.failure(.invalidEmail)))
+                        default: break
+                        }
+                    }
+                    
+                    guard let value else { return }
+                    single(.success(.success(value)))
+                }
+            } catch {
+                print("validate email request error")
             }
             return Disposables.create()
         }

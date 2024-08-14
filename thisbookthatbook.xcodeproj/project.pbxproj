@@ -49,6 +49,8 @@
 		E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826D2C6CE893009E4B40 /* RefreshToken.swift */; };
 		E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82712C6CED3D009E4B40 /* SignupQuery.swift */; };
 		E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82732C6CF0F2009E4B40 /* Signup.swift */; };
+		E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */; };
+		E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		E06B826D2C6CE893009E4B40 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		E06B82712C6CED3D009E4B40 /* SignupQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupQuery.swift; sourceTree = "<group>"; };
 		E06B82732C6CF0F2009E4B40 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailQuery.swift; sourceTree = "<group>"; };
+		E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +271,7 @@
 			children = (
 				E06B82112C6BA553009E4B40 /* LoginQuery.swift */,
 				E06B82712C6CED3D009E4B40 /* SignupQuery.swift */,
+				E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				E06B82642C6CCD59009E4B40 /* Login.swift */,
 				E06B826D2C6CE893009E4B40 /* RefreshToken.swift */,
 				E06B82732C6CF0F2009E4B40 /* Signup.swift */,
+				E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,11 +423,13 @@
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,
+				E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */,
 				E06B81D42C6B7ADE009E4B40 /* APIKey.swift in Sources */,
 				E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */,
 				E06B82072C6B9E6D009E4B40 /* ProfileViewController.swift in Sources */,
 				E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
+				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
 				E06B82222C6C3D46009E4B40 /* Toast.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
 				E06B821B2C6BB401009E4B40 /* Text.swift in Sources */,

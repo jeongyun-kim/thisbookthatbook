@@ -23,5 +23,10 @@ enum ErrorCase {
         case existUser = "toast_signup_exist"
         case emptyData = "toast_signup_empty"
     }
+    
+    enum EmailValidationError: String, Error {
+        case emptyEmail = "toast_email_empty"
+        case invalidEmail = "toast_email_invalid"
+    }
 }
 

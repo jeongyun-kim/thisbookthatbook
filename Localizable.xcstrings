@@ -188,6 +188,40 @@
         }
       }
     },
+    "toast_email_empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enter your email"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이메일을 입력해주세요"
+          }
+        }
+      }
+    },
+    "toast_email_invalid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This email is not available"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미 사용중인 이메일이에요"
+          }
+        }
+      }
+    },
     "toast_login_empty" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -10,7 +10,7 @@ import Alamofire
 
 enum AuthorizationRouter {
     case login(query: LoginQuery)
-    case validateEmail(email: String)
+    case validateEmail(query: EmailQuery)
     case refreshToken
     case singUp(query: SignupQuery)
 }
@@ -66,8 +66,8 @@ extension AuthorizationRouter: TargetType {
         case .login(let query):
             // JSON으로 인코딩 해주기위해 인코더 생성
             return encoding(query)
-        case .validateEmail(let email):
-            return encoding(["email": email])
+        case .validateEmail(let query):
+            return encoding(query)
         case .refreshToken:
             return nil
         case .singUp(let query):
