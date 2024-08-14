@@ -9,6 +9,7 @@ import Foundation
 
 enum ErrorCase {
     enum LoginError: String, Error {
+        case defaultError = "toast_default_error"
         case emptyData = "toast_login_empty"
         case invalidData = "toast_login_error"
     }
@@ -21,11 +22,13 @@ enum ErrorCase {
     }
     
     enum SignupError: String, Error {
+        case defaultError = "toast_default_error"
         case existUser = "toast_signup_exist"
         case emptyData = "toast_signup_empty"
     }
     
     enum EmailValidationError: String, Error {
+        case defaultError = "toast_default_error"
         case emptyEmail = "toast_email_empty"
         case invalidEmail = "toast_email_invalid"
     }

@@ -34,7 +34,7 @@ final class NetworkService {
                         switch statusCode {
                         case 400: single(.success(.failure(.emptyData)))
                         case 401: single(.success(.failure(.invalidData)))
-                        default: break
+                        default: single(.success(.failure(.defaultError)))
                         }
                     }
                     
@@ -57,7 +57,7 @@ final class NetworkService {
                     case 401: completionHandler(.invalidToken)
                     case 403: completionHandler(.forbidden)
                     case 418: completionHandler(.expiredToken)
-                    default: break
+                    default: completionHandler(.defaultError)
                     }
                 }
                 
@@ -79,7 +79,7 @@ final class NetworkService {
                         switch statusCode {
                         case 400: single(.success(.failure(.emptyData)))
                         case 409: single(.success(.failure(.existUser)))
-                        default: break
+                        default: single(.success(.failure(.defaultError)))
                         }
                     }
                     
