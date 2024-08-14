@@ -13,7 +13,6 @@ class BaseView: UIView {
         super.init(frame: frame)
         setupHierarchy()
         setupConstraints()
-        setupUI()
     }
     
     func setupHierarchy() {
@@ -23,11 +22,7 @@ class BaseView: UIView {
     func setupConstraints() {
         
     }
-    
-    func setupUI() {
-        
-    }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

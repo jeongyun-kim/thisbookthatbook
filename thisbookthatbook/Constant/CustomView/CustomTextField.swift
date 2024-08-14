@@ -10,9 +10,9 @@ import SnapKit
 
 final class CustomTextField: UITextField {
     
-    init(_ placeHolder: String) {
+    init(_ placeHolder: Resource.Placeholder) {
         super.init(frame: .zero)
-        placeholder = placeHolder
+        placeholder = placeHolder.rawValue.localized
         
         leftViewMode = .always
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 56))
@@ -20,6 +20,8 @@ final class CustomTextField: UITextField {
         layer.borderWidth = 1
         layer.borderColor = Resource.Colors.lightGray.cgColor
         layer.cornerRadius = Resource.Radius.normal
+        autocapitalizationType = .none
+        autocorrectionType = .no
         
         snp.makeConstraints { make in
             make.height.equalTo(56)

@@ -14,9 +14,9 @@ final class LoginViewController: BaseViewController {
     private let vm = LoginViewModel()
     private let disposeBag = DisposeBag()
 
-    private let emailTextField = CustomTextField(Resource.Placeholder.email.rawValue.localized)
-    private let passwordTextField = CustomTextField(Resource.Placeholder.password.rawValue.localized)
-    private let loginButton = UIButton()
+    private let emailTextField = CustomTextField(.email)
+    private let passwordTextField = CustomTextField(.password)
+    private let loginButton = NextButton(title: .login)
     private let signUpButton = UIButton()
     
     override func setupHierarchy() {
@@ -40,7 +40,6 @@ final class LoginViewController: BaseViewController {
         loginButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(passwordTextField)
             make.top.equalTo(passwordTextField.snp.bottom).offset(36)
-            make.height.equalTo(56)
         }
         
         signUpButton.snp.makeConstraints { make in
@@ -53,11 +52,7 @@ final class LoginViewController: BaseViewController {
         super.setupUI()
         emailTextField.spellCheckingType = .no
         passwordTextField.isSecureTextEntry = true
-        loginButton.layer.cornerRadius = Resource.Radius.normal
-        loginButton.setTitle(Resource.ButtonTitle.login.rawValue.localized, for: .normal)
-        loginButton.titleLabel?.font = Resource.Fonts.bold18
-        loginButton.backgroundColor = Resource.Colors.primaryColor
-        let attributedTitle = NSAttributedString(string: Resource.ButtonTitle.signup.rawValue.localized, attributes: [.font: Resource.Fonts.regular18])
+        let attributedTitle = NSAttributedString(string: Resource.ButtonTitle.noUser.rawValue.localized, attributes: [.font: Resource.Fonts.regular18])
         signUpButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
