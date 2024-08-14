@@ -14,6 +14,7 @@ enum Resource {
         static let lightGray: UIColor = .lightGray
         static let gray6: UIColor  = .systemGray6
         static let white: UIColor = .white
+        static let red: UIColor = .systemRed
     }
     
     enum Images {
@@ -22,6 +23,7 @@ enum Resource {
         static let bookmarkActive = UIImage(systemName: "bookmark.fill")
         static let heartInactive = UIImage(systemName: "heart")
         static let heartActive = UIImage(systemName: "heart.fill")
+        static let more = UIImage(systemName: "ellipsis")
     }
     
     enum Fonts {
@@ -30,5 +32,15 @@ enum Resource {
         static let regular15 = UIFont.systemFont(ofSize: 15)
         static let bold14 = UIFont.systemFont(ofSize: 14, weight: .bold)
         static let bold15 = UIFont.systemFont(ofSize: 15, weight: .bold)
+        static let bold18 = UIFont.systemFont(ofSize: 18, weight: .bold)
+    }
+    
+    enum Radius {
+        static let normal: CGFloat = 12
+    }
+    
+    enum TransitionType {
+        case push
+        case present
     }
 }

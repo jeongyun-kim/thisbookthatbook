@@ -15,7 +15,6 @@ class BaseViewController: UIViewController {
         setupConstraints()
         setupUI()
         bind()
-        view.backgroundColor = .systemBackground
     }
     
     func setupHierarchy() {
@@ -27,7 +26,7 @@ class BaseViewController: UIViewController {
     }
     
     func setupUI() {
-        
+        view.backgroundColor = .systemBackground
     }
     
     func bind() {
