@@ -13,6 +13,7 @@ enum AuthorizationRouter {
     case validateEmail(query: EmailQuery)
     case refreshToken
     case singUp(query: SignupQuery)
+    case withdraw
 }
 
 extension AuthorizationRouter: TargetType {
@@ -30,21 +31,25 @@ extension AuthorizationRouter: TargetType {
             return "v1/auth/refresh"
         case .singUp:
             return "v1/users/join"
+        case .withdraw:
+            return "v1/users/withdraw"
         }
     }
     
     var header: [String : String] {
+        let accessToken = UserDefaultsManager.shared.accessToken
+        let refreshToken = UserDefaultsManager.shared.refreshToken
         switch self {
         case .login:
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .validateEmail:
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .refreshToken:
-            let accessToken = UserDefaultsManager.shared.accessToken
-            let refreshToken = UserDefaultsManager.shared.refreshToken
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.refresh: refreshToken]
         case .singUp:
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
+        case .withdraw:
+            return [API.Headers.auth: "dafdaf", API.Headers.sesacKey: API.key]
         }
     }
     
@@ -58,13 +63,14 @@ extension AuthorizationRouter: TargetType {
             return .get
         case .singUp:
             return .post
+        case .withdraw:
+            return .get
         }
     }
     
     var body: Data? {
         switch self {
         case .login(let query):
-            // JSON으로 인코딩 해주기위해 인코더 생성
             return encoding(query)
         case .validateEmail(let query):
             return encoding(query)
@@ -72,6 +78,8 @@ extension AuthorizationRouter: TargetType {
             return nil
         case .singUp(let query):
             return encoding(query)
+        case .withdraw:
+            return nil
         }
     }
 }

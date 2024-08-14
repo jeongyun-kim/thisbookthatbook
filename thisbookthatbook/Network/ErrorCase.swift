@@ -14,6 +14,7 @@ enum ErrorCase {
     }
     
     enum RefreshTokenError: String, Error {
+        case defaultError = "toast_default_error"
         case invalidToken
         case forbidden
         case expiredToken = "alert_msg_expiredToken"
@@ -27,6 +28,10 @@ enum ErrorCase {
     enum EmailValidationError: String, Error {
         case emptyEmail = "toast_email_empty"
         case invalidEmail = "toast_email_invalid"
+    }
+    
+    enum WithdrawError: String, Error {
+        case defaultError = "toast_default_error"
     }
 }
 

@@ -48,21 +48,21 @@ final class NetworkService {
         }
     }
     
-    func getRefreshToken(completionHandler: @escaping (Result<RefreshToken, ErrorCase.RefreshTokenError>) -> Void) {
+    func getRefreshToken(completionHandler: @escaping (ErrorCase.RefreshTokenError) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
             self.fetchData(model: RefreshToken.self, request: request) { value, statusCode in
                 if let statusCode {
                     switch statusCode {
-                    case 401: completionHandler(.failure(.invalidToken))
-                    case 403: completionHandler(.failure(.forbidden))
-                    case 418: completionHandler(.failure(.expiredToken))
+                    case 401: completionHandler(.invalidToken)
+                    case 403: completionHandler(.forbidden)
+                    case 418: completionHandler(.expiredToken)
                     default: break
                     }
                 }
                 
                 guard let value else { return }
-                completionHandler(.success(value))
+                UserDefaultsManager.shared.accessToken = value.accessToken
             }
         } catch {
             print("get refreshToken request error")
@@ -93,7 +93,7 @@ final class NetworkService {
         }
     }
     
-    func validateEmail(email: String) -> Single<Result<EmailValidation, ErrorCase.EmailValidationError>> {
+    func postValidateEmail(email: String) -> Single<Result<EmailValidation, ErrorCase.EmailValidationError>> {
         return Single.create { single -> Disposable in
             do {
                 let query = EmailQuery(email: email)
@@ -112,6 +112,27 @@ final class NetworkService {
                 }
             } catch {
                 print("validate email request error")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func getWithDraw() -> Single<Result<Withdraw, ErrorCase.RefreshTokenError>>{
+        return Single.create { single -> Disposable in
+            do {
+                let request = try AuthorizationRouter.withdraw.asURLRequest()
+                self.fetchData(model: Withdraw.self, request: request) { value, statusCode in
+                    if let statusCode {
+                        switch statusCode {
+                        case 419: self.getRefreshToken { error in
+                            single(.success(.failure(error)))
+                        }
+                        default: single(.success(.failure(.defaultError)))
+                        }
+                    }
+                }
+            } catch {
+                print("withdraw request error")
             }
             return Disposables.create()
         }
