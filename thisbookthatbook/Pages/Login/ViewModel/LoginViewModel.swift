@@ -55,7 +55,7 @@ final class LoginViewModel: BaseViewModel {
         
         // 신호받으면 로그인 통신 실행 후 사용자 정보 저장 
         fetchLogin
-            .flatMap { NetworkService.shared.postUserLogin(model: Login.self, email: email.value, password: pw.value) }
+            .flatMap { NetworkService.shared.postUserLogin(email: email.value, password: pw.value) }
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let value):

@@ -12,6 +12,7 @@ enum AuthorizationRouter {
     case login(query: LoginQuery)
     case validateEmail(email: String)
     case refreshToken
+    case singUp(query: SignupQuery)
 }
 
 extension AuthorizationRouter: TargetType {
@@ -27,6 +28,8 @@ extension AuthorizationRouter: TargetType {
             return "v1/validation/email"
         case .refreshToken:
             return "v1/auth/refresh"
+        case .singUp:
+            return "v1/users/join"
         }
     }
     
@@ -40,6 +43,8 @@ extension AuthorizationRouter: TargetType {
             let accessToken = UserDefaultsManager.shared.accessToken
             let refreshToken = UserDefaultsManager.shared.refreshToken
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.refresh: refreshToken]
+        case .singUp:
+            return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -51,6 +56,8 @@ extension AuthorizationRouter: TargetType {
             return .post
         case .refreshToken:
             return .get
+        case .singUp:
+            return .post
         }
     }
     
@@ -63,6 +70,8 @@ extension AuthorizationRouter: TargetType {
             return encoding(["email": email])
         case .refreshToken:
             return nil
+        case .singUp(let query):
+            return encoding(query)
         }
     }
 }

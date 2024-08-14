@@ -12,24 +12,34 @@ import RxSwift
 final class NetworkService {
     static let shared = NetworkService()
     private init() {}
+    
+    func fetchData<T: Decodable>(model: T.Type, request: URLRequest, completionHandler: @escaping (T?, Int?) -> Void){
+        AF.request(request).responseDecodable(of: model) { response in
+            switch response.result {
+            case .success(let value):
+                completionHandler(value, nil)
+            case .failure(_):
+                completionHandler(nil, response.response?.statusCode)
+                }
+            }
+        }
         
-    func postUserLogin<T: Decodable>(model: T.Type, email: String, password: String) -> Single<Result<T, Error>> {
+    func postUserLogin(email: String, password: String) -> Single<Result<Login, ErrorCase.LoginError>> {
         return Single.create { single -> Disposable in
             let query = LoginQuery(email: email, password: password)
             do {
                 let request = try AuthorizationRouter.login(query: query).asURLRequest()
-                AF.request(request).responseDecodable(of: model.self) { response in
-                    switch response.result {
-                    case .success(let value):
-                        single(.success(.success(value)))
-                    case .failure(let error):
-                        switch response.response?.statusCode {
-                        case 400: single(.success(.failure(ErrorCase.LoginError.emptyData)))
-                        case 401: single(.success(.failure(ErrorCase.LoginError.invalidData)))
-                        case 420, 429, 444, 500: single(.success(.failure(ErrorCase.defaultError)))
+                self.fetchData(model: Login.self, request: request) { value, statusCode in
+                    if let statusCode {
+                        switch statusCode {
+                        case 400: single(.success(.failure(.emptyData)))
+                        case 401: single(.success(.failure(.invalidData)))
                         default: break
                         }
                     }
+                    
+                    guard let value else { return }
+                    single(.success(.success(value)))
                 }
             } catch {
                 print("post user request error")
@@ -38,25 +48,50 @@ final class NetworkService {
         }
     }
     
-    func refreshToken(completionHandler: @escaping (Result<RefreshToken, Error>) -> Void) {
+    func getRefreshToken(completionHandler: @escaping (Result<RefreshToken, ErrorCase.RefreshTokenError>) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
-            AF.request(request).responseDecodable(of: RefreshToken.self) { response in
-                switch response.result {
-                case .success(let value):
-                    completionHandler(.success(value))
-                case .failure(let error):
-                    switch response.response?.statusCode {
-                    case 401: completionHandler(.failure(ErrorCase.RefreshTokenError.invalidToken))
-                    case 403: completionHandler(.failure(ErrorCase.RefreshTokenError.forbidden))
-                    case 418: completionHandler(.failure(ErrorCase.RefreshTokenError.expiredToken))
-                    case 420, 429, 444, 500: completionHandler(.failure(ErrorCase.defaultError))
+            self.fetchData(model: RefreshToken.self, request: request) { value, statusCode in
+                if let statusCode {
+                    switch statusCode {
+                    case 401: completionHandler(.failure(.invalidToken))
+                    case 403: completionHandler(.failure(.forbidden))
+                    case 418: completionHandler(.failure(.expiredToken))
                     default: break
                     }
                 }
+                
+                guard let value else { return }
+                completionHandler(.success(value))
             }
         } catch {
             print("get refreshToken request error")
+        }
+    }
+    
+
+
+    func postSignUp(email: String, password: String, nickname: String) -> Single<Result<Signup, ErrorCase.SignupError>> {
+        return Single.create { single -> Disposable in
+            do {
+                let query = SignupQuery(email: email, password: password, nick: nickname)
+                let request = try AuthorizationRouter.singUp(query: query).asURLRequest()
+                self.fetchData(model: Signup.self, request: request) { value, statusCode in
+                    if let statusCode {
+                        switch statusCode {
+                        case 400: single(.success(.failure(.emptyData)))
+                        case 409: single(.success(.failure(.existUser)))
+                        default: break
+                        }
+                    }
+                    
+                    guard let value else { return }
+                    single(.success(.success(value)))
+                }
+            } catch {
+                print("post signup request error")
+            }
+            return Disposables.create()
         }
     }
 }
