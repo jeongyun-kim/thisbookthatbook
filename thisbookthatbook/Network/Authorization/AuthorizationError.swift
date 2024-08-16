@@ -1,5 +1,5 @@
 //
-//  ErrorCase.swift
+//  AuthorizationError.swift
 //  thisbookthatbook
 //
 //  Created by 김정윤 on 8/14/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ErrorCase {
+enum AuthorizationError {
     enum LoginError: String, Error {
         case defaultError = "toast_default_error"
         case emptyData = "toast_login_empty"
