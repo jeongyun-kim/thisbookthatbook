@@ -24,10 +24,6 @@ final class SignUpViewController: BaseViewController {
     }
     
     override func bind() {
-        self.showAlertOnlyConfirm(message: "alert_msg_signup_success".localized) { _ in
-            print("Adf")
-        }
-        
         let nickname = main.nicknameTextField.rx.text.orEmpty
         let email = main.emailTextField.rx.text.orEmpty
         let password = main.passwordTextField.rx.text.orEmpty
@@ -37,6 +33,8 @@ final class SignUpViewController: BaseViewController {
         let input = SignUpViewModel.Input(nickname: nickname, email: email, password: password, validateBtnTapped: validateBtnTapped, signupBtnTapped: signupBtnTapped)
         let output = vm.transform(input)
         
+        // 닉네임 조건 확인 결과
+        // - 2자 이상 10자 이하
         output.nicknameValidation
             .asDriver(onErrorJustReturn: false)
             .drive(with: self) { owner, value in
@@ -82,6 +80,7 @@ final class SignUpViewController: BaseViewController {
                 owner.showToast(message: value)
             }.disposed(by: disposeBag)
         
+        // 로그인하게 이전 화면으로 사용자 보내기 
         output.popViewController
             .asSignal()
             .emit(with: self) { owner, _ in

@@ -86,11 +86,9 @@ final class NetworkService {
                         case 200:
                             guard let value else { return }
                             single(.success(.success(value)))
-                        case 400: single(.success(.failure(.emptyData)))
                         case 409: single(.success(.failure(.existUser)))
                         default: single(.success(.failure(.defaultError)))
                         }
-                        
                     }
                 } catch {
                     print("post signup request error")

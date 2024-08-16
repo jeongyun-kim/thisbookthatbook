@@ -330,13 +330,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error occurred\\nIf the problem persists, contact the developer"
+            "value" : "Error occurred\nIf the problem persists, contact the developer"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "에러가 발생했습니다\\n해당 문제가 계속되면 개발자에게 문의하세요"
+            "state" : "needs_review",
+            "value" : "에러가 발생했습니다\n해당 문제가 계속되면 개발자에게 문의하세요"
           }
         }
       }

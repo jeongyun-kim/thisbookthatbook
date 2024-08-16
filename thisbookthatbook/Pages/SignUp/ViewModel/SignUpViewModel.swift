@@ -21,13 +21,13 @@ final class SignUpViewModel: BaseViewModel {
     }
     
     struct Output {
-        let nicknameValidation: PublishRelay<Bool>
-        let emailRegexValidation: PublishRelay<Bool>
-        let emailValidation: PublishRelay<(Bool, String)>
-        let passwordValidation: PublishRelay<Bool>
-        let totalValidation: BehaviorRelay<Bool>
-        let toastMessage: PublishRelay<String>
-        let popViewController: PublishRelay<Void>
+        let nicknameValidation: PublishRelay<Bool> // 닉네임 유효성
+        let emailRegexValidation: PublishRelay<Bool> // 이메일 형식 확인 결과
+        let emailValidation: PublishRelay<(Bool, String)> // 이메일 중복확인 결과
+        let passwordValidation: PublishRelay<Bool> // 비밀번호 유효성
+        let totalValidation: BehaviorRelay<Bool> // 닉네임, 이메일, 비밀번호 유효성 결과
+        let toastMessage: PublishRelay<String> // 에러 메시지
+        let popViewController: PublishRelay<Void> // 회원가입 성공 시 
     }
     
     func transform(_ input: Input) -> Output {
@@ -99,14 +99,17 @@ final class SignUpViewModel: BaseViewModel {
             .bind(to: totalValidation)
             .disposed(by: disposeBag)
         
+        // 회원가입 버튼 눌렀을 때
         input.signupBtnTapped
             .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .flatMap { NetworkService.shared.postSignUp(email: email.value, password: password.value, nickname: nickname.value) }
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let value):
+                    // 성공했다면 이전 화면에서 로그인하라고 알려주기
                     popViewController.accept(())
                 case .failure(let error):
+                    // 실패했다면 에러 메시지 띄우기
                     toastMessage.accept(error.rawValue.localized)
                 }
             }.disposed(by: disposeBag)
