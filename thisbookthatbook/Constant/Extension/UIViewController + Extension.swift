@@ -20,15 +20,15 @@ extension UIViewController {
     
     func showAlertTwoBtns(title: String, message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: Resource.AlertActionType.confirm.localized, style: .default, handler: completionHandler)
-        let cancel = UIAlertAction(title: Resource.AlertActionType.cancel.localized, style: .cancel)
+        let confirm = UIAlertAction(title: "alert_confirm".localized, style: .default, handler: completionHandler)
+        let cancel = UIAlertAction(title: "alert_cancel".localized, style: .cancel)
         alert.addAction(confirm)
         alert.addAction(cancel)
     }
     
     func showAlertOnlyConfirm(title: String, message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: Resource.AlertActionType.confirm.localized, style: .default, handler: completionHandler)
+        let confirm = UIAlertAction(title: "alert_confirm".localized, style: .default, handler: completionHandler)
         alert.addAction(confirm)
     }
     

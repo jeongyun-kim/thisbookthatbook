@@ -9,8 +9,13 @@ import UIKit
 import SnapKit
 
 final class NextButton: UIButton {
+    enum ButtonTitle: String {
+        case login = "button_title_login"
+        case signup = "button_title_signup"
+        case noUser = "button_title_noUser"
+    }
     
-    init(title: Resource.ButtonTitle){
+    init(title: ButtonTitle){
         super.init(frame: .zero)
         layer.cornerRadius = Resource.Radius.normal
         setTitle(title.rawValue.localized, for: .normal)

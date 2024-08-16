@@ -47,7 +47,7 @@ final class LoginViewModel: BaseViewModel {
             .map { email.value.trimmingCharacters(in: .whitespaces).count > 0 && pw.value.trimmingCharacters(in: .whitespaces).count > 0 }
             .bind(with: self) { owner, value in
                 if !value {
-                    toastMessage.accept(Resource.Toast.emptyLoginData.rawValue.localized)
+                    toastMessage.accept("toast_login_empty".localized)
                 } else {
                     fetchLogin.accept(())
                 }

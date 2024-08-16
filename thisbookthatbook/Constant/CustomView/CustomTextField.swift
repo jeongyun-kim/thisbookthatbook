@@ -9,8 +9,13 @@ import UIKit
 import SnapKit
 
 final class CustomTextField: UITextField {
+    enum Placeholder: String {
+        case email = "placeholder_email"
+        case password = "placeholder_password"
+        case nickname = "placeholder_nickname"
+    }
     
-    init(_ placeHolder: Resource.Placeholder) {
+    init(_ placeHolder: Placeholder) {
         super.init(frame: .zero)
         placeholder = placeHolder.rawValue.localized
         

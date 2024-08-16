@@ -36,10 +36,7 @@
 		E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82112C6BA553009E4B40 /* LoginQuery.swift */; };
 		E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82162C6BAEF3009E4B40 /* LoginViewModel.swift */; };
 		E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82182C6BB14E009E4B40 /* CustomTextField.swift */; };
-		E06B821B2C6BB401009E4B40 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B821A2C6BB401009E4B40 /* Text.swift */; };
 		E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B821D2C6BBE36009E4B40 /* UIViewController + Extension.swift */; };
-		E06B82202C6C3C9E009E4B40 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B821F2C6C3C9E009E4B40 /* Alert.swift */; };
-		E06B82222C6C3D46009E4B40 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82212C6C3D46009E4B40 /* Toast.swift */; };
 		E06B825D2C6C5B0A009E4B40 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E06B825C2C6C5B0A009E4B40 /* Localizable.xcstrings */; };
 		E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82612C6C5CBE009E4B40 /* String + Extension.swift */; };
 		E06B82652C6CCD59009E4B40 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82642C6CCD59009E4B40 /* Login.swift */; };
@@ -52,6 +49,10 @@
 		E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */; };
 		E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */; };
 		E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82792C6CFFDF009E4B40 /* Withdraw.swift */; };
+		E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B827B2C6D04E5009E4B40 /* SignUpView.swift */; };
+		E06B827F2C6D05AC009E4B40 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = E06B827E2C6D05AC009E4B40 /* TextFieldEffects */; };
+		E06B82852C6D0B7A009E4B40 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82842C6D0B7A009E4B40 /* SignUpViewModel.swift */; };
+		E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82862C6D0F00009E4B40 /* NextButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,10 +81,7 @@
 		E06B82112C6BA553009E4B40 /* LoginQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQuery.swift; sourceTree = "<group>"; };
 		E06B82162C6BAEF3009E4B40 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E06B82182C6BB14E009E4B40 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		E06B821A2C6BB401009E4B40 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		E06B821D2C6BBE36009E4B40 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
-		E06B821F2C6C3C9E009E4B40 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		E06B82212C6C3D46009E4B40 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		E06B825C2C6C5B0A009E4B40 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E06B825E2C6C5B22009E4B40 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E06B82612C6C5CBE009E4B40 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
@@ -97,6 +95,9 @@
 		E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailQuery.swift; sourceTree = "<group>"; };
 		E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		E06B82792C6CFFDF009E4B40 /* Withdraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdraw.swift; sourceTree = "<group>"; };
+		E06B827B2C6D04E5009E4B40 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E06B82842C6D0B7A009E4B40 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		E06B82862C6D0F00009E4B40 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +111,7 @@
 				E06B81ED2C6B7C76009E4B40 /* SnapKit in Frameworks */,
 				E06B81E82C6B7C6C009E4B40 /* RxCocoa in Frameworks */,
 				E06B81E22C6B7C48009E4B40 /* Alamofire in Frameworks */,
+				E06B827F2C6D05AC009E4B40 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,9 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				E06B81EF2C6B7C87009E4B40 /* Resource.swift */,
-				E06B821A2C6BB401009E4B40 /* Text.swift */,
-				E06B821F2C6C3C9E009E4B40 /* Alert.swift */,
-				E06B82212C6C3D46009E4B40 /* Toast.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -190,6 +189,7 @@
 				E06B81F22C6B7D56009E4B40 /* PlusButton.swift */,
 				E06B82022C6B9D14009E4B40 /* TabBarController.swift */,
 				E06B82182C6BB14E009E4B40 /* CustomTextField.swift */,
+				E06B82862C6D0F00009E4B40 /* NextButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -310,9 +310,35 @@
 		E06B826A2C6CE589009E4B40 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */,
+				E06B82802C6D0B5D009E4B40 /* ViewModel */,
+				E06B82812C6D0B61009E4B40 /* View */,
+				E06B82832C6D0B69009E4B40 /* ViewController */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		E06B82802C6D0B5D009E4B40 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E06B82842C6D0B7A009E4B40 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E06B82812C6D0B61009E4B40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E06B827B2C6D04E5009E4B40 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E06B82832C6D0B69009E4B40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +364,7 @@
 				E06B81E72C6B7C6C009E4B40 /* RxCocoa */,
 				E06B81E92C6B7C6C009E4B40 /* RxSwift */,
 				E06B81EC2C6B7C76009E4B40 /* SnapKit */,
+				E06B827E2C6D05AC009E4B40 /* TextFieldEffects */,
 			);
 			productName = thisbookthatbook;
 			productReference = E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */;
@@ -374,6 +401,7 @@
 				E06B81E32C6B7C5C009E4B40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E06B81E62C6B7C6C009E4B40 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = E06B81BB2C6B7AA0009E4B40 /* Products */;
 			projectDirPath = "";
@@ -406,10 +434,10 @@
 				E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
+				E06B82852C6D0B7A009E4B40 /* SignUpViewModel.swift in Sources */,
 				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
 				E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
-				E06B82202C6C3C9E009E4B40 /* Alert.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
@@ -419,6 +447,7 @@
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
 				E06B82692C6CDBD2009E4B40 /* ErrorCase.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
+				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
@@ -427,6 +456,7 @@
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,
+				E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */,
 				E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */,
 				E06B81D42C6B7ADE009E4B40 /* APIKey.swift in Sources */,
 				E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */,
@@ -434,9 +464,7 @@
 				E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
-				E06B82222C6C3D46009E4B40 /* Toast.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
-				E06B821B2C6BB401009E4B40 /* Text.swift in Sources */,
 				E06B81F32C6B7D56009E4B40 /* PlusButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +733,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -737,6 +773,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		E06B827E2C6D05AC009E4B40 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

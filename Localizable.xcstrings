@@ -103,6 +103,23 @@
         }
       }
     },
+    "button_title_check_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check redundancy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중복확인"
+          }
+        }
+      }
+    },
     "button_title_login" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -120,6 +137,23 @@
         }
       }
     },
+    "button_title_noUser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aren't you a member?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원이 아니신가요?"
+          }
+        }
+      }
+    },
     "button_title_signup" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -132,7 +166,92 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "회원이 아니신가요? "
+            "value" : "회원가입"
+          }
+        }
+      }
+    },
+    "label_email_invalid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This email is not available"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미 사용중인 이메일이에요"
+          }
+        }
+      }
+    },
+    "label_email_valid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It's an email you can use"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능한 이메일이에요"
+          }
+        }
+      }
+    },
+    "label_nickname_condition" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The nickname should be 2 or more and 10"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닉네임은 2자 이상 10자 이하로 입력해주세요"
+          }
+        }
+      }
+    },
+    "label_password_condition" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The password should be 4 or more and 15 or less without whitespace"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비밀번호는 공백없이 4자 이상 15자 이하로 입력해주세요 "
+          }
+        }
+      }
+    },
+    "navigation_title_signup" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SignUP"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원가입"
           }
         }
       }
@@ -150,6 +269,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일을 입력해주세요"
+          }
+        }
+      }
+    },
+    "placeholder_nickname" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enter your nickname"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닉네임을 입력해주세요"
           }
         }
       }
@@ -188,40 +324,6 @@
         }
       }
     },
-    "toast_email_empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please enter your email"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이메일을 입력해주세요"
-          }
-        }
-      }
-    },
-    "toast_email_invalid" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This email is not available"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이미 사용중인 이메일이에요"
-          }
-        }
-      }
-    },
     "toast_login_empty" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -252,6 +354,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일 또는 비밀번호를 확인해주세요"
+          }
+        }
+      }
+    },
+    "toast_signup_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your membership has been registered!"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원가입이 완료되었습니다!"
           }
         }
       }

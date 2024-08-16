@@ -52,7 +52,7 @@ final class LoginViewController: BaseViewController {
         super.setupUI()
         emailTextField.spellCheckingType = .no
         passwordTextField.isSecureTextEntry = true
-        let attributedTitle = NSAttributedString(string: Resource.ButtonTitle.noUser.rawValue.localized, attributes: [.font: Resource.Fonts.regular18])
+        let attributedTitle = NSAttributedString(string: "button_title_noUser".localized, attributes: [.font: Resource.Fonts.regular18])
         signUpButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
