@@ -15,6 +15,7 @@ enum Resource {
         static let gray6: UIColor  = .systemGray6
         static let white: UIColor = .white
         static let red: UIColor = .systemRed
+        static let black: UIColor = .black
     }
     
     enum Images {

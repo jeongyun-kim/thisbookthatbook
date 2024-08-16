@@ -24,12 +24,14 @@ extension UIViewController {
         let cancel = UIAlertAction(title: "alert_cancel".localized, style: .cancel)
         alert.addAction(confirm)
         alert.addAction(cancel)
+        transition(alert, type: .present)
     }
     
-    func showAlertOnlyConfirm(title: String, message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
+    func showAlertOnlyConfirm(title: String = "", message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "alert_confirm".localized, style: .default, handler: completionHandler)
         alert.addAction(confirm)
+        transition(alert, type: .present)
     }
     
     func showToast(message: String) {

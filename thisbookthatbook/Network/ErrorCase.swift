@@ -29,8 +29,7 @@ enum ErrorCase {
     
     enum EmailValidationError: String, Error {
         case defaultError = "toast_default_error"
-        case emptyEmail = "toast_email_empty"
-        case invalidEmail = "toast_email_invalid"
+        case invalidEmail = "label_email_invalid"
     }
     
     enum WithdrawError: String, Error {

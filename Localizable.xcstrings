@@ -41,13 +41,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login session expired\\nPlease log in again"
+            "value" : "Login session expired\nPlease log in again"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "로그인 세션이 만료됐어요\\n재로그인해주세요"
+            "value" : "로그인 세션이 만료됐어요\n재로그인해주세요"
+          }
+        }
+      }
+    },
+    "alert_msg_signup_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your membership has been registered!\nPlease go back to the previous screen and log in"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원가입이 완료되었습니다!\n이전 화면으로 돌아가 로그인해주세요"
           }
         }
       }
@@ -58,13 +75,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If you leave, all information will disappear.\\nAre you sure you want to leave?"
+            "value" : "If you leave, all information will disappear\nAre you sure you want to leave?"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탈퇴하시면 모든 정보가 사라져요\\n정말 탈퇴하시겠어요?"
+            "value" : "탈퇴하시면 모든 정보가 사라져요\n정말 탈퇴하시겠어요?"
           }
         }
       }
@@ -109,7 +126,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check redundancy"
+            "value" : "validate"
           }
         },
         "ko" : {
@@ -354,23 +371,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일 또는 비밀번호를 확인해주세요"
-          }
-        }
-      }
-    },
-    "toast_signup_success" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your membership has been registered!"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "회원가입이 완료되었습니다!"
           }
         }
       }

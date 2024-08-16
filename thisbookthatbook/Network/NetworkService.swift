@@ -105,13 +105,11 @@ final class NetworkService {
                     let query = EmailQuery(email: email)
                     let request = try AuthorizationRouter.validateEmail(query: query).asURLRequest()
                     self.fetchData(model: EmailValidation.self, request: request) { statusCode, value in
-                        print(statusCode, value)
                         guard let statusCode else { return }
                         switch statusCode {
                         case 200:
                             guard let value else { return }
                             single(.success(.success(value)))
-                        case 400: single(.success(.failure(.emptyEmail)))
                         case 409: single(.success(.failure(.invalidEmail)))
                         default: break
                         }
