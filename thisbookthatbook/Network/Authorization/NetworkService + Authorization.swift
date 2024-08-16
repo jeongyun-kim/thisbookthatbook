@@ -10,7 +10,7 @@ import RxSwift
 
 // MARK: AuthorizationRouter
 extension NetworkService {
-    func postUserLogin(email: String, password: String) -> Single<Result<Login, AuthorizationError.LoginError>> {
+    func postUserLogin(email: String, password: String) -> Single<Result<Login, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             let query = LoginQuery(email: email, password: password)
             do {
@@ -22,9 +22,9 @@ extension NetworkService {
                         guard let value else { return }
                         single(.success(.success(value)))
                     case 400:
-                        single(.success(.failure(.emptyData)))
+                        single(.success(.failure(.loginEmptyData)))
                     case 401:
-                        single(.success(.failure(.invalidData)))
+                        single(.success(.failure(.loginInvalidData)))
                     default:
                         single(.success(.failure(.defaultError)))
                     }
@@ -36,7 +36,7 @@ extension NetworkService {
         }
     }
     
-    func getRefreshToken(completionHandler: @escaping (AuthorizationError.RefreshTokenError) -> Void) {
+    func getRefreshToken(completionHandler: @escaping (Errors) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
             self.fetchData(model: RefreshToken.self, request: request) { statusCode, value in
@@ -45,10 +45,6 @@ extension NetworkService {
                 case 200:
                     guard let value else { return }
                     UserDefaultsManager.shared.accessToken = value.accessToken
-                case 401:
-                    completionHandler(.invalidToken)
-                case 403:
-                    completionHandler(.forbidden)
                 case 418:
                     completionHandler(.expiredToken)
                 default:
@@ -60,7 +56,7 @@ extension NetworkService {
         }
     }
     
-    func postSignUp(email: String, password: String, nickname: String) -> Single<Result<Signup, AuthorizationError.SignupError>> {
+    func postSignUp(email: String, password: String, nickname: String) -> Single<Result<Signup, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             do {
                 let query = SignupQuery(email: email, password: password, nick: nickname)
@@ -71,7 +67,7 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    case 409: single(.success(.failure(.existUser)))
+                    case 409: single(.success(.failure(.signupExistUser)))
                     default: single(.success(.failure(.defaultError)))
                     }
                 }
@@ -82,7 +78,7 @@ extension NetworkService {
         }
     }
     
-    func postValidateEmail(email: String) -> Single<Result<EmailValidation, AuthorizationError.EmailValidationError>> {
+    func postValidateEmail(email: String) -> Single<Result<EmailValidation, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             do {
                 let query = EmailQuery(email: email)
@@ -93,11 +89,10 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    case 409: single(.success(.failure(.invalidEmail)))
-                    default: break
+                    case 409: single(.success(.failure(.signupInvalidEmail)))
+                    default: single(.success(.failure(.defaultError)))
                     }
                 }
-                
             } catch {
                 print("validate email request error")
             }
@@ -105,7 +100,7 @@ extension NetworkService {
         }
     }
     
-    func getWithDraw() -> Single<Result<Withdraw, AuthorizationError.RefreshTokenError>>{
+    func getWithDraw() -> Single<Result<Withdraw, Errors>>{
         return Single.create { [weak self] single -> Disposable in
             do {
                 let request = try AuthorizationRouter.withdraw.asURLRequest()

@@ -41,7 +41,6 @@
 		E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82612C6C5CBE009E4B40 /* String + Extension.swift */; };
 		E06B82652C6CCD59009E4B40 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82642C6CCD59009E4B40 /* Login.swift */; };
 		E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82662C6CD694009E4B40 /* TargetType.swift */; };
-		E06B82692C6CDBD2009E4B40 /* AuthorizationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82682C6CDBD2009E4B40 /* AuthorizationError.swift */; };
 		E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */; };
 		E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B826D2C6CE893009E4B40 /* RefreshToken.swift */; };
 		E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82712C6CED3D009E4B40 /* SignupQuery.swift */; };
@@ -55,6 +54,10 @@
 		E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82862C6D0F00009E4B40 /* NextButton.swift */; };
 		E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82882C6F89C0009E4B40 /* PostRouter.swift */; };
 		E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82942C6F9193009E4B40 /* NetworkService + Authorization.swift */; };
+		E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82962C6F9211009E4B40 /* NetworkService + Post.swift */; };
+		E06B82992C6F924F009E4B40 /* ImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82982C6F924F009E4B40 /* ImageFile.swift */; };
+		E06B829C2C6F9294009E4B40 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B829B2C6F9294009E4B40 /* Files.swift */; };
+		E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B829F2C6F9684009E4B40 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +92,6 @@
 		E06B82612C6C5CBE009E4B40 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		E06B82642C6CCD59009E4B40 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		E06B82662C6CD694009E4B40 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
-		E06B82682C6CDBD2009E4B40 /* AuthorizationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationError.swift; sourceTree = "<group>"; };
 		E06B826B2C6CE5A0009E4B40 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E06B826D2C6CE893009E4B40 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		E06B82712C6CED3D009E4B40 /* SignupQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupQuery.swift; sourceTree = "<group>"; };
@@ -102,6 +104,10 @@
 		E06B82862C6D0F00009E4B40 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		E06B82882C6F89C0009E4B40 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		E06B82942C6F9193009E4B40 /* NetworkService + Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Authorization.swift"; sourceTree = "<group>"; };
+		E06B82962C6F9211009E4B40 /* NetworkService + Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Post.swift"; sourceTree = "<group>"; };
+		E06B82982C6F924F009E4B40 /* ImageFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFile.swift; sourceTree = "<group>"; };
+		E06B829B2C6F9294009E4B40 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		E06B829F2C6F9684009E4B40 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
+				E06B829F2C6F9684009E4B40 /* Errors.swift */,
 				E06B828C2C6F8C6E009E4B40 /* Authorization */,
 				E06B828D2C6F8CC5009E4B40 /* Post */,
 			);
@@ -347,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				E06B82942C6F9193009E4B40 /* NetworkService + Authorization.swift */,
-				E06B82682C6CDBD2009E4B40 /* AuthorizationError.swift */,
 				E06B820E2C6BA51C009E4B40 /* AuthorizationRouter.swift */,
 				E06B82102C6BA54B009E4B40 /* Query */,
 				E06B82632C6CCD56009E4B40 /* Model */,
@@ -358,8 +364,10 @@
 		E06B828D2C6F8CC5009E4B40 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				E06B828E2C6F8CED009E4B40 /* Query */,
+				E06B829A2C6F928C009E4B40 /* Model */,
 				E06B82882C6F89C0009E4B40 /* PostRouter.swift */,
+				E06B82962C6F9211009E4B40 /* NetworkService + Post.swift */,
+				E06B828E2C6F8CED009E4B40 /* Query */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -367,8 +375,17 @@
 		E06B828E2C6F8CED009E4B40 /* Query */ = {
 			isa = PBXGroup;
 			children = (
+				E06B82982C6F924F009E4B40 /* ImageFile.swift */,
 			);
 			path = Query;
+			sourceTree = "<group>";
+		};
+		E06B829A2C6F928C009E4B40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E06B829B2C6F9294009E4B40 /* Files.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */,
 				E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
@@ -475,8 +493,8 @@
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
-				E06B82692C6CDBD2009E4B40 /* AuthorizationError.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
+				E06B829C2C6F9294009E4B40 /* Files.swift in Sources */,
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
@@ -492,7 +510,9 @@
 				E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */,
 				E06B82072C6B9E6D009E4B40 /* ProfileViewController.swift in Sources */,
 				E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */,
+				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,
 				E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */,
+				E06B82992C6F924F009E4B40 /* ImageFile.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
