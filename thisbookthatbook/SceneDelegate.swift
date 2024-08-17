@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // SceneDelegate의 프로퍼티에 설정
         window = UIWindow(windowScene: windowScene)
         let isUser = !UserDefaultsManager.shared.accessToken.isEmpty
-        let mainView = isUser ? TabBarController() : LoginViewController()
+        let mainView = isUser ? TabBarController() : UINavigationController(rootViewController: LoginViewController())
         // 처음 보여질 화면(=탭바)을 root로 설정하고 보여주기
-        window?.rootViewController = UINavigationController(rootViewController: mainView)
+        window?.rootViewController = mainView
         window?.makeKeyAndVisible()
     }
 
