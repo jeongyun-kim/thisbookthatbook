@@ -82,5 +82,9 @@ extension AuthorizationRouter: TargetType {
             return nil
         }
     }
+    
+    var queryItems: [URLQueryItem]? {
+        return nil
+    }
 }
     

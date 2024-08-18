@@ -14,6 +14,7 @@ protocol TargetType: URLRequestConvertible {
     var header: [String: String] { get }
     var method: HTTPMethod { get }
     var body: Data? { get }
+    var queryItems: [URLQueryItem]? { get }
 }
 
 extension TargetType {
@@ -23,6 +24,8 @@ extension TargetType {
         var request = try URLRequest(url: endPoint, method: method)
         request.allHTTPHeaderFields = header
         request.httpBody = body
+        guard let queryItems else { return request }
+        request.url?.append(queryItems: queryItems)
         return request
     }
     

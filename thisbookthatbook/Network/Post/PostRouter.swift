@@ -11,6 +11,7 @@ import Alamofire
 enum PostRouter {
     case uploadImage
     case uploadPost(query: Post)
+    case getPosts(query: PostData)
 }
 
 extension PostRouter: TargetType {
@@ -24,6 +25,8 @@ extension PostRouter: TargetType {
             return "v1/posts/files"
         case .uploadPost:
             return "v1/posts"
+        case .getPosts(let query):
+            return "v1/posts"
         }
     }
     
@@ -34,6 +37,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.dataValue, API.Headers.sesacKey: API.key]
         case .uploadPost:
             return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
+        case .getPosts:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -43,6 +48,8 @@ extension PostRouter: TargetType {
             return .post
         case .uploadPost:
             return .post
+        case .getPosts:
+            return .get
         }
     }
     
@@ -52,6 +59,19 @@ extension PostRouter: TargetType {
            return nil
         case .uploadPost(let query):
             return encoding(query)
+        case .getPosts:
+            return nil
+        }
+    }
+    
+    var queryItems: [URLQueryItem]? {
+        switch self {
+        case .uploadImage:
+            return nil
+        case .uploadPost(let query):
+            return nil
+        case .getPosts(let query):
+            return [URLQueryItem(name: "limit", value: "5"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
         }
     }
 }
