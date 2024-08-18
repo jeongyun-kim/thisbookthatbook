@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  UploadPostQuery.swift
 //  thisbookthatbook
 //
 //  Created by 김정윤 on 8/17/24.
@@ -12,7 +12,7 @@ enum RecommendType: String {
     case recieve_recommended = "tbtb_recommended"
 }
 
-struct Post: Encodable {
+struct UploadPostQuery: Encodable {
     var content: String
     var content1: String
     var content2: String

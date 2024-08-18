@@ -10,8 +10,8 @@ import Alamofire
 
 enum PostRouter {
     case uploadImage
-    case uploadPost(query: Post)
-    case getPosts(query: PostData)
+    case uploadPost(query: UploadPostQuery)
+    case getPosts(query: GetPostsQuery)
 }
 
 extension PostRouter: TargetType {
