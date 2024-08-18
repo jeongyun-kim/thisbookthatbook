@@ -15,13 +15,10 @@ final class NetworkService {
     func fetchData<T: Decodable>(model: T.Type, request: URLRequest, completionHandler: @escaping (Int?, T?) -> Void){
         AF.request(request, interceptor: AuthInterceptor()).responseDecodable(of: model) { response in
             let statusCode = response.response?.statusCode
-            print(#function)
             switch response.result {
-       
             case .success(let value):
-                print(model, value)
                 completionHandler(statusCode, value)
-            case .failure(let error):
+            case .failure(_):
                 completionHandler(statusCode, nil)
             }
         }

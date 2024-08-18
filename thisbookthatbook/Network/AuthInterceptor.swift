@@ -33,6 +33,8 @@ final class AuthInterceptor:  RequestInterceptor {
                 UserDefaultsManager.shared.accessToken = value.accessToken
                 completion(.retry)
             case .failure(let error):
+                // 만약 상태코드가 419라 토큰 리프레시를 진행하려고 했는데, 에러가 발생했다면
+                // refreshToken이 만료된 것 -> 로그인을 다시 해달라고 알려야 함 
                 completion(.doNotRetryWithError(error))
             }
         }

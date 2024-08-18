@@ -29,10 +29,12 @@ extension NetworkService {
                         var query = query
                         query.files = value.files
                         self.postPosts(query: query)
+                    case 419:
+                        completionHandler(.expiredToken)
                     default:
                         completionHandler(Errors.defaultError)
                     }
-                case .failure(let error):
+                case .failure(_):
                     completionHandler(Errors.defaultError)
                 }
             }
@@ -70,6 +72,10 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value.data)))
+                    case 419:
+                        // 만약 토큰이 갱신되지 않았다면 retry에서 에러를 전달하고 상태코드 419인 상태에서 에러가 발생한 것으로 처리됨
+                        // -> 그러므로 리프레시 토큰이 만료되었다는 에러메시지 전달
+                        single(.success(.failure(.expiredToken)))
                     default:
                         single(.success(.failure(.defaultError)))
                     }

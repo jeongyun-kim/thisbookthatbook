@@ -41,10 +41,8 @@ extension NetworkService {
     func getRefreshToken(completionHandler: @escaping (Result<RefreshToken, Errors>) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
-            print(#function, request)
             fetchData(model: RefreshToken.self, request: request) { statusCode, value in
                 guard let statusCode else { return }
-                print(statusCode)
                 switch statusCode {
                 case 200:
                     guard let value else { return }
@@ -118,7 +116,10 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    default: single(.success(.failure(.defaultError)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default: 
+                        single(.success(.failure(.defaultError)))
                     }
                 }
             } catch {
