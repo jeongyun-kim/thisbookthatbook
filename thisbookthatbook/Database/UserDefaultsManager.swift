@@ -32,4 +32,10 @@ final class UserDefaultsManager {
     @UD(key: "refreshToken") var refreshToken 
     @UD(key: "nickname") var nickname
     @UD(key: "profile") var profile
+    
+    func deleteAllData() {
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+    }
 }

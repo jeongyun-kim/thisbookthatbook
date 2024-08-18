@@ -256,6 +256,23 @@
         }
       }
     },
+    "navigation_title_feed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feed"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피드"
+          }
+        }
+      }
+    },
     "navigation_title_signup" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -324,6 +341,40 @@
         }
       }
     },
+    "segment_give_recommend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommend"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추천해요"
+          }
+        }
+      }
+    },
+    "segment_recieve_recommend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추천해주세요"
+          }
+        }
+      }
+    },
     "toast_default_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -335,7 +386,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "에러가 발생했습니다\n해당 문제가 계속되면 개발자에게 문의하세요"
           }
         }
