@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Alamofire
 import RxSwift
 
 // MARK: AuthorizationRouter
 extension NetworkService {
+    
     func postUserLogin(email: String, password: String) -> Single<Result<Login, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             let query = LoginQuery(email: email, password: password)
@@ -36,19 +38,21 @@ extension NetworkService {
         }
     }
     
-    func getRefreshToken(completionHandler: @escaping (Errors) -> Void) {
+    func getRefreshToken(completionHandler: @escaping (Result<RefreshToken, Errors>) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
-            self.fetchData(model: RefreshToken.self, request: request) { statusCode, value in
+            print(#function, request)
+            fetchData(model: RefreshToken.self, request: request) { statusCode, value in
                 guard let statusCode else { return }
+                print(statusCode)
                 switch statusCode {
                 case 200:
                     guard let value else { return }
-                    UserDefaultsManager.shared.accessToken = value.accessToken
+                    completionHandler(.success(value))
                 case 418:
-                    completionHandler(.expiredToken)
+                    completionHandler(.failure(.expiredToken))
                 default:
-                    completionHandler(.defaultError)
+                    completionHandler(.failure(.defaultError))
                 }
             }
         } catch {
@@ -67,8 +71,10 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    case 409: single(.success(.failure(.signupExistUser)))
-                    default: single(.success(.failure(.defaultError)))
+                    case 409: 
+                        single(.success(.failure(.signupExistUser)))
+                    default: 
+                        single(.success(.failure(.defaultError)))
                     }
                 }
             } catch {
@@ -89,8 +95,10 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    case 409: single(.success(.failure(.signupInvalidEmail)))
-                    default: single(.success(.failure(.defaultError)))
+                    case 409: 
+                        single(.success(.failure(.signupInvalidEmail)))
+                    default: 
+                        single(.success(.failure(.defaultError)))
                     }
                 }
             } catch {
@@ -110,12 +118,8 @@ extension NetworkService {
                     case 200:
                         guard let value else { return }
                         single(.success(.success(value)))
-                    case 419: self?.getRefreshToken { error in
-                        single(.success(.failure(error)))
-                    }
                     default: single(.success(.failure(.defaultError)))
                     }
-                    
                 }
             } catch {
                 print("withdraw request error")
