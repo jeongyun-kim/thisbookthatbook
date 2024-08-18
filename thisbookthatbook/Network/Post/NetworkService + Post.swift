@@ -10,29 +10,7 @@ import Alamofire
 import RxSwift
 
 extension NetworkService {
-    func refreshAndPostImages(query: Post, files: [ImageFile], completionHandler: @escaping (Errors?) -> Void){
-        getRefreshToken { error in
-            if let error {
-                completionHandler(error)
-            } else {
-                self.postImages(query: query, files: files) { error in
-                    completionHandler(error)
-                }
-            }
-        }
-    }
-    
-    func refreshAndPost(query: Post) {
-        getRefreshToken { [weak self] error in
-            if let error {
-                print(error)
-            } else {
-                self?.postPosts(query: query)
-            }
-        }
-    }
-    
-    func postImages(query: Post, files: [ImageFile], completionHandler: @escaping (Errors?) -> Void){
+    func postImages(query: UploadPostQuery, files: [FilesQuery], completionHandler: @escaping (Errors?) -> Void){
         
         do {
             let request = try PostRouter.uploadImage.asURLRequest()
@@ -43,27 +21,19 @@ extension NetworkService {
                 }
             }, with: request).responseDecodable(of: Files.self) { response in
                 let statusCode = response.response?.statusCode
-                if statusCode == 419 {
-                    self.refreshAndPostImages(query: query, files: files) { error in
-                        if let error {
-                            completionHandler(error)
-                        }
-                    }
-                    return
-                } else {
-                    switch response.result {
-                    case .success(let value):
-                        switch statusCode {
-                        case 200:
-                            var query = query
-                            query.files = value.files
-                            self.postPosts(query: query)
-                        default:
-                            completionHandler(Errors.defaultError)
-                        }
-                    case .failure(let error):
+
+                switch response.result {
+                case .success(let value):
+                    switch statusCode {
+                    case 200:
+                        var query = query
+                        query.files = value.files
+                        self.postPosts(query: query)
+                    default:
                         completionHandler(Errors.defaultError)
                     }
+                case .failure(let error):
+                    completionHandler(Errors.defaultError)
                 }
             }
         } catch {
@@ -71,17 +41,15 @@ extension NetworkService {
         }
     }
     
-    func postPosts(query: Post) {
+    func postPosts(query: UploadPostQuery) {
         do {
             let request = try PostRouter.uploadPost(query: query).asURLRequest()
-            fetchData(model: PostResults.self, request: request) { statusCode, value in
+            fetchData(model: Posts.self, request: request) { statusCode, value in
                 guard let statusCode else { return }
                 switch statusCode {
                 case 200:
                     guard let value else { return }
                     print(#function, value)
-                case 419:
-                    self.refreshAndPost(query: query)
                 case 410:
                     print("생성된 게시글 없음")
                 default:
@@ -93,6 +61,26 @@ extension NetworkService {
         }
     }
     
+    func getPosts(query: GetPostsQuery) -> Single<Result<[Post], Errors>> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try PostRouter.getPosts(query: query).asURLRequest()
+                self.fetchData(model: Posts.self, request: request) { statusCode, value in
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value.data)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("Error")
+            }
+            return Disposables.create()
+        }
+       
+    }
   
 }
 
