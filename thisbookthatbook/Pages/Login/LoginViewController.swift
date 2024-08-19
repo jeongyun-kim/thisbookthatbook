@@ -77,7 +77,7 @@ final class LoginViewController: BaseViewController {
             .asDriver(onErrorJustReturn: false)
             .drive(with: self) { owner, value in
                 guard value else { return }
-                let vc = UINavigationController(rootViewController: TabBarController())
+                let vc = TabBarController()
                 owner.setNewScene(vc)
             }.disposed(by: disposeBag)
         
