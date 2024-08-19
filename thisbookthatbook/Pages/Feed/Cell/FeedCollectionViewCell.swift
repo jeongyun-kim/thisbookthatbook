@@ -6,21 +6,19 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 
-final class FeedCollectionViewCell: BaseCollectionViewCell {
+class FeedCollectionViewCell: BaseCollectionViewCell {
     var disposeBag = DisposeBag()
-    private let thumbnailView = ThumbnailView()
-    private let userContentsView = UserContentView()
-    
-    private let contentLabel = UILabel()
-    
+    let thumbnailView = ThumbnailView()
+    let userContentsView = UserContentView()
+    let contentLabel = UILabel()
     lazy var bookCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: bookCollectionViewLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .bookCollectionViewLayout())
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         return collectionView
     }()
-    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -32,8 +30,7 @@ final class FeedCollectionViewCell: BaseCollectionViewCell {
         stackView.addArrangedSubview(interactionView)
         return stackView
     }()
-    
-    private let interactionView = InteractionView()
+    let interactionView = InteractionView()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -80,14 +77,12 @@ final class FeedCollectionViewCell: BaseCollectionViewCell {
     }
     
     func configureCell(_ data: Post) {
-       
         let isContainsThumbnail = !data.files.isEmpty
         thumbnailView.isHidden = !isContainsThumbnail
         thumbnailView.configureView(data.files)
-        
         userContentsView.userNameLabel.text = data.creator.nick
-        
         contentLabel.text = data.content
+        interactionView.configureView(data)
         isContainsBook(data.content1)
     }
     
@@ -96,20 +91,5 @@ final class FeedCollectionViewCell: BaseCollectionViewCell {
             bookCollectionView.isHidden = true
             return }
         bookCollectionView.isHidden = false
-    }
-
-    private func bookCollectionViewLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95), heightDimension: .fractionalHeight(1))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .paging
-        section.interGroupSpacing = 10
-      
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
     }
 }

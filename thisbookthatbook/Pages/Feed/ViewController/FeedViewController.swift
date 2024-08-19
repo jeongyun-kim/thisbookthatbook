@@ -35,7 +35,7 @@ final class FeedViewController: BaseViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(main.collectionView.rx.items(cellIdentifier: FeedCollectionViewCell.identifier, cellType: FeedCollectionViewCell.self)) { (row, element, cell) in
                 cell.configureCell(element)
-                // 책 데이터만 가져와서 내부 컬렉션뷰에 보여주기 
+                // 책 데이터만 가져와서 내부 컬렉션뷰에 보여주기
                 let books = [element.content1, element.content2, element.content3, element.content4, element.content5]
                 let data = books.compactMap { $0 }.filter { !$0.isEmpty }
                 Observable.just(data)

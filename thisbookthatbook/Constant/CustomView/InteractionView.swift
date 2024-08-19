@@ -79,4 +79,11 @@ final class InteractionView: BaseView {
             imageView.tintColor = Resource.Colors.lightGray
         }
     }
+    
+    func configureView(_ data: Post) {
+        let likeCount = data.likes.count > 99 ? "99+" : "\(data.likes.count)"
+        likeCntLabel.text = likeCount
+        let commentCount = data.comments.count > 99 ? "99+" : "\(data.comments.count)"
+        commentLabel.text = commentCount
+    }
 }
