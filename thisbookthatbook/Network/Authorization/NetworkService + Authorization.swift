@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-// MARK: AuthorizationRouter
+// MARK: Authorization
 extension NetworkService {
     
     func postUserLogin(email: String, password: String) -> Single<Result<Login, Errors>> {
@@ -22,6 +22,9 @@ extension NetworkService {
                     switch statusCode {
                     case 200:
                         guard let value else { return }
+                        UserDefaultsManager.shared.accessToken = value.accessToken
+                        UserDefaultsManager.shared.refreshToken = value.refreshToken
+                        UserDefaultsManager.shared.id = value.id
                         single(.success(.success(value)))
                     case 400:
                         single(.success(.failure(.loginEmptyData)))

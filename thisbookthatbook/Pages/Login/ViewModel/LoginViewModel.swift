@@ -22,7 +22,7 @@ final class LoginViewModel: BaseViewModel {
     
     struct Output {
         let toastMessage: PublishRelay<String>
-        let loginResult: PublishRelay<Bool>
+        let loginResult: PublishRelay<Void?>
         let signupBtnTapped: ControlEvent<Void>
     }
     
@@ -31,7 +31,7 @@ final class LoginViewModel: BaseViewModel {
         let pw = BehaviorRelay(value: "")
         let toastMessage = PublishRelay<String>()
         let fetchLogin = PublishRelay<Void>()
-        let loginResult = PublishRelay<Bool>()
+        let loginResult = PublishRelay<Void?>()
         
         input.email
             .bind(to: email)
@@ -59,13 +59,7 @@ final class LoginViewModel: BaseViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let value):
-                    owner.ud.accessToken = value.accessToken
-                    owner.ud.refreshToken = value.refreshToken
-                    owner.ud.nickname = value.nick
-                    let profile = value.profile ?? ""
-                    owner.ud.profile = profile
-                    
-                    loginResult.accept(true)
+                    loginResult.accept(())
                 case .failure(let error):
                     toastMessage.accept(error.rawValue.localized)
                 }
