@@ -19,12 +19,13 @@ final class FeedViewModel: BaseViewModel {
     struct Output {
         let toastMessage: PublishRelay<String>
         let alert: PublishRelay<Void>
-      //  let feedResults: PublishRelay<[Post]>
+        let feedResults: PublishRelay<[Post]>
     }
     
     func transform(_ input: Input) -> Output {
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
+        let feedResults = PublishRelay<[Post]>()
         
         input.selectedSegmentIdx
             .map {
@@ -36,7 +37,7 @@ final class FeedViewModel: BaseViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let value):
-                    print("success", value)
+                    feedResults.accept(value)
                 case .failure(let error):
                     switch error {
                     case .expiredToken:
@@ -50,7 +51,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        let output = Output(toastMessage: toastMessage, alert: alert)
+        let output = Output(toastMessage: toastMessage, alert: alert, feedResults: feedResults)
         return output
     }
 }

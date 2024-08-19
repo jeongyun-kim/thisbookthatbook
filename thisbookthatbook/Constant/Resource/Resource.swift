@@ -25,6 +25,7 @@ enum Resource {
         static let heartInactive = UIImage(systemName: "heart")
         static let heartActive = UIImage(systemName: "heart.fill")
         static let more = UIImage(systemName: "ellipsis")
+        static let comment = UIImage(systemName: "bubble.right")
     }
     
     enum Fonts {
@@ -39,6 +40,8 @@ enum Resource {
     
     enum Radius {
         static let normal: CGFloat = 12
+        static let book: CGFloat = 4
+        static let bgView: CGFloat = 8
     }
     
     enum TransitionType {

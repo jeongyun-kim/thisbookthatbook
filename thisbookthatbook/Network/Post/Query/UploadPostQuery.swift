@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RecommendType: String {
+enum RecommendType: String, CaseIterable {
     case give_recommend = "tbtb_recommend"
     case recieve_recommended = "tbtb_recommended"
 }

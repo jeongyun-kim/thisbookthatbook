@@ -22,7 +22,6 @@ final class FeedViewController: BaseViewController {
         super.setupUI()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "navigation_title_feed".localized
-
     }
     
     override func bind() {
@@ -30,6 +29,20 @@ final class FeedViewController: BaseViewController {
         
         let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx)
         let output = vm.transform(input)
+        
+        // 포스트 조회 결과
+        output.feedResults
+            .asDriver(onErrorJustReturn: [])
+            .drive(main.collectionView.rx.items(cellIdentifier: FeedCollectionViewCell.identifier, cellType: FeedCollectionViewCell.self)) { (row, element, cell) in
+                cell.configureCell(element)
+                // 책 데이터만 가져와서 내부 컬렉션뷰에 보여주기 
+                let books = [element.content1, element.content2, element.content3, element.content4, element.content5]
+                let data = books.compactMap { $0 }.filter { !$0.isEmpty }
+                Observable.just(data)
+                    .bind(to: cell.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
+                        cell.configureCell(element)
+                    }.disposed(by: cell.disposeBag)
+            }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리
         output.toastMessage
