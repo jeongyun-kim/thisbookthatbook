@@ -64,10 +64,10 @@ extension NetworkService {
     }
     
     func getPosts(query: GetPostsQuery) -> Single<Result<[Post], Errors>> {
-        return Single.create { single -> Disposable in
+        return Single.create { [weak self] single -> Disposable in
             do {
                 let request = try PostRouter.getPosts(query: query).asURLRequest()
-                self.fetchData(model: Posts.self, request: request) { statusCode, value in
+                self?.fetchData(model: Posts.self, request: request) { statusCode, value in
                     switch statusCode {
                     case 200:
                         guard let value else { return }
@@ -81,12 +81,34 @@ extension NetworkService {
                     }
                 }
             } catch {
-                print("Error")
+                print("get posts request error")
             }
             return Disposables.create()
         }
-       
     }
-  
+    
+    func deletePost(query: PostIdQuery, productId: String) -> Single<Result<Void, Errors>> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try PostRouter.deletePost(query: query).asURLRequest()
+                AF.request(request, interceptor: AuthInterceptor.interceptor).responseString(emptyResponseCodes: [200]) { response in
+                    let statusCode = response.response?.statusCode
+                    switch statusCode {
+                    case 200:
+                        single(.success(.success(())))
+                    case 410: // 게시글을 찾을 수 없음
+                        single(.success(.failure(.invalidDeletePostRequest)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default :
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("delete post request error")
+            }
+            return Disposables.create()
+        }
+    }
 }
 

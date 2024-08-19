@@ -12,6 +12,7 @@ enum PostRouter {
     case uploadImage
     case uploadPost(query: UploadPostQuery)
     case getPosts(query: GetPostsQuery)
+    case deletePost(query: PostIdQuery)
 }
 
 extension PostRouter: TargetType {
@@ -25,8 +26,10 @@ extension PostRouter: TargetType {
             return "v1/posts/files"
         case .uploadPost:
             return "v1/posts"
-        case .getPosts(let query):
+        case .getPosts:
             return "v1/posts"
+        case .deletePost(let query):
+            return "v1/posts/\(query.id)"
         }
     }
     
@@ -39,6 +42,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .getPosts:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .deletePost:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -50,6 +55,8 @@ extension PostRouter: TargetType {
             return .post
         case .getPosts:
             return .get
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -61,6 +68,8 @@ extension PostRouter: TargetType {
             return encoding(query)
         case .getPosts:
             return nil
+        case .deletePost:
+            return nil
         }
     }
     
@@ -68,10 +77,12 @@ extension PostRouter: TargetType {
         switch self {
         case .uploadImage:
             return nil
-        case .uploadPost(let query):
+        case .uploadPost:
             return nil
         case .getPosts(let query):
             return [URLQueryItem(name: "limit", value: "5"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
+        case .deletePost(let query):
+            return nil
         }
     }
 }

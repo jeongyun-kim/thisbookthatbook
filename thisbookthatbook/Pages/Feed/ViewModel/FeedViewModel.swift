@@ -28,9 +28,16 @@ final class FeedViewModel: BaseViewModel {
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         let feedResults = PublishRelay<[Post]>()
+        let selectedSegmentIdx = BehaviorRelay(value: 0)
         
-        // 새로운 카테고리 선택될 때마다
+        // 새로운 피드 카테고리 선택 인덱스 정보
         input.selectedSegmentIdx
+            .asDriver()
+            .drive(selectedSegmentIdx)
+            .disposed(by: disposeBag)
+        
+        // 새로운 카테고리 선택될 때마다 서버 통신 -> 결과 받아오기
+        selectedSegmentIdx
             .map {
                 let id = RecommendType.allCases[$0].rawValue
                 let query = GetPostsQuery(next: "0", product_id: id)
@@ -62,8 +69,25 @@ final class FeedViewModel: BaseViewModel {
         
         // 게시글 삭제
         input.deleteTrigger
-            .bind(with: self) { owner, value in
-                print("여기서 게시글 삭제 \(value)")
+            .flatMap { NetworkService.shared.deletePost(query: PostIdQuery(id: $0.post_id), productId: $0.product_id)}
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    // 삭제 성공했다면 서버에서 피드 데이터 다시 받아오게 현재 선택되어있던 인덱스값 전달
+                    let idx = selectedSegmentIdx.value
+                    selectedSegmentIdx.accept(idx)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        // 토큰 갱신이 불가하다면 재로그인 필요
+                        alert.accept(())
+                        // 재로그인할거니까 저장해뒀던 사용자 정보 모두 지우기 -> 앱을 껐다키면 로그인 화면으로 이동
+                        UserDefaultsManager.shared.deleteAllData()
+                    default:
+                        let errorMessage = error.rawValue.localized
+                        toastMessage.accept(errorMessage)
+                    }
+                }
             }.disposed(by: disposeBag)
         
         let output = Output(toastMessage: toastMessage, alert: alert, feedResults: feedResults)

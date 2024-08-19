@@ -9,6 +9,9 @@ import Foundation
 import Alamofire
 
 final class AuthInterceptor:  RequestInterceptor {
+    private init() { }
+    static let interceptor = AuthInterceptor()
+    
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
         print(#function)
         var request = urlRequest
@@ -26,7 +29,7 @@ final class AuthInterceptor:  RequestInterceptor {
             completion(.doNotRetry)
             return
         }
-        
+        print(#function)
         NetworkService.shared.getRefreshToken { result in
             switch result {
             case .success(let value):

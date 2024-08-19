@@ -426,6 +426,23 @@
         }
       }
     },
+    "toast_delete_invalidPost" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no posts to delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제할 포스트가 없어요"
+          }
+        }
+      }
+    },
     "toast_login_empty" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -20,5 +20,7 @@ extension NetworkService {
         case signupInvalidEmail = "label_email_invalid"
         
         case postImageInvalidRequest
+        
+        case invalidDeletePostRequest = "toast_delete_invalidPost"
     }
 }
