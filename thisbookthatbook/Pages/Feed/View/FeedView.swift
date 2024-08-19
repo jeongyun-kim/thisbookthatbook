@@ -39,9 +39,12 @@ final class FeedView: BaseView {
         return collectionView
     }()
     
+    let addPostButton = PlusButton()
+    
     override func setupHierarchy() {
         addSubview(segmentControl)
         addSubview(collectionView)
+        addSubview(addPostButton)
     }
     
     override func setupConstraints() {
@@ -54,6 +57,11 @@ final class FeedView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(segmentControl.snp.bottom)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        addPostButton.snp.makeConstraints { make in
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(24)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(30)
         }
     }
     

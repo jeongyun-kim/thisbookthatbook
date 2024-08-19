@@ -28,8 +28,10 @@ final class FeedViewController: BaseViewController {
         let selectedSegentIdx = main.segmentControl.rx.selectedSegmentIndex
         let modifyTrigger = PublishRelay<Post>()
         let deleteTrigger = PublishRelay<Post>()
+        let addPostBtnTapped = main.addPostButton.rx.tap
         
-        let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger)
+        let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, 
+                                        deleteTrigger: deleteTrigger, addPostBtnTapped: addPostBtnTapped)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -75,6 +77,14 @@ final class FeedViewController: BaseViewController {
                     let vc = UINavigationController(rootViewController: LoginViewController())
                     owner.setNewScene(vc)
                 }
+            }.disposed(by: disposeBag)
+        
+        // 포스트 작성뷰로 이동
+        output.addPostBtnTapped
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                let vc = WritePostViewController()
+                owner.transition(vc)
             }.disposed(by: disposeBag)
     }
 }

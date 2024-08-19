@@ -290,6 +290,40 @@
         }
       }
     },
+    "navigation_title_add" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write a post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 작성"
+          }
+        }
+      }
+    },
+    "navigation_title_edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 수정"
+          }
+        }
+      }
+    },
     "navigation_title_feed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -371,6 +405,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "비밀번호를 입력해주세요"
+          }
+        }
+      }
+    },
+    "placeholder_write_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write Something"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내용을 입력해주세요"
           }
         }
       }

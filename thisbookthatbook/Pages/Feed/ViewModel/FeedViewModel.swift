@@ -16,12 +16,14 @@ final class FeedViewModel: BaseViewModel {
         let selectedSegmentIdx: ControlProperty<Int>
         let modifyTrigger: PublishRelay<Post>
         let deleteTrigger: PublishRelay<Post>
+        let addPostBtnTapped: ControlEvent<Void>
     }
     
     struct Output {
         let toastMessage: PublishRelay<String>
         let alert: PublishRelay<Void>
         let feedResults: PublishRelay<[Post]>
+        let addPostBtnTapped: ControlEvent<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -90,7 +92,8 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        let output = Output(toastMessage: toastMessage, alert: alert, feedResults: feedResults)
+        let output = Output(toastMessage: toastMessage, alert: alert, 
+                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped)
         return output
     }
 }
