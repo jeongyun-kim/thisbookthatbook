@@ -34,7 +34,7 @@ final class FeedView: BaseView {
     }()
     
    lazy var collectionView: UICollectionView = {
-       let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+       let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .FeedCollectionViewLayout())
        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: FeedCollectionViewCell.identifier)
         return collectionView
     }()
@@ -60,21 +60,4 @@ final class FeedView: BaseView {
     override func setupUI() {
         collectionView.backgroundColor = Resource.Colors.gray6
     }
-    
-    private func layout() -> UICollectionViewLayout {
-        let spacing:CGFloat = 20
-        
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = spacing
-      
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
-    
 }
