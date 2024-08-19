@@ -31,7 +31,7 @@ final class UserContentView: BaseView {
         return imageView
     }()
     
-    private let moreButton = UIButton()
+    let moreButton = UIButton()
     
     override func setupHierarchy() {
         addSubview(userProfileImageView)
@@ -61,5 +61,11 @@ final class UserContentView: BaseView {
             make.size.equalTo(44)
             make.center.equalTo(moreImageView.snp.center)
         }
+    }
+    
+    func hideMoreButton(_ id: String) {
+        let isMyPost = id == UserDefaultsManager.shared.id
+        moreButton.isHidden = !isMyPost
+        moreImageView.isHidden = !isMyPost
     }
 }

@@ -11,9 +11,9 @@ import RxSwift
 
 class FeedCollectionViewCell: BaseCollectionViewCell {
     var disposeBag = DisposeBag()
-    let thumbnailView = ThumbnailView()
+    private let thumbnailView = ThumbnailView()
     let userContentsView = UserContentView()
-    let contentLabel = UILabel()
+    private let contentLabel = UILabel()
     lazy var bookCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .bookCollectionViewLayout())
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
@@ -30,13 +30,14 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         stackView.addArrangedSubview(interactionView)
         return stackView
     }()
-    let interactionView = InteractionView()
+    private let interactionView = InteractionView()
     
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         bookCollectionView.isHidden = true
         thumbnailView.isHidden = true
+        thumbnailView.setupUI()
     }
     
     override func setupHierarchy() {
@@ -84,6 +85,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         contentLabel.text = data.content
         interactionView.configureView(data)
         isContainsBook(data.content1)
+        userContentsView.hideMoreButton(data.creator.user_id) // 게시글의 글쓴이가 로그인한 나라면 더보기 버튼 냅두기 
     }
     
     func isContainsBook(_ data: String?) {

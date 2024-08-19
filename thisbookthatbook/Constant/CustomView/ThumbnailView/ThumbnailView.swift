@@ -35,6 +35,10 @@ final class ThumbnailView: BaseView {
     }
     
     override func setupUI() {
+        hideAllViews()
+    }
+    
+    func hideAllViews() {
         oneThumbnailView.isHidden = true
         twoThumbnailView.isHidden = true
         threeThumbnailView.isHidden = true

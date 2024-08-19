@@ -14,6 +14,8 @@ final class FeedViewModel: BaseViewModel {
     
     struct Input {
         let selectedSegmentIdx: ControlProperty<Int>
+        let modifyTrigger: PublishRelay<Post>
+        let deleteTrigger: PublishRelay<Post>
     }
     
     struct Output {
@@ -27,6 +29,7 @@ final class FeedViewModel: BaseViewModel {
         let alert = PublishRelay<Void>()
         let feedResults = PublishRelay<[Post]>()
         
+        // 새로운 카테고리 선택될 때마다
         input.selectedSegmentIdx
             .map {
                 let id = RecommendType.allCases[$0].rawValue
@@ -49,6 +52,18 @@ final class FeedViewModel: BaseViewModel {
                         toastMessage.accept("toast_default_error".localized)
                     }
                 }
+            }.disposed(by: disposeBag)
+        
+        // 게시글 수정
+        input.modifyTrigger
+            .bind(with: self) { owner, value in
+                print("여기서 게시글 수정으로 이동 \(value)")
+            }.disposed(by: disposeBag)
+        
+        // 게시글 삭제
+        input.deleteTrigger
+            .bind(with: self) { owner, value in
+                print("여기서 게시글 삭제 \(value)")
             }.disposed(by: disposeBag)
         
         let output = Output(toastMessage: toastMessage, alert: alert, feedResults: feedResults)

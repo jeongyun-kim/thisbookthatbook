@@ -26,8 +26,10 @@ final class FeedViewController: BaseViewController {
     
     override func bind() {
         let selectedSegentIdx = main.segmentControl.rx.selectedSegmentIndex
+        let modifyTrigger = PublishRelay<Post>()
+        let deleteTrigger = PublishRelay<Post>()
         
-        let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx)
+        let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -42,6 +44,17 @@ final class FeedViewController: BaseViewController {
                     .bind(to: cell.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
                         cell.configureCell(element)
                     }.disposed(by: cell.disposeBag)
+
+                cell.userContentsView.moreButton.rx.tap
+                    .asSignal()
+                    .emit(with: self) { owner, _ in
+                        owner.showActionSheet { _ in
+                            modifyTrigger.accept(element)
+                        } deleteHandler: { _ in
+                            deleteTrigger.accept(element)
+                        }
+                    }.disposed(by: cell.disposeBag)
+                
             }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리

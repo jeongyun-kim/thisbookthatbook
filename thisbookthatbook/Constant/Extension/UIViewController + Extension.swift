@@ -20,8 +20,8 @@ extension UIViewController {
     
     func showAlertTwoBtns(title: String, message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "alert_confirm".localized, style: .default, handler: completionHandler)
-        let cancel = UIAlertAction(title: "alert_cancel".localized, style: .cancel)
+        let confirm = UIAlertAction(title: "alert_action_confirm".localized, style: .default, handler: completionHandler)
+        let cancel = UIAlertAction(title: "alert_action_cancel".localized, style: .cancel)
         alert.addAction(confirm)
         alert.addAction(cancel)
         transition(alert, type: .present)
@@ -29,8 +29,19 @@ extension UIViewController {
     
     func showAlertOnlyConfirm(title: String = "", message: String, completionHandler: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "alert_confirm".localized, style: .default, handler: completionHandler)
+        let confirm = UIAlertAction(title: "alert_action_confirm".localized, style: .default, handler: completionHandler)
         alert.addAction(confirm)
+        transition(alert, type: .present)
+    }
+    
+    func showActionSheet(modifyHandler: @escaping (UIAlertAction) -> Void, deleteHandler: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let modify = UIAlertAction(title: "alert_action_modify".localized, style: .default, handler: modifyHandler)
+        let delete = UIAlertAction(title: "alert_action_delete".localized, style: .destructive, handler: deleteHandler)
+        let cancel = UIAlertAction(title: "alert_action_cancel".localized, style: .cancel)
+        alert.addAction(modify)
+        alert.addAction(delete)
+        alert.addAction(cancel)
         transition(alert, type: .present)
     }
     
