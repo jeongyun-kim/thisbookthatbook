@@ -26,6 +26,8 @@ enum Resource {
         static let heartActive = UIImage(systemName: "heart.fill")
         static let more = UIImage(systemName: "ellipsis")
         static let comment = UIImage(systemName: "bubble.right")
+        static let camera = UIImage(systemName: "photo.badge.plus")
+        static let addBook = UIImage(systemName: "text.book.closed.fill")
     }
     
     enum Fonts {
