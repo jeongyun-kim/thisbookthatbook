@@ -36,14 +36,19 @@ final class AddPostViewController: BaseViewController {
     }
     
     override func bind() {
+        let didBeginEditing = main.contentTextView.rx.didBeginEditing
+        let didEndEditing = main.contentTextView.rx.didEndEditing
+        let content = main.contentTextView.rx.text.orEmpty
+        let addPhotoBtnTapped = main.toolbar.photoButton.rx.tap
         let removePhotoIdx = PublishRelay<Int>()
-        let input = AddPostViewModel.Input(removePhotoIdx: removePhotoIdx)
+        
+        let input = AddPostViewModel.Input(didBeginEditing: didBeginEditing, didEndEditing: didEndEditing,
+                                           content: content, addPhotoBtnTapped: addPhotoBtnTapped,
+                                           removePhotoIdx: removePhotoIdx)
         let output = vm.transform(input)
         
         // 텍스트뷰에 입력 시작했을 때
-        main.contentTextView.rx.didBeginEditing
-            .withLatestFrom(main.contentTextView.rx.text.orEmpty)
-            .map { $0 == "placeholder_write_post".localized }
+        output.beginEditingResult
             .asDriver(onErrorJustReturn: false)
             .drive(with: self) { owner, value in
                 guard value else { return }
@@ -52,9 +57,7 @@ final class AddPostViewController: BaseViewController {
             }.disposed(by: disposeBag)
         
         // 텍스트뷰 입력 끝났을 때
-        main.contentTextView.rx.didEndEditing
-            .withLatestFrom(main.contentTextView.rx.text.orEmpty)
-            .map { $0.isEmpty }
+        output.endEditingResult
             .asDriver(onErrorJustReturn: false)
             .drive(with: self) { owner, value in
                 guard value else { return }
@@ -63,17 +66,13 @@ final class AddPostViewController: BaseViewController {
             }.disposed(by: disposeBag)
         
         // 텍스트뷰 툴바의 사진 추가 버튼 눌렀을 때 
-        main.toolbar.photoButton.rx.tap
+        output.addPhotoBtnTapped
             .bind(with: self) { owner, _ in
-                var config = PHPickerConfiguration()
-                config.selectionLimit = 3
-                config.filter = .images
-                let picker = PHPickerViewController(configuration: config)
-                picker.delegate = owner
-                owner.transition(picker, type: .present)
+                owner.main.picker.delegate = owner
+                owner.transition(owner.main.picker, type: .present)
             }.disposed(by: disposeBag)
         
-        // 등록하려는 이미지가 있는지에 따라 컬렉션뷰 높이 설정
+        // 등록하려는 이미지의 유무에 따라 컬렉션뷰 높이 설정
         output.images
             .map { !$0.isEmpty }
             .asDriver(onErrorJustReturn: false)
@@ -97,6 +96,7 @@ final class AddPostViewController: BaseViewController {
     }
 }
 
+// MARK: PHPickerVC+
 extension AddPostViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         // 선택한 이미지 배열

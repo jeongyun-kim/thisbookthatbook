@@ -16,14 +16,23 @@ final class AddPostViewModel: BaseViewModel {
     var imageNames = PublishRelay<[String?]>()
     
     struct Input {
+        let didBeginEditing: ControlEvent<Void>
+        let didEndEditing: ControlEvent<Void>
+        let content: ControlProperty<String>
+        let addPhotoBtnTapped: ControlEvent<Void>
         let removePhotoIdx: PublishRelay<Int>
     }
     
     struct Output {
         let images: BehaviorRelay<[UIImage]>
+        let beginEditingResult: PublishRelay<Bool>
+        let endEditingResult: PublishRelay<Bool>
+        let addPhotoBtnTapped: ControlEvent<Void>
     }
     
     func transform(_ input: Input) -> Output {
+        let beginEditingResult = PublishRelay<Bool>()
+        let endEditingResult = PublishRelay<Bool>()
         let outputImages: BehaviorRelay<[UIImage]> = BehaviorRelay(value: [])
         let outputImageNames: BehaviorRelay<[String?]> = BehaviorRelay(value: [])
         
@@ -50,6 +59,21 @@ final class AddPostViewModel: BaseViewModel {
             .bind(to: outputImageNames)
             .disposed(by: disposeBag)
         
-        return Output(images: outputImages)
+        // 텍스트뷰 입력이 시작됐을 때, 원래있던 텍스트가 placeholder였는지
+        input.didBeginEditing
+            .withLatestFrom(input.content)
+            .map { $0 == "placeholder_write_post".localized }
+            .bind(to: beginEditingResult)
+            .disposed(by: disposeBag)
+        
+        // 텍스트뷰 입력이 끝났을 때, 아무것도 입력하지 않았는지
+        input.didEndEditing
+            .withLatestFrom(input.content)
+            .map { $0.isEmpty }
+            .bind(to: endEditingResult)
+            .disposed(by: disposeBag)
+        
+        return Output(images: outputImages, beginEditingResult: beginEditingResult, 
+                      endEditingResult: endEditingResult, addPhotoBtnTapped: input.addPhotoBtnTapped)
     }
 }

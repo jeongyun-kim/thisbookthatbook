@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
 final class AddPostView: BaseView {
     let contentTextView = UITextView()
@@ -18,6 +19,14 @@ final class AddPostView: BaseView {
     }()
 
     let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+    
+    let picker: PHPickerViewController = {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 3
+        config.filter = .images
+        let vc = PHPickerViewController(configuration: config)
+        return vc
+    }()
     
     override func setupHierarchy() {
         addSubview(photoCollectionView)
