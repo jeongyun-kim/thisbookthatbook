@@ -75,14 +75,14 @@
 		E06B82CF2C72F996009E4B40 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82CE2C72F996009E4B40 /* ThumbnailView.swift */; };
 		E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82D22C732D34009E4B40 /* UICollectionViewLayout + Extension.swift */; };
 		E06B82D52C735A37009E4B40 /* PostIdQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82D42C735A37009E4B40 /* PostIdQuery.swift */; };
-		E06B82D82C738E9F009E4B40 /* WritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82D72C738E9F009E4B40 /* WritePostViewController.swift */; };
-		E06B82DD2C73919B009E4B40 /* WritePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82DC2C73919B009E4B40 /* WritePostView.swift */; };
-		E06B82DF2C739228009E4B40 /* WritePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82DE2C739228009E4B40 /* WritePostViewModel.swift */; };
+		E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */; };
 		E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */; };
 		E0B9D0E02C747EEB005858E1 /* LikeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */; };
 		E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E12C74B772005858E1 /* ToolbarView.swift */; };
 		E0B9D0E42C74C88D005858E1 /* CustomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */; };
 		E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */; };
+		E0B9D0E82C74E771005858E1 /* AddPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */; };
+		E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E92C74E802005858E1 /* AddPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,14 +150,14 @@
 		E06B82CE2C72F996009E4B40 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
 		E06B82D22C732D34009E4B40 /* UICollectionViewLayout + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout + Extension.swift"; sourceTree = "<group>"; };
 		E06B82D42C735A37009E4B40 /* PostIdQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostIdQuery.swift; sourceTree = "<group>"; };
-		E06B82D72C738E9F009E4B40 /* WritePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostViewController.swift; sourceTree = "<group>"; };
-		E06B82DC2C73919B009E4B40 /* WritePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostView.swift; sourceTree = "<group>"; };
-		E06B82DE2C739228009E4B40 /* WritePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostViewModel.swift; sourceTree = "<group>"; };
+		E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
 		E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeStatus.swift; sourceTree = "<group>"; };
 		E0B9D0E12C74B772005858E1 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorder.swift; sourceTree = "<group>"; };
 		E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewModel.swift; sourceTree = "<group>"; };
+		E0B9D0E92C74E802005858E1 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +263,7 @@
 		E06B81F42C6B7E07009E4B40 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82D62C738E6A009E4B40 /* WritePost */,
+				E06B82D62C738E6A009E4B40 /* AddPost */,
 				E06B826A2C6CE589009E4B40 /* SignUp */,
 				E06B81F62C6B7E12009E4B40 /* Login */,
 				E06B81F52C6B7E0C009E4B40 /* Feed */,
@@ -500,20 +500,21 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		E06B82D62C738E6A009E4B40 /* WritePost */ = {
+		E06B82D62C738E6A009E4B40 /* AddPost */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D0EB2C74E8B9005858E1 /* Cell */,
 				E06B82D92C739136009E4B40 /* ViewModel */,
 				E06B82DA2C73913B009E4B40 /* View */,
 				E06B82DB2C73913F009E4B40 /* ViewController */,
 			);
-			path = WritePost;
+			path = AddPost;
 			sourceTree = "<group>";
 		};
 		E06B82D92C739136009E4B40 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82DE2C739228009E4B40 /* WritePostViewModel.swift */,
+				E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -521,8 +522,7 @@
 		E06B82DA2C73913B009E4B40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82DC2C73919B009E4B40 /* WritePostView.swift */,
-				E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */,
+				E0B9D0E92C74E802005858E1 /* AddPostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -530,9 +530,17 @@
 		E06B82DB2C73913F009E4B40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82D72C738E9F009E4B40 /* WritePostViewController.swift */,
+				E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E0B9D0EB2C74E8B9005858E1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B9D0E82C74E771005858E1 /* AddPostViewModel.swift in Sources */,
 				E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */,
 				E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */,
 				E06B82CB2C72F300009E4B40 /* UserContentView.swift in Sources */,
@@ -635,7 +644,6 @@
 				E0B9D0E42C74C88D005858E1 /* CustomBorder.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
-				E06B82DD2C73919B009E4B40 /* WritePostView.swift in Sources */,
 				E06B82852C6D0B7A009E4B40 /* SignUpViewModel.swift in Sources */,
 				E06B82A62C7074B9009E4B40 /* Posts.swift in Sources */,
 				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
@@ -643,9 +651,9 @@
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
-				E06B82DF2C739228009E4B40 /* WritePostViewModel.swift in Sources */,
+				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
-				E06B82D82C738E9F009E4B40 /* WritePostViewController.swift in Sources */,
+				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  WritePostViewController.swift
+//  AddPostViewController.swift
 //  thisbookthatbook
 //
 //  Created by 김정윤 on 8/19/24.
@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 import PhotosUI
 
-final class WritePostViewController: BaseViewController {
-    init(vm: WritePostViewModel) {
+final class AddPostViewController: BaseViewController {
+    init(vm: AddPostViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.vm = vm
     }
@@ -21,9 +21,9 @@ final class WritePostViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var vm: WritePostViewModel!
+    private var vm: AddPostViewModel!
     private let disposeBag = DisposeBag()
-    private let main = WritePostView()
+    private let main = AddPostView()
 
     override func loadView() {
         self.view = main
@@ -37,7 +37,7 @@ final class WritePostViewController: BaseViewController {
     
     override func bind() {
         let removePhotoIdx = PublishRelay<Int>()
-        let input = WritePostViewModel.Input(removePhotoIdx: removePhotoIdx)
+        let input = AddPostViewModel.Input(removePhotoIdx: removePhotoIdx)
         let output = vm.transform(input)
         
         // 텍스트뷰에 입력 시작했을 때
@@ -97,7 +97,7 @@ final class WritePostViewController: BaseViewController {
     }
 }
 
-extension WritePostViewController: PHPickerViewControllerDelegate {
+extension AddPostViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         // 선택한 이미지 배열
         var images: [UIImage] = []

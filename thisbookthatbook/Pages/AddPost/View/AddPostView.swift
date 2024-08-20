@@ -1,14 +1,14 @@
 //
-//  WritePostView.swift
+//  AddPostView.swift
 //  thisbookthatbook
 //
-//  Created by 김정윤 on 8/19/24.
+//  Created by 김정윤 on 8/21/24.
 //
 
 import UIKit
 import SnapKit
 
-final class WritePostView: BaseView {
+final class AddPostView: BaseView {
     let contentTextView = UITextView()
     
     lazy var photoCollectionView: UICollectionView = {

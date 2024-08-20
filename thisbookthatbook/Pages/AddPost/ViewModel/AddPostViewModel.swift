@@ -1,15 +1,15 @@
 //
-//  WritePostViewModel.swift
+//  AddPostViewModel.swift
 //  thisbookthatbook
 //
-//  Created by 김정윤 on 8/19/24.
+//  Created by 김정윤 on 8/21/24.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class WritePostViewModel: BaseViewModel {
+final class AddPostViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     
     var images = PublishRelay<[UIImage]>()
@@ -47,9 +47,7 @@ final class WritePostViewModel: BaseViewModel {
         
         // 포스트에 포함할 이미지의 파일명 불러왔을 때
         imageNames
-            .bind(with: self) { owner, list in
-                print(list)
-            }
+            .bind(to: outputImageNames)
             .disposed(by: disposeBag)
         
         return Output(images: outputImages)
