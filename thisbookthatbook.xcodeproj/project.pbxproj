@@ -82,6 +82,7 @@
 		E0B9D0E02C747EEB005858E1 /* LikeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */; };
 		E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E12C74B772005858E1 /* ToolbarView.swift */; };
 		E0B9D0E42C74C88D005858E1 /* CustomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */; };
+		E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,7 @@
 		E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeStatus.swift; sourceTree = "<group>"; };
 		E0B9D0E12C74B772005858E1 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorder.swift; sourceTree = "<group>"; };
+		E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82DC2C73919B009E4B40 /* WritePostView.swift */,
+				E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */,
+				E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */,
 				E06B82CB2C72F300009E4B40 /* UserContentView.swift in Sources */,
 				E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */,
 				E06B82B22C724018009E4B40 /* FeedCollectionViewCell.swift in Sources */,

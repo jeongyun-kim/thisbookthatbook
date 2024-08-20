@@ -28,6 +28,7 @@ enum Resource {
         static let comment = UIImage(systemName: "bubble.right")
         static let camera = UIImage(systemName: "photo.badge.plus")
         static let addBook = UIImage(systemName: "text.book.closed.fill")
+        static let deletePhoto = UIImage(systemName: "minus.circle.fill")
     }
     
     enum Fonts {

@@ -40,4 +40,16 @@ extension UICollectionViewLayout {
         return layout
     }
     
+    static func PhotoCollectionViewLayout() -> UICollectionViewLayout {
+        let inset: CGFloat = 16
+        let size = 100
+        let spacing: CGFloat = 0
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = spacing
+        layout.minimumInteritemSpacing = spacing
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = .init(top: 0, left: inset, bottom: 0, right: inset)
+        layout.itemSize = CGSize(width: size, height: size)
+        return layout
+    }
 }

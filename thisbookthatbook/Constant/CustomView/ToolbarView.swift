@@ -29,8 +29,8 @@ final class ToolbarView: BaseView {
         return stackView
     }()
     private let bookImageView = UIImageView()
-    private let photoButton = UIButton()
-    private let bookButton = UIButton()
+    let photoButton = UIButton()
+    let bookButton = UIButton()
     private let bookLabel = UILabel()
     
     override func setupHierarchy() {
@@ -57,7 +57,7 @@ final class ToolbarView: BaseView {
         }
         
         bookStackView.snp.makeConstraints { make in
-            make.leading.equalTo(photoStackView.snp.trailing).offset(8)
+            make.leading.equalTo(photoStackView.snp.trailing).offset(12)
             make.centerY.equalTo(safeAreaLayoutGuide)
         }
         

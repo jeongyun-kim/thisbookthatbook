@@ -11,16 +11,30 @@ import SnapKit
 final class WritePostView: BaseView {
     let contentTextView = UITextView()
     
-    private let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+    lazy var photoCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .PhotoCollectionViewLayout())
+        collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        return collectionView
+    }()
+
+    let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
     
     override func setupHierarchy() {
+        addSubview(photoCollectionView)
         addSubview(contentTextView)
     }
     
     override func setupConstraints() {
+        photoCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(0)
+        }
+        
         contentTextView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(400)
+            make.top.equalTo(photoCollectionView.snp.bottom)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(300)
         }
     }
     
@@ -33,4 +47,10 @@ final class WritePostView: BaseView {
         contentTextView.inputAccessoryView = toolbar
     }
     
+    func configureCollectionViewHeight(_ value: Bool) {
+        let height = value ? 100 : 0
+        photoCollectionView.snp.updateConstraints { make in
+            make.height.equalTo(height)
+        }
+    }
 }
