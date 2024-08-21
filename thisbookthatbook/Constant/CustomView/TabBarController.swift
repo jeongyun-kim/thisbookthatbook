@@ -10,12 +10,12 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     enum TabInActiveImage {
-        static let feedInActive = UIImage(systemName: "house")
+        static let feedInActive = UIImage(systemName: "number")
         static let profileInactive = UIImage(systemName: "person")
     }
     
     enum TabActiveImage {
-        static let feedActive = UIImage(systemName: "house.fill")
+        static let feedActive = UIImage(systemName: "number")
         static let profileActive = UIImage(systemName: "person.fill")
     }
     
