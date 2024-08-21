@@ -24,6 +24,7 @@ final class AddBookView: BaseView {
         let tableView = UITableView()
         tableView.rowHeight = 140
         tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
         tableView.allowsMultipleSelection = true
         tableView.register(SearchBookTableViewCell.self, forCellReuseIdentifier: SearchBookTableViewCell.identifier)
         return tableView
