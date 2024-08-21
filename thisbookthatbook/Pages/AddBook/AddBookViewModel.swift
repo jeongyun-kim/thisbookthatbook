@@ -74,8 +74,8 @@ final class AddBookViewModel: BaseViewModel {
                     var currentList = searchResults.value
                     currentList.append(contentsOf: value.items)
                     searchResults.accept(currentList)
-                case .failure(let error):
-                    toastMessage.accept(NetworkService.Errors.defaultError.rawValue.localized)
+                case .failure(_):
+                    toastMessage.accept("toast_book_error".localized)
                 }
             }.disposed(by: disposeBag)
         
@@ -93,7 +93,7 @@ final class AddBookViewModel: BaseViewModel {
                         currentDict[book.isbn] = book
                         selectedBooksDict.accept(currentDict)
                     } else {
-                        toastMessage.accept("책은 5권까지 추천할 수 있어요")
+                        toastMessage.accept("toast_book_limit".localized)
                     }
                 }
                 searchResults.accept(searchResults.value)

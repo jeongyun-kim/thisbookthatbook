@@ -13,7 +13,7 @@ final class AddBookView: BaseView {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.backgroundColor = Resource.Colors.gray6
-        searchBar.placeholder = "책을 검색해보세요"
+        searchBar.placeholder = "placeholder_search_books".localized
         searchBar.layer.cornerRadius = Resource.Radius.normal
         searchBar.searchTextField.borderStyle = .none
         searchBar.searchTextField.backgroundColor = Resource.Colors.gray6

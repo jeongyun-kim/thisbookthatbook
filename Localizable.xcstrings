@@ -460,6 +460,23 @@
         }
       }
     },
+    "placeholder_search_books" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search books"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "책을 검색해보세요"
+          }
+        }
+      }
+    },
     "placeholder_write_post" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -507,6 +524,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "추천해주세요"
+          }
+        }
+      }
+    },
+    "toast_book_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to retrieve book information"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "책정보를 가져오지 못했어요"
+          }
+        }
+      }
+    },
+    "toast_book_limit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can recommend up to 5 books"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "책은 5권까지 추천할 수 있어요"
           }
         }
       }
