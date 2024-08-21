@@ -59,8 +59,8 @@ final class AddPostView: BaseView {
         }
         
         bookCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(contentTextView.snp.bottom).offset(8)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(contentTextView.snp.bottom)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
     

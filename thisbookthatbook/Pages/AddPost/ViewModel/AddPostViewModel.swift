@@ -21,6 +21,8 @@ final class AddPostViewModel: BaseViewModel {
         let content: ControlProperty<String>
         let addPhotoBtnTapped: ControlEvent<Void>
         let removePhotoIdx: PublishRelay<Int>
+        let addBookBtnTapped: ControlEvent<Void>
+        let selectedBooks: PublishRelay<[Book]>
     }
     
     struct Output {
@@ -28,6 +30,8 @@ final class AddPostViewModel: BaseViewModel {
         let beginEditingResult: PublishRelay<Bool>
         let endEditingResult: PublishRelay<Bool>
         let addPhotoBtnTapped: ControlEvent<Void>
+        let addBookBtnTapped: ControlEvent<Void>
+        let selectedBooks: BehaviorRelay<[String]>
     }
     
     func transform(_ input: Input) -> Output {
@@ -35,7 +39,9 @@ final class AddPostViewModel: BaseViewModel {
         let endEditingResult = PublishRelay<Bool>()
         let outputImages: BehaviorRelay<[UIImage]> = BehaviorRelay(value: [])
         let outputImageNames: BehaviorRelay<[String?]> = BehaviorRelay(value: [])
-        
+        let selectedBooks: BehaviorRelay<[Book]> = BehaviorRelay(value: [])
+        var contents: [String] = []
+        let outputSelectedBooks: BehaviorRelay<[String]> = BehaviorRelay(value: [])
         // 포스트에 포함할 이미지 불러왔을 때
         images
             .bind(to: outputImages)
@@ -73,7 +79,14 @@ final class AddPostViewModel: BaseViewModel {
             .bind(to: endEditingResult)
             .disposed(by: disposeBag)
         
+        input.selectedBooks
+            .bind { book in
+                let data = book.map { "\($0.title)#\($0.author)#\(book.publisher)#\($0.image)#\($0.description)#\($0.isbn)"}
+                outputSelectedBooks.accept(data)
+            }.disposed(by: disposeBag)
+        
         return Output(images: outputImages, beginEditingResult: beginEditingResult, 
-                      endEditingResult: endEditingResult, addPhotoBtnTapped: input.addPhotoBtnTapped)
+                      endEditingResult: endEditingResult, addPhotoBtnTapped: input.addPhotoBtnTapped,
+                      addBookBtnTapped: input.addBookBtnTapped, selectedBooks: outputSelectedBooks)
     }
 }

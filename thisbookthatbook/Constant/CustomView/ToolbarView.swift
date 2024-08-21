@@ -68,6 +68,8 @@ final class ToolbarView: BaseView {
     }
     
     override func setupUI() {
+        backgroundColor = Resource.Colors.white
+        
         photoImageView.image = Resource.Images.camera
         photoLabel.text = "label_add_photo".localized
         bookImageView.image = Resource.Images.addBook

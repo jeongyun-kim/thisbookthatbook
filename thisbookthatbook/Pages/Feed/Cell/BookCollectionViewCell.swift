@@ -49,6 +49,7 @@ final class BookCollectionViewCell: BaseCollectionViewCell {
         verticalStackView.snp.makeConstraints { make in
             make.leading.equalTo(bookImageView.snp.trailing).offset(16)
             make.centerY.equalTo(bookImageView.snp.centerY)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
     
@@ -59,7 +60,8 @@ final class BookCollectionViewCell: BaseCollectionViewCell {
         bookImageView.backgroundColor = .systemBlue
         bookImageView.layer.cornerRadius = Resource.Radius.book
         
-        bookTitleLabel.font = Resource.Fonts.regular15
+        bookTitleLabel.font = Resource.Fonts.regular14
+        bookTitleLabel.numberOfLines = 2
         
         authorLabel.font = Resource.Fonts.regular13
         authorLabel.textColor = Resource.Colors.lightGray
@@ -72,10 +74,10 @@ final class BookCollectionViewCell: BaseCollectionViewCell {
        // guard let data else { return }
         // 제목 - 작가명 - 출판사명 - 이미지 링크 - 설명 - isbn
         let bookData = data.components(separatedBy: "#")
-//        bookTitleLabel.text = bookData[0]
-//        authorLabel.text = bookData[1]
-//        publisherLabel.text = bookData[2]
-//        guard let url = URL(string: bookData[3]) else { return }
-//        bookImageView.kf.setImage(with: url)
+        bookTitleLabel.text = bookData[0]
+        authorLabel.text = bookData[1]
+        publisherLabel.text = bookData[2]
+        guard let url = URL(string: bookData[3]) else { return }
+        bookImageView.kf.setImage(with: url)
     }
 }

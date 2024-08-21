@@ -40,11 +40,13 @@ final class AddPostViewController: BaseViewController {
         let didEndEditing = main.contentTextView.rx.didEndEditing
         let content = main.contentTextView.rx.text.orEmpty
         let addPhotoBtnTapped = main.toolbar.photoButton.rx.tap
+        let addBookBtnTapped = main.toolbar.bookButton.rx.tap
         let removePhotoIdx = PublishRelay<Int>()
+        let selectedBooks = PublishRelay<[Book]>()
         
         let input = AddPostViewModel.Input(didBeginEditing: didBeginEditing, didEndEditing: didEndEditing,
                                            content: content, addPhotoBtnTapped: addPhotoBtnTapped,
-                                           removePhotoIdx: removePhotoIdx)
+                                           removePhotoIdx: removePhotoIdx, addBookBtnTapped: addBookBtnTapped, selectedBooks: selectedBooks)
         let output = vm.transform(input)
         
         // 텍스트뷰에 입력 시작했을 때
@@ -91,7 +93,23 @@ final class AddPostViewController: BaseViewController {
                     .map { _ in row }
                     .bind(to: removePhotoIdx)
                     .disposed(by: cell.disposeBag)
-                
+            }.disposed(by: disposeBag)
+        
+        output.addBookBtnTapped
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                let vc = AddBookViewController()
+                owner.view.endEditing(true)
+                vc.sendBooks = { books in
+                    selectedBooks.accept(books)
+                }
+                owner.transition(vc)
+            }.disposed(by: disposeBag)
+        
+        output.selectedBooks
+            .asDriver()
+            .drive(main.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
+                cell.configureCell(element)
             }.disposed(by: disposeBag)
     }
 }

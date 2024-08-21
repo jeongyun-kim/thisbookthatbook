@@ -18,6 +18,8 @@ final class BookCollectionView: UICollectionView {
         snp.makeConstraints { make in
             make.height.equalTo(120)
         }
+        
+        keyboardDismissMode = .onDrag
     }
     
     required init?(coder: NSCoder) {
