@@ -20,7 +20,7 @@ final class ToolbarView: BaseView {
     }()
     private let photoImageView = UIImageView()
     private let photoLabel = UILabel()
-    private lazy var bookStackView: UIStackView = {
+    lazy var bookStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 4

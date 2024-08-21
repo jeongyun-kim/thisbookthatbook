@@ -12,9 +12,10 @@ import RxCocoa
 import PhotosUI
 
 final class AddPostViewController: BaseViewController {
-    init(vm: AddPostViewModel) {
+    init(vm: AddPostViewModel, type: RecommendType) {
         super.init(nibName: nil, bundle: nil)
         self.vm = vm
+        vm.productId.accept(type)
     }
     
     required init?(coder: NSCoder) {
@@ -33,6 +34,8 @@ final class AddPostViewController: BaseViewController {
         super.setupUI()
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = "navigation_title_add".localized
+        let post = UIBarButtonItem(title: "게시", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = post
     }
     
     override func bind() {
@@ -43,10 +46,12 @@ final class AddPostViewController: BaseViewController {
         let addBookBtnTapped = main.toolbar.bookButton.rx.tap
         let removePhotoIdx = PublishRelay<Int>()
         let selectedBooks = PublishRelay<[Book]>()
+        let postBtnTapped = navigationItem.rightBarButtonItem?.rx.tap
         
         let input = AddPostViewModel.Input(didBeginEditing: didBeginEditing, didEndEditing: didEndEditing,
                                            content: content, addPhotoBtnTapped: addPhotoBtnTapped,
-                                           removePhotoIdx: removePhotoIdx, addBookBtnTapped: addBookBtnTapped, selectedBooks: selectedBooks)
+                                           removePhotoIdx: removePhotoIdx, addBookBtnTapped: addBookBtnTapped, selectedBooks: selectedBooks, 
+                                           postBtnTapped: postBtnTapped)
         let output = vm.transform(input)
         
         // 텍스트뷰에 입력 시작했을 때
@@ -95,6 +100,8 @@ final class AddPostViewController: BaseViewController {
                     .disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)
         
+        // 책 추가 버튼 눌렀을 때
+        // -> AddBookVC로부터 받아온 책 vm에 넣어주기
         output.addBookBtnTapped
             .asSignal()
             .emit(with: self) { owner, _ in
@@ -106,10 +113,59 @@ final class AddPostViewController: BaseViewController {
                 owner.transition(vc)
             }.disposed(by: disposeBag)
         
+        // 추천하려고 선택한 책들로 컬렉션뷰 그리기
         output.selectedBooks
             .asDriver()
             .drive(main.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
                 cell.configureCell(element)
+            }.disposed(by: disposeBag)
+        
+        // 포스트 게시 버튼 사용 가능 여부
+        output.postBtnEnabled
+            .asDriver()
+            .drive(with: self) { owner, value in
+                let textColorCondition = owner.main.contentTextView.textColor == Resource.Colors.black
+                let textCondition = !owner.main.contentTextView.text.isEmpty
+                let isValid = value && textColorCondition && textCondition
+                owner.navigationItem.rightBarButtonItem?.isEnabled = isValid
+            }.disposed(by: disposeBag)
+        
+        // [추천해요 / 추천해주세요] 어떤 뷰에서 이동해왔느냐에 따라
+        // - 추천해주세요로부터 왔으면 책 추천 버튼 숨기기
+        output.viewType
+            .map { $0 == .recieve_recommended }
+            .bind(to: main.toolbar.bookButton.rx.isHidden, main.toolbar.bookStackView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        // 포스트 게시 버튼 탭
+        output.postBtnTapped
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            }.disposed(by: disposeBag)
+        
+        // Alert으로 하는 에러 처리
+        // - 토큰 갱신 실패
+        // - 이미지와 이미지명 count 안 맞아서 인덱스 런타임 에러 방지
+        output.isExpiredTokenError
+            .asSignal()
+            .emit(with: self) { owner, value in
+                if value { // 토큰 갱신 실패 시 로그인뷰로
+                    owner.showExpiredTokenAlert()
+                } else { // 이미지 - 이미지명 매치 안돼서 런타임 에러날 수 있을 때
+                    let message = "alert_invalid_post".localized
+                    owner.showAlertOnlyConfirm(message: message) { _ in
+                        owner.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }.disposed(by: disposeBag)
+            
+        
+        // 기본 공통 에러 등
+        output.toastMessage
+            .asSignal()
+            .emit(with: self) { owner, value in
+                owner.showToast(message: value)
             }.disposed(by: disposeBag)
     }
 }
@@ -117,10 +173,12 @@ final class AddPostViewController: BaseViewController {
 // MARK: PHPickerVC+
 extension AddPostViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        // 선택한 이미지 배열
-        var images: [UIImage] = []
+        // 선택한 이미지 데이터 배열
+        var imageDatas: [Data?] = []
         // 선택한 이미지의 파일명 배열
-        var imageNames: [String?] = []
+        var imageNames: [String] = []
+        // 선택한 이미지
+        var images: [UIImage] = []
         
         for (idx, result) in results.enumerated() {
             guard idx < 3 else { return }
@@ -128,11 +186,13 @@ extension AddPostViewController: PHPickerViewControllerDelegate {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
-                        // 선택한 이미지
                         images.append(image)
                         self?.vm.images.accept(images)
+                        // 선택한 이미지 데이터
+                        imageDatas.append(image.pngData())
+                        self?.vm.imageDatas.accept(imageDatas)
                         // 선택한 이미지의 파일명
-                        let imageName = result.itemProvider.suggestedName
+                        guard let imageName = result.itemProvider.suggestedName else { return }
                         imageNames.append(imageName)
                         self?.vm.imageNames.accept(imageNames)
                     }

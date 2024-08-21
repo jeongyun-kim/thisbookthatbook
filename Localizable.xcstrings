@@ -69,6 +69,23 @@
         }
       }
     },
+    "alert_invalid_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was a problem while posting the post.\nPlease try again later"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트를 게시하던 중에 문제가 생겼어요 \n이후에 다시 시도해주세요"
+          }
+        }
+      }
+    },
     "alert_msg_expiredToken" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -558,6 +575,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "책은 5권까지 추천할 수 있어요"
+          }
+        }
+      }
+    },
+    "toast_create_post_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed upload post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 업로드에 실패했어요"
           }
         }
       }

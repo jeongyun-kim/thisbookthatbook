@@ -10,18 +10,27 @@ import Alamofire
 import RxSwift
 
 extension NetworkService {
-    func postImages(query: UploadPostQuery, files: [FilesQuery], completionHandler: @escaping (Errors?) -> Void){
-        
+    func postImages(query: UploadPostQuery, files: [Data?], fileNames: [String], completionHandler: @escaping (Errors?) -> Void){
         do {
+            if files.isEmpty {
+                postPosts(query: query)
+                return
+            }
+            
             let request = try PostRouter.uploadImage.asURLRequest()
             AF.upload(multipartFormData: { multiPartFormData in
-                for file in files {
-                    guard let image = file.image else { continue }
-                    multiPartFormData.append(image, withName: "files", fileName: file.imageName+".png", mimeType: "image/png")
+                // index 런타임 에러 방지
+                guard files.count == fileNames.count else {
+                    completionHandler(.invalidPostRequest)
+                    return
+                }
+                
+                for (idx, value) in files.enumerated() {
+                    guard let value else { return }
+                    multiPartFormData.append(value, withName: "files", fileName: fileNames[idx]+".png", mimeType: "image/png")
                 }
             }, with: request).responseDecodable(of: Files.self) { response in
                 let statusCode = response.response?.statusCode
-
                 switch response.result {
                 case .success(let value):
                     switch statusCode {
@@ -38,6 +47,7 @@ extension NetworkService {
                     completionHandler(Errors.defaultError)
                 }
             }
+        
         } catch {
             print("post image request error")
         }
@@ -51,9 +61,8 @@ extension NetworkService {
                 switch statusCode {
                 case 200:
                     guard let value else { return }
-                    print(#function, value)
                 case 410:
-                    print("생성된 게시글 없음")
+                    print("toast_create_post_error".localized)
                 default:
                     print(Errors.defaultError.rawValue.localized)
                 }
@@ -108,6 +117,20 @@ extension NetworkService {
                 print("delete post request error")
             }
             return Disposables.create()
+        }
+    }
+    
+    func likePost(status: Bool, postId: String) {
+        do {
+            let query = LikeQuery(like_status: status)
+            let PostIdQuery = PostIdQuery(id: postId)
+            let request = try PostRouter.likePost(query: query, id: PostIdQuery)
+            AF.request(request).responseString { response in
+                print(response)
+            }
+            
+        } catch {
+            print("like request error")
         }
     }
 }

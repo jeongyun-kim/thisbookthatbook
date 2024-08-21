@@ -19,7 +19,8 @@ extension NetworkService {
         case signupExistUser = "toast_signup_exist"
         case signupInvalidEmail = "label_email_invalid"
         
-        case postImageInvalidRequest
+        case invalidPost = "toast_create_post_error"
+        case invalidPostRequest = "alert_invalid_post"
         
         case invalidDeletePostRequest = "toast_delete_invalidPost"
     }

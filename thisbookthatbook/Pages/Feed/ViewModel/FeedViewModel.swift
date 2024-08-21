@@ -24,6 +24,7 @@ final class FeedViewModel: BaseViewModel {
         let alert: PublishRelay<Void>
         let feedResults: PublishRelay<[Post]>
         let addPostBtnTapped: ControlEvent<Void>
+        let selectedSegmentIdx: BehaviorRelay<Int>
     }
     
     func transform(_ input: Input) -> Output {
@@ -93,7 +94,8 @@ final class FeedViewModel: BaseViewModel {
             }.disposed(by: disposeBag)
         
         let output = Output(toastMessage: toastMessage, alert: alert, 
-                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped)
+                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped,
+                            selectedSegmentIdx: selectedSegmentIdx)
         return output
     }
 }

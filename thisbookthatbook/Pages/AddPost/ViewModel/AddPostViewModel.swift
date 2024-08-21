@@ -12,8 +12,14 @@ import RxCocoa
 final class AddPostViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     
+    // 포스트 타입
+    var productId = BehaviorRelay(value: RecommendType.give_recommend)
+    // stackView 내 이미지뷰에 보여줄 이미지들
     var images = PublishRelay<[UIImage]>()
-    var imageNames = PublishRelay<[String?]>()
+    // 게시할 이미지 데이터들
+    var imageDatas: BehaviorRelay<[Data?]> = BehaviorRelay(value: [])
+    // 게시할 이미지명들
+    var imageNames: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     struct Input {
         let didBeginEditing: ControlEvent<Void>
@@ -23,6 +29,7 @@ final class AddPostViewModel: BaseViewModel {
         let removePhotoIdx: PublishRelay<Int>
         let addBookBtnTapped: ControlEvent<Void>
         let selectedBooks: PublishRelay<[Book]>
+        let postBtnTapped: ControlEvent<()>?
     }
     
     struct Output {
@@ -32,16 +39,26 @@ final class AddPostViewModel: BaseViewModel {
         let addPhotoBtnTapped: ControlEvent<Void>
         let addBookBtnTapped: ControlEvent<Void>
         let selectedBooks: BehaviorRelay<[String]>
+        let postBtnEnabled: BehaviorRelay<Bool>
+        let viewType: BehaviorRelay<RecommendType>
+        let postBtnTapped: PublishRelay<Void>
+        let toastMessage: PublishRelay<String>
+        let isExpiredTokenError: PublishRelay<Bool>
     }
     
     func transform(_ input: Input) -> Output {
-        let beginEditingResult = PublishRelay<Bool>()
-        let endEditingResult = PublishRelay<Bool>()
-        let outputImages: BehaviorRelay<[UIImage]> = BehaviorRelay(value: [])
-        let outputImageNames: BehaviorRelay<[String?]> = BehaviorRelay(value: [])
-        let selectedBooks: BehaviorRelay<[Book]> = BehaviorRelay(value: [])
-        var contents: [String] = []
-        let outputSelectedBooks: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+        let beginEditingResult = PublishRelay<Bool>() // 입력시작했을 때
+        let endEditingResult = PublishRelay<Bool>() // 입력 끝났을 때
+        let outputImages: BehaviorRelay<[UIImage]> = BehaviorRelay(value: []) // 게시할 이미지 배열
+        let outputSelectedBooks: BehaviorRelay<[String]> = BehaviorRelay(value: []) // 게시할 책 정보
+        let postBtnEnabled = BehaviorRelay(value: false) // 게시 버튼 사용 가능 여부
+        let outputPostBtnTapped = PublishRelay<Void>() // 게시 버튼 눌렀을 때
+        let toastMessage = PublishRelay<String>()
+        let isExpiredTokenError = PublishRelay<Bool>()
+        let content = BehaviorRelay(value: "") // 포스트 본문
+        var bookList = ["", "", "", "", ""] // 저장할 책 데이터 리스트
+        
+        
         // 포스트에 포함할 이미지 불러왔을 때
         images
             .bind(to: outputImages)
@@ -55,15 +72,10 @@ final class AddPostViewModel: BaseViewModel {
                 currentImageList.remove(at: idx)
                 outputImages.accept(currentImageList)
                 // 등록되어있던 이미지 파일명 배열에서 데이터 지우기
-                var currentImageNameList = outputImageNames.value
+                var currentImageNameList = owner.imageNames.value
                 currentImageNameList.remove(at: idx)
-                outputImageNames.accept(currentImageNameList)
+                owner.imageNames.accept(currentImageNameList)
             }.disposed(by: disposeBag)
-        
-        // 포스트에 포함할 이미지의 파일명 불러왔을 때
-        imageNames
-            .bind(to: outputImageNames)
-            .disposed(by: disposeBag)
         
         // 텍스트뷰 입력이 시작됐을 때, 원래있던 텍스트가 placeholder였는지
         input.didBeginEditing
@@ -79,14 +91,58 @@ final class AddPostViewModel: BaseViewModel {
             .bind(to: endEditingResult)
             .disposed(by: disposeBag)
         
+        // 책 검색뷰에서 책 선택해서 돌아왔을 때
         input.selectedBooks
             .bind { book in
-                let data = book.map { "\($0.title)#\($0.author)#\(book.publisher)#\($0.image)#\($0.description)#\($0.isbn)"}
-                outputSelectedBooks.accept(data)
+                // 책 데이터 구성
+                let data = book.map { "\($0.title)#\($0.author)#\($0.publisher)#\($0.image)#\($0.description)#\($0.isbn)"}
+                for (idx, value) in data.enumerated() {
+                    bookList[idx] = value
+                }
+                // ""인 데이터는 output으로 보내지 않기
+                // - ""인 데이터가 포함되면 책 정보가 없는 셀도 생겨남
+                let result = bookList.filter { !$0.isEmpty }
+                outputSelectedBooks.accept(result)
             }.disposed(by: disposeBag)
+        
+        // 포스트 내용
+        input.content
+            .map { $0 != "placeholder_write_post".localized }
+            .bind(to: postBtnEnabled)
+            .disposed(by: disposeBag)
+        
+        // 포스트 내용 입력할 때마다 포스트 내용 받아오기
+        input.content
+            .bind(to: content)
+            .disposed(by: disposeBag)
+        
+        // 게시버튼 눌렀을 대
+        if let postBtnTapped = input.postBtnTapped {
+            postBtnTapped
+                .throttle(.seconds(10), scheduler: MainScheduler.instance)
+                .bind(with: self) { owner, value in
+                    let files = owner.imageDatas.value // 게시할 이미지
+                    let fileNames = owner.imageNames.value // 게시할 이미지명
+                    let productId = owner.productId.value // product_id
+                    let query  = UploadPostQuery(content: content.value, content1: bookList[0], content2: bookList[1], content3: bookList[2], content4: bookList[3], content5: bookList[4], product_id: productId, files: fileNames)
+                    NetworkService.shared.postImages(query: query, files: files, fileNames: fileNames) { error in
+                        switch error {
+                        case .expiredToken:
+                            isExpiredTokenError.accept(true)
+                        case .invalidPostRequest:
+                            isExpiredTokenError.accept(false)
+                        default:
+                            toastMessage.accept("toast_default_error".localized)
+                        }
+                    }
+                    outputPostBtnTapped.accept(())
+                }.disposed(by: disposeBag)
+        }
         
         return Output(images: outputImages, beginEditingResult: beginEditingResult, 
                       endEditingResult: endEditingResult, addPhotoBtnTapped: input.addPhotoBtnTapped,
-                      addBookBtnTapped: input.addBookBtnTapped, selectedBooks: outputSelectedBooks)
+                      addBookBtnTapped: input.addBookBtnTapped, selectedBooks: outputSelectedBooks,
+                      postBtnEnabled: postBtnEnabled, viewType: productId, postBtnTapped: outputPostBtnTapped,
+                      toastMessage: toastMessage, isExpiredTokenError: isExpiredTokenError)
     }
 }

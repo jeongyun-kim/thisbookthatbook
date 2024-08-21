@@ -71,7 +71,6 @@ final class BookCollectionViewCell: BaseCollectionViewCell {
     }
     
     func configureCell(_ data: String) {
-       // guard let data else { return }
         // 제목 - 작가명 - 출판사명 - 이미지 링크 - 설명 - isbn
         let bookData = data.components(separatedBy: "#")
         bookTitleLabel.text = bookData[0]
