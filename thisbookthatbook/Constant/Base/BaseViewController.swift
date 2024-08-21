@@ -38,4 +38,14 @@ class BaseViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    func showExpiredTokenAlert() {
+        let title = "alert_title_expiredToken".localized
+        let message = "alert_msg_expiredToken".localized
+        showAlertOnlyConfirm(title: title, message: message) { [weak self] _ in
+            guard let self else { return }
+            let vc = UINavigationController(rootViewController: LoginViewController())
+            self.setNewScene(vc)
+        }
+    }
 }

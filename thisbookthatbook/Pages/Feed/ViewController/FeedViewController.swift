@@ -46,7 +46,7 @@ final class FeedViewController: BaseViewController {
                     .bind(to: cell.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
                         cell.configureCell(element)
                     }.disposed(by: cell.disposeBag)
-
+                // 더보기 버튼 눌렀을 때 -> 포스트 수정 / 포스트 삭제
                 cell.userContentsView.moreButton.rx.tap
                     .asSignal()
                     .emit(with: self) { owner, _ in
@@ -56,7 +56,7 @@ final class FeedViewController: BaseViewController {
                             deleteTrigger.accept(element)
                         }
                     }.disposed(by: cell.disposeBag)
-                
+                // 좋아요 버튼 탭 (미구현)
                 cell.interactionView.likeButton.rx.tap
                     .asSignal()
                     .emit(with: self) { owner, _ in
@@ -77,19 +77,15 @@ final class FeedViewController: BaseViewController {
         output.alert
             .asSignal()
             .emit(with: self) { owner, _ in
-                let title = "alert_title_expiredToken".localized
-                let message = "alert_msg_expiredToken".localized
-                owner.showAlertOnlyConfirm(title: title, message: message) { _ in
-                    let vc = UINavigationController(rootViewController: LoginViewController())
-                    owner.setNewScene(vc)
-                }
+                owner.showExpiredTokenAlert()
             }.disposed(by: disposeBag)
         
         // 포스트 작성뷰로 이동
         output.addPostBtnTapped
             .asSignal()
             .emit(with: self) { owner, _ in
-                let vc = AddPostViewController(vm: AddPostViewModel())
+                let type = RecommendType.allCases[output.selectedSegmentIdx.value]
+                let vc = AddPostViewController(vm: AddPostViewModel(), type: type)
                 owner.transition(vc)
             }.disposed(by: disposeBag)
     }
