@@ -83,6 +83,15 @@
 		E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */; };
 		E0B9D0E82C74E771005858E1 /* AddPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */; };
 		E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E92C74E802005858E1 /* AddPostView.swift */; };
+		E0B9D0ED2C756B7E005858E1 /* BookCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */; };
+		E0B9D10A2C756D49005858E1 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1092C756D49005858E1 /* AddBookViewController.swift */; };
+		E0B9D10C2C756D5E005858E1 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D10B2C756D5E005858E1 /* AddBookView.swift */; };
+		E0B9D1282C759347005858E1 /* SearchBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1272C759347005858E1 /* SearchBookTableViewCell.swift */; };
+		E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D12D2C7598A2005858E1 /* Book.swift */; };
+		E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D12F2C7598B7005858E1 /* BookRouter.swift */; };
+		E0B9D1322C759951005858E1 /* BookSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1312C759951005858E1 /* BookSearchQuery.swift */; };
+		E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1332C759AC3005858E1 /* NetworkService + Book.swift */; };
+		E0B9D1362C75CA61005858E1 /* AddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +167,15 @@
 		E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewModel.swift; sourceTree = "<group>"; };
 		E0B9D0E92C74E802005858E1 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
+		E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionView.swift; sourceTree = "<group>"; };
+		E0B9D1092C756D49005858E1 /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
+		E0B9D10B2C756D5E005858E1 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
+		E0B9D1272C759347005858E1 /* SearchBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewCell.swift; sourceTree = "<group>"; };
+		E0B9D12D2C7598A2005858E1 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		E0B9D12F2C7598B7005858E1 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
+		E0B9D1312C759951005858E1 /* BookSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchQuery.swift; sourceTree = "<group>"; };
+		E0B9D1332C759AC3005858E1 /* NetworkService + Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Book.swift"; sourceTree = "<group>"; };
+		E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +274,7 @@
 				E06B82CA2C72F300009E4B40 /* UserContentView.swift */,
 				E0B9D0E12C74B772005858E1 /* ToolbarView.swift */,
 				E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */,
+				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -263,6 +282,7 @@
 		E06B81F42C6B7E07009E4B40 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D1082C756D3B005858E1 /* AddBook */,
 				E06B82D62C738E6A009E4B40 /* AddPost */,
 				E06B826A2C6CE589009E4B40 /* SignUp */,
 				E06B81F62C6B7E12009E4B40 /* Login */,
@@ -329,6 +349,7 @@
 		E06B820B2C6BA510009E4B40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D12C2C75989C005858E1 /* Book */,
 				E06B82AB2C722358009E4B40 /* AuthInterceptor.swift */,
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
 				E06B829F2C6F9684009E4B40 /* Errors.swift */,
@@ -543,6 +564,28 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E0B9D1082C756D3B005858E1 /* AddBook */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1092C756D49005858E1 /* AddBookViewController.swift */,
+				E0B9D10B2C756D5E005858E1 /* AddBookView.swift */,
+				E0B9D1272C759347005858E1 /* SearchBookTableViewCell.swift */,
+				E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */,
+			);
+			path = AddBook;
+			sourceTree = "<group>";
+		};
+		E0B9D12C2C75989C005858E1 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D12D2C7598A2005858E1 /* Book.swift */,
+				E0B9D12F2C7598B7005858E1 /* BookRouter.swift */,
+				E0B9D1312C759951005858E1 /* BookSearchQuery.swift */,
+				E0B9D1332C759AC3005858E1 /* NetworkService + Book.swift */,
+			);
+			path = Book;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -652,8 +695,11 @@
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
+				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,
+				E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
 				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
+				E0B9D0ED2C756B7E005858E1 /* BookCollectionView.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
@@ -668,11 +714,14 @@
 				E06B829C2C6F9294009E4B40 /* Files.swift in Sources */,
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */,
+				E0B9D10A2C756D49005858E1 /* AddBookViewController.swift in Sources */,
 				E06B82B62C72C178009E4B40 /* TwoThumbnailView.swift in Sources */,
 				E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */,
+				E0B9D1362C75CA61005858E1 /* AddBookViewModel.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
 				E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */,
+				E0B9D1282C759347005858E1 /* SearchBookTableViewCell.swift in Sources */,
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
@@ -688,9 +737,11 @@
 				E06B82A42C7071AE009E4B40 /* UploadPostQuery.swift in Sources */,
 				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,
 				E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */,
+				E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */,
 				E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */,
 				E06B82BF2C72C828009E4B40 /* InteractionView.swift in Sources */,
 				E06B82992C6F924F009E4B40 /* FilesQuery.swift in Sources */,
+				E0B9D1322C759951005858E1 /* BookSearchQuery.swift in Sources */,
 				E06B82B02C723FD5009E4B40 /* BaseCollectionViewCell.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82AC2C722358009E4B40 /* AuthInterceptor.swift in Sources */,
@@ -698,6 +749,7 @@
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
 				E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */,
 				E06B81F32C6B7D56009E4B40 /* PlusButton.swift in Sources */,
+				E0B9D10C2C756D5E005858E1 /* AddBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +896,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L348QC8MG7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = thisbookthatbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "이책저책";
@@ -876,6 +929,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L348QC8MG7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = thisbookthatbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "이책저책";

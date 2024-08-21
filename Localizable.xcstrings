@@ -324,6 +324,23 @@
         }
       }
     },
+    "naviagation_title_add_book" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add book"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "책 추가"
+          }
+        }
+      }
+    },
     "navigation_title_add" : {
       "extractionState" : "manual",
       "localizations" : {
