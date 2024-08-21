@@ -13,8 +13,8 @@ final class InteractionView: BaseView {
     private let commentImageView = UIImageView()
     private let commentLabel = UILabel()
     private let likeCntLabel = UILabel()
-    private let likeImageView = UIImageView()
-    private let likeButton = UIButton()
+    let likeImageView = UIImageView()
+    let likeButton = UIButton()
     private let bookmarkImageView = UIImageView()
     
     override func setupHierarchy() {

@@ -57,6 +57,12 @@ final class FeedViewController: BaseViewController {
                         }
                     }.disposed(by: cell.disposeBag)
                 
+                cell.interactionView.likeButton.rx.tap
+                    .asSignal()
+                    .emit(with: self) { owner, _ in
+                        NetworkService.shared.likePost(status: true, postId: element.post_id)
+                    }.disposed(by: cell.disposeBag)
+                
             }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리
@@ -83,7 +89,7 @@ final class FeedViewController: BaseViewController {
         output.addPostBtnTapped
             .asSignal()
             .emit(with: self) { owner, _ in
-                let vc = WritePostViewController()
+                let vc = AddPostViewController(vm: AddPostViewModel())
                 owner.transition(vc)
             }.disposed(by: disposeBag)
     }

@@ -36,6 +36,7 @@ final class FeedView: BaseView {
    lazy var collectionView: UICollectionView = {
        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .FeedCollectionViewLayout())
        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: FeedCollectionViewCell.identifier)
+       collectionView.backgroundColor = Resource.Colors.gray6
         return collectionView
     }()
     
@@ -63,9 +64,5 @@ final class FeedView: BaseView {
             make.trailing.equalTo(safeAreaLayoutGuide).inset(24)
             make.bottom.equalTo(safeAreaLayoutGuide).inset(30)
         }
-    }
-    
-    override func setupUI() {
-        collectionView.backgroundColor = Resource.Colors.gray6
     }
 }

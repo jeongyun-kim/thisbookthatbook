@@ -10,15 +10,24 @@ import SnapKit
 import PhotosUI
 
 final class AddPostView: BaseView {
-    let contentTextView = UITextView()
+    let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+    
+    lazy var contentTextView: UITextView = {
+        let textView = UITextView()
+        textView.text = "placeholder_write_post".localized
+        textView.font = Resource.Fonts.regular15
+        textView.textColor = Resource.Colors.lightGray
+        textView.autocorrectionType = .no
+        textView.spellCheckingType = .no
+        textView.inputAccessoryView = toolbar
+        return textView
+    }()
     
     lazy var photoCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .PhotoCollectionViewLayout())
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         return collectionView
     }()
-
-    let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
     
     let picker: PHPickerViewController = {
         var config = PHPickerConfiguration()
@@ -28,9 +37,12 @@ final class AddPostView: BaseView {
         return vc
     }()
     
+    let bookCollectionView = BookCollectionView()
+    
     override func setupHierarchy() {
         addSubview(photoCollectionView)
         addSubview(contentTextView)
+        addSubview(bookCollectionView)
     }
     
     override func setupConstraints() {
@@ -45,15 +57,11 @@ final class AddPostView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
             make.height.equalTo(300)
         }
-    }
-    
-    override func setupUI() {
-        contentTextView.text = "placeholder_write_post".localized
-        contentTextView.font = Resource.Fonts.regular15
-        contentTextView.textColor = Resource.Colors.lightGray
-        contentTextView.autocorrectionType = .no
-        contentTextView.spellCheckingType = .no
-        contentTextView.inputAccessoryView = toolbar
+        
+        bookCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(contentTextView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
+        }
     }
     
     func configureCollectionViewHeight(_ value: Bool) {

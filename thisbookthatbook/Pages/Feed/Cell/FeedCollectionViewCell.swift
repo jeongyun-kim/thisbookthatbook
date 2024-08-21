@@ -11,14 +11,15 @@ import RxSwift
 
 class FeedCollectionViewCell: BaseCollectionViewCell {
     var disposeBag = DisposeBag()
+    
     private let thumbnailView = ThumbnailView()
+    
     let userContentsView = UserContentView()
+    
     private let contentLabel = UILabel()
-    lazy var bookCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .bookCollectionViewLayout())
-        collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
-        return collectionView
-    }()
+    
+    let bookCollectionView = BookCollectionView()
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -30,7 +31,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         stackView.addArrangedSubview(interactionView)
         return stackView
     }()
-    private let interactionView = InteractionView()
+    
+    let interactionView = InteractionView()
     
     override func prepareForReuse() {
         super.prepareForReuse()
