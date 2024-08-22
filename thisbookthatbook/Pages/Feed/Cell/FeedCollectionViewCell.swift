@@ -20,6 +20,10 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     
     let bookCollectionView = BookCollectionView()
     
+    let userContentsButton = UIButton()
+    
+    let contentsButton = UIButton()
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -44,6 +48,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     
     override func setupHierarchy() {
         contentView.addSubview(stackView)
+        contentView.addSubview(userContentsButton)
+        contentView.addSubview(contentsButton)
     }
     
     override func setupConstraints() {
@@ -71,6 +77,15 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         
         interactionView.snp.makeConstraints { make in
             make.height.equalTo(44)
+        }
+        
+        userContentsButton.snp.makeConstraints { make in
+            make.edges.equalTo(userContentsView)
+        }
+        
+        contentsButton.snp.makeConstraints { make in
+            make.top.equalTo(thumbnailView.snp.top)
+            make.horizontalEdges.bottom.equalTo(stackView)
         }
     }
     
