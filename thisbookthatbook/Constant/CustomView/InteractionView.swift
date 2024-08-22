@@ -73,7 +73,7 @@ final class InteractionView: BaseView {
         
         [likeCntLabel, commentLabel].forEach { label in
             label.font = Resource.Fonts.regular13
-            label.text = "0"
+            label.text = Resource.Texts.zero // "0"
         }
         [commentImageView, likeImageView, bookmarkImageView].forEach { imageView in
             imageView.tintColor = Resource.Colors.lightGray
@@ -81,9 +81,10 @@ final class InteractionView: BaseView {
     }
     
     func configureView(_ data: Post) {
-        let likeCount = data.likes.count > 99 ? "99+" : "\(data.likes.count)"
+        let maxString = Resource.Texts.max // "99+"
+        let likeCount = data.likes.count > 99 ? maxString : "\(data.likes.count)"
         likeCntLabel.text = likeCount
-        let commentCount = data.comments.count > 99 ? "99+" : "\(data.comments.count)"
+        let commentCount = data.comments.count > 99 ? maxString : "\(data.comments.count)"
         commentLabel.text = commentCount
         isLikePost(data.isLikePost)
     }
