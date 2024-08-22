@@ -23,7 +23,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 12
         stackView.addArrangedSubview(userContentsView)
         stackView.addArrangedSubview(thumbnailView)
         stackView.addArrangedSubview(contentLabel)
@@ -49,6 +49,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     override func setupConstraints() {
         stackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
             make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).priority(999)
         }
         
@@ -57,7 +58,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         }
         
         thumbnailView.snp.makeConstraints { make in
-            make.height.equalTo(160)
+            make.height.equalTo(stackView.snp.width).multipliedBy(0.8)
         }
         
         bookCollectionView.snp.makeConstraints { make in
@@ -77,6 +78,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         backgroundColor = Resource.Colors.white
         contentLabel.font = Resource.Fonts.regular14
         contentLabel.numberOfLines = 4
+        thumbnailView.clipsToBounds = true
+        thumbnailView.layer.cornerRadius = Resource.Radius.thumbnail
     }
     
     func configureCell(_ data: Post) {
@@ -91,9 +94,10 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     }
     
     func isContainsBook(_ data: String?) {
-        guard let data, data.count > 0 else { 
+        guard let data, data.count > 0 else {
             bookCollectionView.isHidden = true
-            return }
+            return
+        }
         bookCollectionView.isHidden = false
     }
 }

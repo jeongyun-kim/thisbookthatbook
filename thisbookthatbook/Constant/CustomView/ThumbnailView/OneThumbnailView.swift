@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class OneThumbnailView: BaseView {
     private let thumbnailImageView = UIImageView()
@@ -21,7 +22,9 @@ final class OneThumbnailView: BaseView {
         }
     }
     
-    override func configureView(_ thumbs: [String]) {
-        thumbnailImageView.image = UIImage(systemName: "star")
+    override func configureView(_ paths: [String]) {
+        ImageFetcher.shared.getImagesFromServer(paths) { [weak self] data in
+            self?.thumbnailImageView.kf.setImage(with: data.url, options: [.requestModifier(data.modifier)])
+        }
     }
 }

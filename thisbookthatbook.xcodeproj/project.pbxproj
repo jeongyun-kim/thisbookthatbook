@@ -91,6 +91,7 @@
 		E0B9D1322C759951005858E1 /* BookSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1312C759951005858E1 /* BookSearchQuery.swift */; };
 		E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1332C759AC3005858E1 /* NetworkService + Book.swift */; };
 		E0B9D1362C75CA61005858E1 /* AddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */; };
+		E0B9D1422C7784F1005858E1 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1412C7784F1005858E1 /* ImageFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +175,7 @@
 		E0B9D1312C759951005858E1 /* BookSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchQuery.swift; sourceTree = "<group>"; };
 		E0B9D1332C759AC3005858E1 /* NetworkService + Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Book.swift"; sourceTree = "<group>"; };
 		E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewModel.swift; sourceTree = "<group>"; };
+		E0B9D1412C7784F1005858E1 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +349,7 @@
 		E06B820B2C6BA510009E4B40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D1412C7784F1005858E1 /* ImageFetcher.swift */,
 				E06B82AB2C722358009E4B40 /* AuthInterceptor.swift */,
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
 				E06B829F2C6F9684009E4B40 /* Errors.swift */,
@@ -718,6 +721,7 @@
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
 				E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */,
 				E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */,
+				E0B9D1422C7784F1005858E1 /* ImageFetcher.swift in Sources */,
 				E0B9D1282C759347005858E1 /* SearchBookTableViewCell.swift in Sources */,
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,

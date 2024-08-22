@@ -36,6 +36,8 @@ final class ThumbnailView: BaseView {
     
     override func setupUI() {
         hideAllViews()
+        layer.borderColor = Resource.Colors.gray6.cgColor
+        layer.borderWidth = 1
     }
     
     func hideAllViews() {
@@ -44,11 +46,11 @@ final class ThumbnailView: BaseView {
         threeThumbnailView.isHidden = true
     }
     
-    override func configureView(_ thumbs: [String]) {
-        guard !thumbs.isEmpty else { return }
+    override func configureView(_ paths: [String]) {
+        guard !paths.isEmpty else { return }
         let imageView = [oneThumbnailView, twoThumbnailView, threeThumbnailView]
-        let idx = thumbs.count - 1
-        imageView[idx].configureView(thumbs)
+        let idx = paths.count - 1
+        imageView[idx].configureView(paths)
         imageView[idx].isHidden = false
     }
 }

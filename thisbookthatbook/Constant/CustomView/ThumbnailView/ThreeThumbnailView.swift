@@ -13,6 +13,7 @@ final class ThreeThumbnailView: BaseView {
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.spacing = 4
         stackView.distribution = .fillEqually
         stackView.addArrangedSubview(thumbnailImageView1)
         stackView.addArrangedSubview(verticalStackView)
@@ -22,6 +23,7 @@ final class ThreeThumbnailView: BaseView {
     private lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = 4
         stackView.distribution = .fillEqually
         stackView.addArrangedSubview(thumbnailImageView2)
         stackView.addArrangedSubview(thumbnailImageView3)
@@ -42,7 +44,10 @@ final class ThreeThumbnailView: BaseView {
         }
     }
     
-    override func configureView(_ thumbs: [String]) {
-        
+    override func configureView(_ paths: [String]) {
+        let imageViews = [thumbnailImageView1, thumbnailImageView2, thumbnailImageView3]
+        ImageFetcher.shared.getImagesFromServer(paths) { data in
+            imageViews[data.idx].kf.setImage(with: data.url, options: [.requestModifier(data.modifier)])
+        }
     }
 }

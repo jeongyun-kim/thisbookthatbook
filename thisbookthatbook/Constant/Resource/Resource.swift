@@ -44,13 +44,19 @@ enum Resource {
     }
     
     enum Radius {
-        static let normal: CGFloat = 12
         static let book: CGFloat = 4
         static let bgView: CGFloat = 8
+        static let thumbnail: CGFloat = 10
+        static let normal: CGFloat = 12
     }
     
     enum TransitionType {
         case push
         case present
+    }
+    
+    enum Texts {
+        static let zero = "0"
+        static let max = "99+"
     }
 }

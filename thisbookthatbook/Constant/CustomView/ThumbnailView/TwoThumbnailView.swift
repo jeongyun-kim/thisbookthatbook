@@ -7,14 +7,15 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class TwoThumbnailView: BaseView {
     private let thumbnailImageView1 = UIImageView()
     private let thumbnailImageView2 = UIImageView()
-    
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.spacing = 4
         stackView.distribution = .fillEqually
         stackView.addArrangedSubview(thumbnailImageView1)
         stackView.addArrangedSubview(thumbnailImageView2)
@@ -31,8 +32,10 @@ final class TwoThumbnailView: BaseView {
         }
     }
     
-    override func configureView(_ thumbs: [String]) {
-        thumbnailImageView1.image = UIImage(systemName: "star")
-        thumbnailImageView2.image = UIImage(systemName: "heart")
+    override func configureView(_ paths: [String]) {
+        let imageViews = [thumbnailImageView1, thumbnailImageView2]
+        ImageFetcher.shared.getImagesFromServer(paths) { data in
+            imageViews[data.idx].kf.setImage(with: data.url, options: [.requestModifier(data.modifier)])
+        }
     }
 }
