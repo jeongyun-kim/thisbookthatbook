@@ -29,9 +29,11 @@ final class FeedViewController: BaseViewController {
         let modifyTrigger = PublishRelay<Post>()
         let deleteTrigger = PublishRelay<Post>()
         let addPostBtnTapped = main.addPostButton.rx.tap
+        let likeBtnTappedPost = PublishRelay<Post>()
         
         let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, 
-                                        deleteTrigger: deleteTrigger, addPostBtnTapped: addPostBtnTapped)
+                                        deleteTrigger: deleteTrigger, addPostBtnTapped: addPostBtnTapped,
+                                        likeBtnTappedPost: likeBtnTappedPost)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -56,13 +58,12 @@ final class FeedViewController: BaseViewController {
                             deleteTrigger.accept(element)
                         }
                     }.disposed(by: cell.disposeBag)
-                // 좋아요 버튼 탭 (미구현)
+                // 좋아요 버튼 탭 <- 현재 좋아요 한 포스트 보내기
                 cell.interactionView.likeButton.rx.tap
                     .asSignal()
-                    .emit(with: self) { owner, _ in
-                        NetworkService.shared.likePost(status: true, postId: element.post_id)
-                    }.disposed(by: cell.disposeBag)
-                
+                    .map { _ in element }
+                    .emit(to: likeBtnTappedPost)
+                    .disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리

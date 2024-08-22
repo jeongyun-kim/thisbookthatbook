@@ -34,3 +34,10 @@ struct User: Decodable {
     let nick: String
     let profileImage: String?
 }
+
+extension Post {
+    var isLikePost: Bool {
+        let myId = UserDefaultsManager.shared.id
+        return likes.contains(myId)
+    }
+}

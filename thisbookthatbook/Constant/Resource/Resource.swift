@@ -10,7 +10,8 @@ import UIKit
 enum Resource {
     enum Colors {
         static let primaryColor = UIColor(red: 0.63, green: 0.87, blue: 0.48, alpha: 1.00)
-        static let lightYellow = UIColor(red: 1.00, green: 0.96, blue: 0.80, alpha: 1.00)
+        static let pink = UIColor(red: 1.00, green: 0.70, blue: 0.82, alpha: 1.00)
+        static let yellow: UIColor = .systemYellow
         static let lightGray: UIColor = .lightGray
         static let gray6: UIColor  = .systemGray6
         static let white: UIColor = .white

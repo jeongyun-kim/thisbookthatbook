@@ -85,5 +85,13 @@ final class InteractionView: BaseView {
         likeCntLabel.text = likeCount
         let commentCount = data.comments.count > 99 ? "99+" : "\(data.comments.count)"
         commentLabel.text = commentCount
+        isLikePost(data.isLikePost)
+    }
+    
+    private func isLikePost(_ isLike: Bool) {
+        let color = isLike ? Resource.Colors.pink : Resource.Colors.lightGray
+        let likeImage = isLike ? Resource.Images.heartActive : Resource.Images.heartInactive
+        likeImageView.image = likeImage
+        likeImageView.tintColor = color
     }
 }

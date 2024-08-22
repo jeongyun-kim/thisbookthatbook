@@ -120,17 +120,32 @@ extension NetworkService {
         }
     }
     
-    func likePost(status: Bool, postId: String) {
-        do {
-            let query = LikeQuery(like_status: status)
-            let PostIdQuery = PostIdQuery(id: postId)
-            let request = try PostRouter.likePost(query: query, id: PostIdQuery)
-            AF.request(request).responseString { response in
-                print(response)
+    func postLikePost(status: Bool, postId: String) -> Single<Result<LikeStatus, Errors>> {
+        return Single.create { [weak self] single -> Disposable in
+            do {
+                let query = LikeQuery(like_status: status)
+                let PostIdQuery = PostIdQuery(id: postId)
+                let request = try PostRouter.likePost(query: query, id: PostIdQuery).asURLRequest()
+                self?.fetchData(model: LikeStatus.self, request: request) { statusCode, value in
+                    guard let statusCode else { return }
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value)))
+                    case 400:
+                        single(.success(.failure(.invalidLikePostRequest)))
+                    case 410:
+                        single(.success(.failure(.invalidPost)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("like request error")
             }
-            
-        } catch {
-            print("like request error")
+            return Disposables.create()
         }
     }
 }

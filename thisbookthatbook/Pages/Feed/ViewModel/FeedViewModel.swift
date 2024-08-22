@@ -17,20 +17,24 @@ final class FeedViewModel: BaseViewModel {
         let modifyTrigger: PublishRelay<Post>
         let deleteTrigger: PublishRelay<Post>
         let addPostBtnTapped: ControlEvent<Void>
+        let likeBtnTappedPost: PublishRelay<Post>
     }
     
     struct Output {
         let toastMessage: PublishRelay<String>
         let alert: PublishRelay<Void>
-        let feedResults: PublishRelay<[Post]>
+        let feedResults: BehaviorRelay<[Post]>
         let addPostBtnTapped: ControlEvent<Void>
         let selectedSegmentIdx: BehaviorRelay<Int>
     }
     
     func transform(_ input: Input) -> Output {
+        let id = UserDefaultsManager.shared.id
+        let likedPostIndex = BehaviorRelay(value: 0)
+        
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
-        let feedResults = PublishRelay<[Post]>()
+        let feedResults: BehaviorRelay<[Post]> = BehaviorRelay(value: [])
         let selectedSegmentIdx = BehaviorRelay(value: 0)
         
         // 새로운 피드 카테고리 선택 인덱스 정보
@@ -89,6 +93,23 @@ final class FeedViewModel: BaseViewModel {
                     default:
                         let errorMessage = error.rawValue.localized
                         toastMessage.accept(errorMessage)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 좋아요 버튼 탭했을 때
+        input.likeBtnTappedPost
+            .flatMap { NetworkService.shared.postLikePost(status: !$0.isLikePost, postId: $0.post_id) }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let value): // 좋아요 반영했을 때 서버 데이터 다시 받아오기
+                    selectedSegmentIdx.accept(selectedSegmentIdx.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
+                        alert.accept(())
+                    default: // 그 외는 토스트메시지로 처리
+                        toastMessage.accept(error.rawValue.localized)
                     }
                 }
             }.disposed(by: disposeBag)

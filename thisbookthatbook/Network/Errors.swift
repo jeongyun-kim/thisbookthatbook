@@ -23,5 +23,7 @@ extension NetworkService {
         case invalidPostRequest = "alert_invalid_post"
         
         case invalidDeletePostRequest = "toast_delete_invalidPost"
+        
+        case invalidLikePostRequest = "toast_like_invalidRequest"
     }
 }

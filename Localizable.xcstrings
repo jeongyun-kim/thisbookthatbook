@@ -630,6 +630,23 @@
         }
       }
     },
+    "toast_like_invalidRequest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong Request"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잘못된 요청이에요"
+          }
+        }
+      }
+    },
     "toast_login_empty" : {
       "extractionState" : "manual",
       "localizations" : {

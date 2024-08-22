@@ -55,7 +55,6 @@
 		E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82882C6F89C0009E4B40 /* PostRouter.swift */; };
 		E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82942C6F9193009E4B40 /* NetworkService + Authorization.swift */; };
 		E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82962C6F9211009E4B40 /* NetworkService + Post.swift */; };
-		E06B82992C6F924F009E4B40 /* FilesQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82982C6F924F009E4B40 /* FilesQuery.swift */; };
 		E06B829C2C6F9294009E4B40 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B829B2C6F9294009E4B40 /* Files.swift */; };
 		E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B829F2C6F9684009E4B40 /* Errors.swift */; };
 		E06B82A22C6FAD87009E4B40 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82A12C6FAD87009E4B40 /* FeedView.swift */; };
@@ -139,7 +138,6 @@
 		E06B82882C6F89C0009E4B40 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		E06B82942C6F9193009E4B40 /* NetworkService + Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Authorization.swift"; sourceTree = "<group>"; };
 		E06B82962C6F9211009E4B40 /* NetworkService + Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Post.swift"; sourceTree = "<group>"; };
-		E06B82982C6F924F009E4B40 /* FilesQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesQuery.swift; sourceTree = "<group>"; };
 		E06B829B2C6F9294009E4B40 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		E06B829F2C6F9684009E4B40 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		E06B82A12C6FAD87009E4B40 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -349,10 +347,10 @@
 		E06B820B2C6BA510009E4B40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D12C2C75989C005858E1 /* Book */,
 				E06B82AB2C722358009E4B40 /* AuthInterceptor.swift */,
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
 				E06B829F2C6F9684009E4B40 /* Errors.swift */,
+				E0B9D12C2C75989C005858E1 /* Book */,
 				E06B828C2C6F8C6E009E4B40 /* Authorization */,
 				E06B828D2C6F8CC5009E4B40 /* Post */,
 			);
@@ -458,7 +456,6 @@
 		E06B828E2C6F8CED009E4B40 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82982C6F924F009E4B40 /* FilesQuery.swift */,
 				E06B82A32C7071AE009E4B40 /* UploadPostQuery.swift */,
 				E06B82A72C70801B009E4B40 /* GetPostsQuery.swift */,
 				E06B82D42C735A37009E4B40 /* PostIdQuery.swift */,
@@ -740,7 +737,6 @@
 				E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */,
 				E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */,
 				E06B82BF2C72C828009E4B40 /* InteractionView.swift in Sources */,
-				E06B82992C6F924F009E4B40 /* FilesQuery.swift in Sources */,
 				E0B9D1322C759951005858E1 /* BookSearchQuery.swift in Sources */,
 				E06B82B02C723FD5009E4B40 /* BaseCollectionViewCell.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
