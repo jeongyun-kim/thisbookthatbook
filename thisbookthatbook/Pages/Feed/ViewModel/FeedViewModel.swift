@@ -76,7 +76,7 @@ final class FeedViewModel: BaseViewModel {
         
         // 게시글 삭제
         input.deleteTrigger
-            .flatMap { NetworkService.shared.deletePost(query: PostIdQuery(id: $0.post_id), productId: $0.product_id)}
+            .flatMap { NetworkService.shared.deletePost(postId: $0.post_id, productId: $0.product_id) }
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):

@@ -12,8 +12,8 @@ enum PostRouter {
     case uploadImage
     case uploadPost(query: UploadPostQuery)
     case getPosts(query: GetPostsQuery)
-    case deletePost(query: PostIdQuery)
-    case likePost(query: LikeQuery, id: PostIdQuery)
+    case deletePost(query: String)
+    case likePost(query: LikeQuery, id: String)
 }
 
 extension PostRouter: TargetType {
@@ -29,10 +29,10 @@ extension PostRouter: TargetType {
             return "v1/posts"
         case .getPosts:
             return "v1/posts"
-        case .deletePost(let query):
-            return "v1/posts/\(query.id)"
+        case .deletePost(let postId):
+            return "v1/posts/\(postId)"
         case .likePost(_, let postId):
-            return "v1/posts/\(postId.id)/like"
+            return "v1/posts/\(postId)/like"
         }
     }
     

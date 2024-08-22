@@ -96,10 +96,10 @@ extension NetworkService {
         }
     }
     
-    func deletePost(query: PostIdQuery, productId: String) -> Single<Result<Void, Errors>> {
+    func deletePost(postId: String, productId: String) -> Single<Result<Void, Errors>> {
         return Single.create { single -> Disposable in
             do {
-                let request = try PostRouter.deletePost(query: query).asURLRequest()
+                let request = try PostRouter.deletePost(query: postId).asURLRequest()
                 AF.request(request, interceptor: AuthInterceptor.interceptor).responseString(emptyResponseCodes: [200]) { response in
                     let statusCode = response.response?.statusCode
                     switch statusCode {
@@ -124,8 +124,7 @@ extension NetworkService {
         return Single.create { [weak self] single -> Disposable in
             do {
                 let query = LikeQuery(like_status: status)
-                let PostIdQuery = PostIdQuery(id: postId)
-                let request = try PostRouter.likePost(query: query, id: PostIdQuery).asURLRequest()
+                let request = try PostRouter.likePost(query: query, id: postId).asURLRequest()
                 self?.fetchData(model: LikeStatus.self, request: request) { statusCode, value in
                     guard let statusCode else { return }
                     switch statusCode {
