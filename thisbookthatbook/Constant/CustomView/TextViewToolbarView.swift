@@ -8,8 +8,9 @@
 import UIKit
 import SnapKit
 
-final class ToolbarView: BaseView {
+final class TextViewToolbarView: BaseView {
     private let border = CustomBorder()
+    
     private lazy var photoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -18,8 +19,13 @@ final class ToolbarView: BaseView {
         stackView.addArrangedSubview(photoLabel)
         return stackView
     }()
+    
     private let photoImageView = UIImageView()
+    
     private let photoLabel = UILabel()
+
+    let photoButton = UIButton()
+    
     lazy var bookStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -28,9 +34,11 @@ final class ToolbarView: BaseView {
         stackView.addArrangedSubview(bookLabel)
         return stackView
     }()
+    
     private let bookImageView = UIImageView()
-    let photoButton = UIButton()
+
     let bookButton = UIButton()
+    
     private let bookLabel = UILabel()
     
     override func setupHierarchy() {

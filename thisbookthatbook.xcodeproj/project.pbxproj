@@ -75,7 +75,7 @@
 		E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */; };
 		E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */; };
 		E0B9D0E02C747EEB005858E1 /* LikeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */; };
-		E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E12C74B772005858E1 /* ToolbarView.swift */; };
+		E0B9D0E22C74B772005858E1 /* TextViewToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E12C74B772005858E1 /* TextViewToolbarView.swift */; };
 		E0B9D0E42C74C88D005858E1 /* CustomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */; };
 		E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */; };
 		E0B9D0E82C74E771005858E1 /* AddPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */; };
@@ -165,7 +165,7 @@
 		E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
 		E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeStatus.swift; sourceTree = "<group>"; };
-		E0B9D0E12C74B772005858E1 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		E0B9D0E12C74B772005858E1 /* TextViewToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewToolbarView.swift; sourceTree = "<group>"; };
 		E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorder.swift; sourceTree = "<group>"; };
 		E0B9D0E52C74CD49005858E1 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0B9D0E72C74E771005858E1 /* AddPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewModel.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 				E06B82862C6D0F00009E4B40 /* NextButton.swift */,
 				E06B82BE2C72C828009E4B40 /* InteractionView.swift */,
 				E06B82CA2C72F300009E4B40 /* UserContentView.swift */,
-				E0B9D0E12C74B772005858E1 /* ToolbarView.swift */,
+				E0B9D0E12C74B772005858E1 /* TextViewToolbarView.swift */,
 				E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */,
 				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
 			);
@@ -749,7 +749,7 @@
 				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
 				E0B9D0ED2C756B7E005858E1 /* BookCollectionView.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
-				E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */,
+				E0B9D0E22C74B772005858E1 /* TextViewToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */,

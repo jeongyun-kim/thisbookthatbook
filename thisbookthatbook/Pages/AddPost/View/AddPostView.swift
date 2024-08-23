@@ -10,7 +10,7 @@ import SnapKit
 import PhotosUI
 
 final class AddPostView: BaseView {
-    let toolbar = ToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+    let toolbar = TextViewToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
     
     lazy var contentTextView: UITextView = {
         let textView = UITextView()
