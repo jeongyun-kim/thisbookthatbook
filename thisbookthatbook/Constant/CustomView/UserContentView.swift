@@ -43,18 +43,18 @@ final class UserContentView: BaseView {
     override func setupConstraints() {
         userProfileImageView.snp.makeConstraints { make in
             make.size.equalTo(40)
-            make.leading.equalTo(safeAreaLayoutGuide)
+            make.leading.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerY.equalTo(safeAreaLayoutGuide)
         }
         
         userNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(userProfileImageView)
-            make.leading.equalTo(userProfileImageView.snp.trailing).offset(12)
+            make.leading.greaterThanOrEqualTo(userProfileImageView.snp.trailing).offset(12)
         }
         
         moreImageView.snp.makeConstraints { make in
             make.centerY.equalTo(userNameLabel)
-            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
         }
         
         moreButton.snp.makeConstraints { make in

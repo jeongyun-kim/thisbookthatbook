@@ -22,7 +22,8 @@ final class ThumbnailView: BaseView {
     
     override func setupConstraints() {
         oneThumbnailView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.verticalEdges.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
         
         twoThumbnailView.snp.makeConstraints { make in

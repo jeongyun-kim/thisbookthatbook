@@ -12,10 +12,12 @@ import RxSwift
 class FeedCollectionViewCell: BaseCollectionViewCell {
     var disposeBag = DisposeBag()
     
+    private let thumbnailBackView = UIView()
     private let thumbnailView = ThumbnailView()
     
     let userContentsView = UserContentView()
     
+    private let contentBackView = UIView()
     private let contentLabel = UILabel()
     
     let bookCollectionView = BookCollectionView()
@@ -29,8 +31,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 12
         stackView.addArrangedSubview(userContentsView)
-        stackView.addArrangedSubview(thumbnailView)
-        stackView.addArrangedSubview(contentLabel)
+        stackView.addArrangedSubview(thumbnailBackView)
+        stackView.addArrangedSubview(contentBackView)
         stackView.addArrangedSubview(bookCollectionView)
         stackView.addArrangedSubview(interactionView)
         return stackView
@@ -42,19 +44,21 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         bookCollectionView.isHidden = true
-        thumbnailView.isHidden = true
-        thumbnailView.setupUI()
+        thumbnailBackView.isHidden = true
+        thumbnailView.hideAllViews()
     }
     
     override func setupHierarchy() {
         contentView.addSubview(stackView)
         contentView.addSubview(userContentsButton)
         contentView.addSubview(contentsButton)
+        thumbnailBackView.addSubview(thumbnailView)
+        contentBackView.addSubview(contentLabel)
     }
     
     override func setupConstraints() {
         stackView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(16)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
             make.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
             make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).priority(999)
         }
@@ -64,15 +68,13 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         }
         
         thumbnailView.snp.makeConstraints { make in
-            make.height.equalTo(stackView.snp.width).multipliedBy(0.8)
+            make.horizontalEdges.equalTo(thumbnailBackView.safeAreaLayoutGuide).inset(16)
+            make.verticalEdges.equalTo(thumbnailBackView.safeAreaLayoutGuide)
+            make.height.equalTo(thumbnailBackView.snp.width).multipliedBy(0.8)
         }
         
         bookCollectionView.snp.makeConstraints { make in
             make.height.equalTo(120)
-        }
-        
-        contentLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(stackView)
         }
         
         interactionView.snp.makeConstraints { make in
@@ -84,8 +86,13 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         }
         
         contentsButton.snp.makeConstraints { make in
-            make.top.equalTo(thumbnailView.snp.top)
-            make.horizontalEdges.bottom.equalTo(contentLabel)
+            make.top.equalTo(userContentsView.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(contentBackView)
+        }
+        
+        contentLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentBackView.safeAreaLayoutGuide).inset(16)
+            make.verticalEdges.equalTo(contentBackView.safeAreaLayoutGuide)
         }
     }
     
@@ -99,7 +106,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     
     func configureCell(_ data: Post) {
         let isContainsThumbnail = !data.files.isEmpty // 받아온 이미지가 있는지 확인
-        thumbnailView.isHidden = !isContainsThumbnail // 받아온 이미지가 있다면 isHidden = false / 아니면 true
+        thumbnailBackView.isHidden = !isContainsThumbnail // 받아온 이미지가 있다면 isHidden = false / 아니면 true
         thumbnailView.configureView(data.files) // 썸네일 이미지 구성
         userContentsView.userNameLabel.text = data.creator.nick // 사용자 닉네임
         contentLabel.text = data.content // 본문
