@@ -85,7 +85,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         
         contentsButton.snp.makeConstraints { make in
             make.top.equalTo(thumbnailView.snp.top)
-            make.horizontalEdges.bottom.equalTo(stackView)
+            make.horizontalEdges.bottom.equalTo(contentLabel)
         }
     }
     
@@ -104,12 +104,12 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         userContentsView.userNameLabel.text = data.creator.nick // 사용자 닉네임
         contentLabel.text = data.content // 본문
         interactionView.configureView(data) // 좋아요 개수 / 좋아요 상태 / 북마크 상태 / 댓글 개수 반영
-        isContainsBook(data.content1) // 책정보가 있는지에 따라 책 정보 컬렉션뷰 숨기거나 보여주기
+        isContainsBook(data.books) // 책정보가 있는지에 따라 책 정보 컬렉션뷰 숨기거나 보여주기
         userContentsView.hideMoreButton(data.creator.user_id) // 게시글의 글쓴이가 로그인한 나라면 더보기 버튼 냅두기
     }
     
-    func isContainsBook(_ data: String?) {
-        guard let data, data.count > 0 else {
+    func isContainsBook(_ books: [String]) {
+        guard !books.isEmpty else {
             bookCollectionView.isHidden = true
             return
         }

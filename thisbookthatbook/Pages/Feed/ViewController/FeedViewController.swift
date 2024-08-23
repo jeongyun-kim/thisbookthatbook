@@ -45,9 +45,7 @@ final class FeedViewController: BaseViewController {
                 cell.configureCell(element)
                 
                 // 책 데이터만 가져와서 내부 컬렉션뷰에 보여주기
-                let books = [element.content1, element.content2, element.content3, element.content4, element.content5]
-                let data = books.compactMap { $0 }.filter { !$0.isEmpty }
-                Observable.just(data)
+                Observable.just(element.books)
                     .bind(to: cell.bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
                         cell.configureCell(element)
                     }.disposed(by: cell.disposeBag)
@@ -70,11 +68,11 @@ final class FeedViewController: BaseViewController {
                     .emit(to: likeBtnTappedPost)
                     .disposed(by: cell.disposeBag)
             
-                // 각 포스트 상세보기로 화면전환 
+                // 각 포스트 상세보기로 화면전환
                 cell.contentsButton.rx.tap
                     .asSignal()
                     .emit(with: self) { owner, _ in
-                        let vc = PostViewController(vm: PostViewModel(), postId: element.post_id)
+                        let vc = PostViewController(postId: element.post_id)
                         owner.transition(vc)
                     }.disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)

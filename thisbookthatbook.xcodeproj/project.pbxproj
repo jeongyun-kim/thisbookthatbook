@@ -95,6 +95,7 @@
 		E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1492C7793FA005858E1 /* PostViewModel.swift */; };
 		E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */; };
 		E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14D2C785139005858E1 /* PostHeaderView.swift */; };
+		E0B9D1552C787AAC005858E1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 		E0B9D1492C7793FA005858E1 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0B9D14D2C785139005858E1 /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
+		E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 				E0B9D1492C7793FA005858E1 /* PostViewModel.swift */,
 				E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */,
 				E0B9D14D2C785139005858E1 /* PostHeaderView.swift */,
+				E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				E06B82B22C724018009E4B40 /* FeedCollectionViewCell.swift in Sources */,
 				E06B82A22C6FAD87009E4B40 /* FeedView.swift in Sources */,
 				E06B82C12C72C962009E4B40 /* BookCollectionViewCell.swift in Sources */,
+				E0B9D1552C787AAC005858E1 /* CommentTableViewCell.swift in Sources */,
 				E0B9D0E42C74C88D005858E1 /* CustomBorder.swift in Sources */,
 				E06B821E2C6BBE36009E4B40 /* UIViewController + Extension.swift in Sources */,
 				E06B81D82C6B7B1D009E4B40 /* BaseViewController.swift in Sources */,
