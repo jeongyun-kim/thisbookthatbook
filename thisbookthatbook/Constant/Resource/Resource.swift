@@ -40,6 +40,7 @@ enum Resource {
         static let regular18 = UIFont.systemFont(ofSize: 18)
         static let bold14 = UIFont.systemFont(ofSize: 14, weight: .bold)
         static let bold15 = UIFont.systemFont(ofSize: 15, weight: .bold)
+        static let bold16 = UIFont.systemFont(ofSize: 16, weight: .bold)
         static let bold18 = UIFont.systemFont(ofSize: 18, weight: .bold)
     }
     

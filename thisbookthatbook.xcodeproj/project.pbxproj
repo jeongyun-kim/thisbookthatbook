@@ -96,6 +96,7 @@
 		E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */; };
 		E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14D2C785139005858E1 /* PostHeaderView.swift */; };
 		E0B9D1552C787AAC005858E1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */; };
+		E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +186,7 @@
 		E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0B9D14D2C785139005858E1 /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,12 +326,10 @@
 		E06B81F72C6B7E24009E4B40 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1452C778D1B005858E1 /* PostViewController.swift */,
-				E0B9D1472C778D31005858E1 /* PostView.swift */,
-				E0B9D1492C7793FA005858E1 /* PostViewModel.swift */,
-				E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */,
-				E0B9D14D2C785139005858E1 /* PostHeaderView.swift */,
-				E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */,
+				E0B9D15B2C78D23E005858E1 /* Cell */,
+				E0B9D15A2C78D230005858E1 /* ViewModel */,
+				E0B9D1592C78D228005858E1 /* View */,
+				E0B9D1582C78D21E005858E1 /* ViewController */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -599,6 +599,41 @@
 			path = Book;
 			sourceTree = "<group>";
 		};
+		E0B9D1582C78D21E005858E1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1452C778D1B005858E1 /* PostViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E0B9D1592C78D228005858E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D14D2C785139005858E1 /* PostHeaderView.swift */,
+				E0B9D1472C778D31005858E1 /* PostView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0B9D15A2C78D230005858E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1492C7793FA005858E1 /* PostViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E0B9D15B2C78D23E005858E1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */,
+				E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */,
+				E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -705,6 +740,7 @@
 				E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */,
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
+				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
 				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,

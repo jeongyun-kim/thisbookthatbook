@@ -27,7 +27,7 @@ struct Post: Decodable {
     let likes2: [String]
     let hashTags: [String]
     let buyers: [String]
-    let comments: [String]
+    let comments: [Comment]
 }
 
 struct User: Decodable {
@@ -36,9 +36,24 @@ struct User: Decodable {
     let profileImage: String?
 }
 
+struct Comment: Decodable {
+    let comment_id: String
+    let content: String
+    let createdAt: String
+    let creator: User
+}
 extension Post {
     var isLikePost: Bool {
         let myId = UserDefaultsManager.shared.id
         return likes.contains(myId)
+    }
+    
+    var hashtags: [String] {
+        return hashTags.map { "#\($0)" }
+    }
+    
+    var books: [String] {
+        let contents = [content1, content2, content3, content4, content5]
+        return contents.compactMap { $0 }.filter { !$0.isEmpty }
     }
 }

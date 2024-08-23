@@ -103,6 +103,23 @@
         }
       }
     },
+    "alert_msg_failed_get_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to get post\nPlease try again in a moment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트를 가져올 수 없어요 잠시 후에 다시 시도해주세요"
+          }
+        }
+      }
+    },
     "alert_msg_signup_success" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -150,6 +167,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "로그인 세션 만료"
+          }
+        }
+      }
+    },
+    "alert_title_failed_get_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed get post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 가져오기 실패"
           }
         }
       }
@@ -273,6 +307,23 @@
         }
       }
     },
+    "label_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글"
+          }
+        }
+      }
+    },
     "label_email_invalid" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -371,6 +422,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "포스트 작성"
+          }
+        }
+      }
+    },
+    "navigation_title_detail_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post detail"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 상세보기"
           }
         }
       }
