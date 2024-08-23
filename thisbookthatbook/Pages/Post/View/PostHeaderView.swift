@@ -68,7 +68,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-        label.font = Resource.Fonts.bold16
+        label.font = Resource.Fonts.bold14
         label.text = "label_comment".localized
         return label
     }()

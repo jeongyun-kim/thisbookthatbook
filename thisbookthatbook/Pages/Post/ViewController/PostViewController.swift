@@ -31,6 +31,7 @@ final class PostViewController: BaseViewController {
         navigationItem.title = "navigation_title_detail_post".localized
         main.commentTableView.delegate = self
         main.commentTableView.dataSource = self
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func bind() {

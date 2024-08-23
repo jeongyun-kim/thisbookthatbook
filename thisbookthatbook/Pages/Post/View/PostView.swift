@@ -16,18 +16,28 @@ final class PostView: BaseView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.rowHeight = 80
         tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(PostHeaderView.self, forHeaderFooterViewReuseIdentifier: PostHeaderView.identifier)
         tableView.register(SearchBookTableViewCell.self, forCellReuseIdentifier: SearchBookTableViewCell.identifier)
         return tableView
     }()
     
+    let commentInputView = CommentInputView()
+    
     override func setupHierarchy() {
         addSubview(commentTableView)
+        addSubview(commentInputView)
     }
     
     override func setupConstraints() {
         commentTableView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
+        }
+        
+        commentInputView.snp.makeConstraints { make in
+            make.height.equalTo(56)
+            make.top.equalTo(commentTableView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
     }

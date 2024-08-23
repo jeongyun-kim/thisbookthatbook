@@ -494,6 +494,23 @@
         }
       }
     },
+    "placeholder_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글을 달아보세요"
+          }
+        }
+      }
+    },
     "placeholder_email" : {
       "extractionState" : "manual",
       "localizations" : {

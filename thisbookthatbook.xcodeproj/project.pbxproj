@@ -97,6 +97,9 @@
 		E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14D2C785139005858E1 /* PostHeaderView.swift */; };
 		E0B9D1552C787AAC005858E1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */; };
 		E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */; };
+		E0B9D1612C78DC82005858E1 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1602C78DC82005858E1 /* CommentInputView.swift */; };
+		E0B9D1632C78E018005858E1 /* UIWindow + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */; };
+		E0B9D1662C78E106005858E1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E0B9D1652C78E106005858E1 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +190,8 @@
 		E0B9D14D2C785139005858E1 /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0B9D1602C78DC82005858E1 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
+		E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B9D1662C78E106005858E1 /* IQKeyboardManagerSwift in Frameworks */,
 				E06B81E52C6B7C5C009E4B40 /* Kingfisher in Frameworks */,
 				E06B81DF2C6B7C3E009E4B40 /* Toast in Frameworks */,
 				E06B81EA2C6B7C6C009E4B40 /* RxSwift in Frameworks */,
@@ -285,6 +291,7 @@
 				E0B9D0E12C74B772005858E1 /* TextViewToolbarView.swift */,
 				E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */,
 				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
+				E0B9D1602C78DC82005858E1 /* CommentInputView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -398,6 +405,7 @@
 				E06B821D2C6BBE36009E4B40 /* UIViewController + Extension.swift */,
 				E06B82612C6C5CBE009E4B40 /* String + Extension.swift */,
 				E06B82D22C732D34009E4B40 /* UICollectionViewLayout + Extension.swift */,
+				E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -657,6 +665,7 @@
 				E06B81E72C6B7C6C009E4B40 /* RxCocoa */,
 				E06B81E92C6B7C6C009E4B40 /* RxSwift */,
 				E06B81EC2C6B7C76009E4B40 /* SnapKit */,
+				E0B9D1652C78E106005858E1 /* IQKeyboardManagerSwift */,
 			);
 			productName = thisbookthatbook;
 			productReference = E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */;
@@ -693,6 +702,7 @@
 				E06B81E32C6B7C5C009E4B40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E06B81E62C6B7C6C009E4B40 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E0B9D1642C78E106005858E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = E06B81BB2C6B7AA0009E4B40 /* Products */;
 			projectDirPath = "";
@@ -754,6 +764,7 @@
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */,
 				E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */,
+				E0B9D1632C78E018005858E1 /* UIWindow + Extension.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
 				E06B82B42C7243ED009E4B40 /* ThreeThumbnailView.swift in Sources */,
@@ -764,6 +775,7 @@
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */,
 				E0B9D10A2C756D49005858E1 /* AddBookViewController.swift in Sources */,
+				E0B9D1612C78DC82005858E1 /* CommentInputView.swift in Sources */,
 				E06B82B62C72C178009E4B40 /* TwoThumbnailView.swift in Sources */,
 				E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */,
 				E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */,
@@ -1071,6 +1083,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		E0B9D1642C78E106005858E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1103,6 +1123,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		E0B9D1652C78E106005858E1 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0B9D1642C78E106005858E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
