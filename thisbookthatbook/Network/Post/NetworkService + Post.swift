@@ -147,5 +147,31 @@ extension NetworkService {
             return Disposables.create()
         }
     }
+    
+    func getPostData(_ postId: String) -> Single<Result<Post, Errors>> {
+        return Single.create { [weak self] single -> Disposable in
+            do {
+                let request = try PostRouter.getPostData(id: postId).asURLRequest()
+                self?.fetchData(model: Post.self, request: request) { statusCode, value in
+                    guard let statusCode else { return }
+                    print(statusCode)
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value)))
+                    case 400:
+                        single(.success(.failure(.invalidPostRequest)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("get post data request error")
+            }
+            return Disposables.create()
+        }
+    }
 }
 

@@ -26,6 +26,7 @@ struct Post: Decodable {
     let likes: [String]
     let likes2: [String]
     let hashTags: [String]
+    let buyers: [String]
     let comments: [String]
 }
 

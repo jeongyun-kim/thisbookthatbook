@@ -49,7 +49,6 @@
 		E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82772C6CFD1A009E4B40 /* EmailValidation.swift */; };
 		E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82792C6CFFDF009E4B40 /* Withdraw.swift */; };
 		E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B827B2C6D04E5009E4B40 /* SignUpView.swift */; };
-		E06B827F2C6D05AC009E4B40 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = E06B827E2C6D05AC009E4B40 /* TextFieldEffects */; };
 		E06B82852C6D0B7A009E4B40 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82842C6D0B7A009E4B40 /* SignUpViewModel.swift */; };
 		E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82862C6D0F00009E4B40 /* NextButton.swift */; };
 		E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B82882C6F89C0009E4B40 /* PostRouter.swift */; };
@@ -94,6 +93,8 @@
 		E0B9D1462C778D1B005858E1 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1452C778D1B005858E1 /* PostViewController.swift */; };
 		E0B9D1482C778D31005858E1 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1472C778D31005858E1 /* PostView.swift */; };
 		E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1492C7793FA005858E1 /* PostViewModel.swift */; };
+		E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */; };
+		E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D14D2C785139005858E1 /* PostHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,8 @@
 		E0B9D1452C778D1B005858E1 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		E0B9D1472C778D31005858E1 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		E0B9D1492C7793FA005858E1 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0B9D14D2C785139005858E1 /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +196,6 @@
 				E06B81ED2C6B7C76009E4B40 /* SnapKit in Frameworks */,
 				E06B81E82C6B7C6C009E4B40 /* RxCocoa in Frameworks */,
 				E06B81E22C6B7C48009E4B40 /* Alamofire in Frameworks */,
-				E06B827F2C6D05AC009E4B40 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +325,8 @@
 				E0B9D1452C778D1B005858E1 /* PostViewController.swift */,
 				E0B9D1472C778D31005858E1 /* PostView.swift */,
 				E0B9D1492C7793FA005858E1 /* PostViewModel.swift */,
+				E0B9D14B2C779FD3005858E1 /* HashtagCollectionViewCell.swift */,
+				E0B9D14D2C785139005858E1 /* PostHeaderView.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -615,7 +619,6 @@
 				E06B81E72C6B7C6C009E4B40 /* RxCocoa */,
 				E06B81E92C6B7C6C009E4B40 /* RxSwift */,
 				E06B81EC2C6B7C76009E4B40 /* SnapKit */,
-				E06B827E2C6D05AC009E4B40 /* TextFieldEffects */,
 			);
 			productName = thisbookthatbook;
 			productReference = E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */;
@@ -652,7 +655,6 @@
 				E06B81E32C6B7C5C009E4B40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E06B81E62C6B7C6C009E4B40 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = E06B81BB2C6B7AA0009E4B40 /* Products */;
 			projectDirPath = "";
@@ -710,6 +712,7 @@
 				E0B9D0E22C74B772005858E1 /* ToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
+				E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */,
 				E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
@@ -722,6 +725,7 @@
 				E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */,
 				E0B9D10A2C756D49005858E1 /* AddBookViewController.swift in Sources */,
 				E06B82B62C72C178009E4B40 /* TwoThumbnailView.swift in Sources */,
+				E0B9D14E2C785139005858E1 /* PostHeaderView.swift in Sources */,
 				E06B827A2C6CFFDF009E4B40 /* Withdraw.swift in Sources */,
 				E0B9D1362C75CA61005858E1 /* AddBookViewModel.swift in Sources */,
 				E06B82052C6B9E5C009E4B40 /* FeedViewController.swift in Sources */,
@@ -1027,14 +1031,6 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1067,11 +1063,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		E06B827E2C6D05AC009E4B40 /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E06B827D2C6D05AC009E4B40 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

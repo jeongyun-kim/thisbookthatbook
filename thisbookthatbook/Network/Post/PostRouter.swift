@@ -14,6 +14,7 @@ enum PostRouter {
     case getPosts(query: GetPostsQuery)
     case deletePost(query: String)
     case likePost(query: LikeQuery, id: String)
+    case getPostData(id: String)
 }
 
 extension PostRouter: TargetType {
@@ -33,6 +34,8 @@ extension PostRouter: TargetType {
             return "v1/posts/\(postId)"
         case .likePost(_, let postId):
             return "v1/posts/\(postId)/like"
+        case .getPostData(let postId):
+            return "v1/posts/\(postId)"
         }
     }
     
@@ -49,6 +52,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         case .likePost:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.contentKey: API.Headers.jsonValue]
+        case .getPostData:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -64,6 +69,8 @@ extension PostRouter: TargetType {
             return .delete
         case .likePost:
             return .post
+        case .getPostData:
+            return .get
         }
     }
     
@@ -79,6 +86,8 @@ extension PostRouter: TargetType {
             return nil
         case .likePost(let query, _):
             return encoding(query)
+        case .getPostData:
+            return nil
         }
     }
     
@@ -93,6 +102,8 @@ extension PostRouter: TargetType {
         case .deletePost:
             return nil
         case .likePost:
+            return nil
+        case .getPostData:
             return nil
         }
     }
