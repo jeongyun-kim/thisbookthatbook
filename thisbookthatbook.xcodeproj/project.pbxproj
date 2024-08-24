@@ -103,6 +103,8 @@
 		E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */; };
 		E0B9D16C2C7981E5005858E1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16B2C7981E5005858E1 /* Comment.swift */; };
 		E0B9D16E2C79820F005858E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16D2C79820F005858E1 /* User.swift */; };
+		E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */; };
+		E0B9D1722C79BB63005858E1 /* BookmarkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1712C79BB63005858E1 /* BookmarkStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +200,8 @@
 		E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
 		E0B9D16B2C7981E5005858E1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E0B9D16D2C79820F005858E1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkQuery.swift; sourceTree = "<group>"; };
+		E0B9D1712C79BB63005858E1 /* BookmarkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,6 +495,7 @@
 				E06B82A72C70801B009E4B40 /* GetPostsQuery.swift */,
 				E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */,
 				E0B9D1672C78EA59005858E1 /* CommentQuery.swift */,
+				E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */,
 				E0B9D16B2C7981E5005858E1 /* Comment.swift */,
 				E0B9D16D2C79820F005858E1 /* User.swift */,
+				E0B9D1712C79BB63005858E1 /* BookmarkStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -798,6 +804,7 @@
 				E0B9D1282C759347005858E1 /* SearchBookTableViewCell.swift in Sources */,
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
+				E0B9D1722C79BB63005858E1 /* BookmarkStatus.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
 				E0B9D16E2C79820F005858E1 /* User.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,
@@ -821,6 +828,7 @@
 				E06B82B02C723FD5009E4B40 /* BaseCollectionViewCell.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82AC2C722358009E4B40 /* AuthInterceptor.swift in Sources */,
+				E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */,
 				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
 				E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */,

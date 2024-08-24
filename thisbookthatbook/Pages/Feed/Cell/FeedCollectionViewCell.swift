@@ -16,13 +16,12 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     private let thumbnailView = ThumbnailView()
     
     let userContentsView = UserContentView()
+    let userContentsButton = UIButton()
     
     private let contentBackView = UIView()
     private let contentLabel = UILabel()
     
     let bookCollectionView = BookCollectionView()
-    
-    let userContentsButton = UIButton()
     
     let contentsButton = UIButton()
     

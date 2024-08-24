@@ -9,13 +9,14 @@ import UIKit
 import SnapKit
 
 final class InteractionView: BaseView {
-    private let border = UIView()
+    private let border = CustomBorder()
     private let commentImageView = UIImageView()
     private let commentLabel = UILabel()
     private let likeCntLabel = UILabel()
     let likeImageView = UIImageView()
     let likeButton = UIButton()
-    private let bookmarkImageView = UIImageView()
+    let bookmarkImageView = UIImageView()
+    let bookmarkButton = UIButton()
     
     override func setupHierarchy() {
         addSubview(border)
@@ -25,11 +26,11 @@ final class InteractionView: BaseView {
         addSubview(likeButton)
         addSubview(likeCntLabel)
         addSubview(bookmarkImageView)
+        addSubview(bookmarkButton)
     }
     
     override func setupConstraints() {
         border.snp.makeConstraints { make in
-            make.height.equalTo(1)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.top.equalTo(safeAreaLayoutGuide)
         }
@@ -63,6 +64,11 @@ final class InteractionView: BaseView {
             make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
             make.centerY.equalTo(likeImageView.snp.centerY)
         }
+        
+        bookmarkButton.snp.makeConstraints { make in
+            make.size.equalTo(snp.height)
+            make.center.equalTo(bookmarkImageView.snp.center)
+        }
     }
     
     override func setupUI() {
@@ -87,6 +93,7 @@ final class InteractionView: BaseView {
         let commentCount = data.comments.count > 99 ? maxString : "\(data.comments.count)"
         commentLabel.text = commentCount
         isLikePost(data.isLikePost)
+        isBookmarkPost(data.isBookmarkPost)
     }
     
     private func isLikePost(_ isLike: Bool) {
@@ -94,5 +101,12 @@ final class InteractionView: BaseView {
         let likeImage = isLike ? Resource.Images.heartActive : Resource.Images.heartInactive
         likeImageView.image = likeImage
         likeImageView.tintColor = color
+    }
+    
+    private func isBookmarkPost(_ isBookmark: Bool) {
+        let color = isBookmark ? Resource.Colors.yellow : Resource.Colors.lightGray
+        let bookmarkImage = isBookmark ? Resource.Images.bookmarkActive : Resource.Images.bookmarkInactive
+        bookmarkImageView.image = bookmarkImage
+        bookmarkImageView.tintColor = color
     }
 }

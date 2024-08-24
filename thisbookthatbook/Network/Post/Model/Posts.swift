@@ -36,6 +36,11 @@ extension Post {
         return likes.contains(myId)
     }
     
+    var isBookmarkPost: Bool {
+        let myId = UserDefaultsManager.shared.id
+        return likes2.contains(myId)
+    }
+    
     var hashtags: [String] {
         return hashTags.map { "#\($0)" }
     }

@@ -124,8 +124,36 @@ extension NetworkService {
         return Single.create { [weak self] single -> Disposable in
             do {
                 let query = LikeQuery(like_status: status)
-                let request = try PostRouter.likePost(query: query, id: postId).asURLRequest()
+                let request = try PostRouter.postLikePost(query: query, id: postId).asURLRequest()
                 self?.fetchData(model: LikeStatus.self, request: request) { statusCode, value in
+                    guard let statusCode else { return }
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value)))
+                    case 400:
+                        single(.success(.failure(.invalidLikePostRequest)))
+                    case 410:
+                        single(.success(.failure(.invalidPost)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("like request error")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func postBookmarkPost(status: Bool, postId: String) -> Single<Result<BookmarkStatus, Errors>> {
+        return Single.create { [weak self] single -> Disposable in
+            do {
+                let query = BookmarkQuery(like_status: status)
+                let request = try PostRouter.postBookmarkPost(query: query, id: postId).asURLRequest()
+                self?.fetchData(model: BookmarkStatus.self, request: request) { statusCode, value in
                     guard let statusCode else { return }
                     switch statusCode {
                     case 200:

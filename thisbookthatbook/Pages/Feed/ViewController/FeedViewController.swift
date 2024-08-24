@@ -30,10 +30,11 @@ final class FeedViewController: BaseViewController {
         let deleteTrigger = PublishRelay<Post>()
         let addPostBtnTapped = main.addPostButton.rx.tap
         let likeBtnTappedPost = PublishRelay<Post>()
+        let bookmarkBtnTappedPost = PublishRelay<Post>()
         
         let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, 
                                         deleteTrigger: deleteTrigger, addPostBtnTapped: addPostBtnTapped,
-                                        likeBtnTappedPost: likeBtnTappedPost)
+                                        likeBtnTappedPost: likeBtnTappedPost, bookmarkBtnTappedPost: bookmarkBtnTappedPost)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -66,6 +67,13 @@ final class FeedViewController: BaseViewController {
                     .asSignal()
                     .map { _ in element }
                     .emit(to: likeBtnTappedPost)
+                    .disposed(by: cell.disposeBag)
+                
+                // 북마크 버튼 탭 <- 현재 북마크 한 포스트 보내기 
+                cell.interactionView.bookmarkButton.rx.tap
+                    .asSignal()
+                    .map { _ in element }
+                    .emit(to: bookmarkBtnTappedPost)
                     .disposed(by: cell.disposeBag)
             
                 // 각 포스트 상세보기로 화면전환

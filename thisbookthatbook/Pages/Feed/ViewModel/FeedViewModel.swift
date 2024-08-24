@@ -18,6 +18,7 @@ final class FeedViewModel: BaseViewModel {
         let deleteTrigger: PublishRelay<Post>
         let addPostBtnTapped: ControlEvent<Void>
         let likeBtnTappedPost: PublishRelay<Post>
+        let bookmarkBtnTappedPost: PublishRelay<Post>
     }
     
     struct Output {
@@ -102,7 +103,23 @@ final class FeedViewModel: BaseViewModel {
             .flatMap { NetworkService.shared.postLikePost(status: !$0.isLikePost, postId: $0.post_id) }
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(let value): // 좋아요 반영했을 때 서버 데이터 다시 받아오기
+                case .success(_): // 좋아요 반영했을 때 서버 데이터 다시 받아오기
+                    selectedSegmentIdx.accept(selectedSegmentIdx.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
+                        alert.accept(())
+                    default: // 그 외는 토스트메시지로 처리
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        input.bookmarkBtnTappedPost
+            .flatMap { NetworkService.shared.postBookmarkPost(status: !$0.isBookmarkPost, postId: $0.post_id) }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(_):
                     selectedSegmentIdx.accept(selectedSegmentIdx.value)
                 case .failure(let error):
                     switch error {
