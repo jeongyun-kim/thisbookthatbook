@@ -30,18 +30,6 @@ struct Post: Decodable {
     let comments: [Comment]
 }
 
-struct User: Decodable {
-    let user_id: String
-    let nick: String
-    let profileImage: String?
-}
-
-struct Comment: Decodable {
-    let comment_id: String
-    let content: String
-    let createdAt: String
-    let creator: User
-}
 extension Post {
     var isLikePost: Bool {
         let myId = UserDefaultsManager.shared.id

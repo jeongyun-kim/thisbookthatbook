@@ -15,13 +15,7 @@ final class UserContentView: BaseView {
         return label
     }()
     
-    private let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "user")
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20
-        return imageView
-    }()
+    private let userProfileImageView = UserProfileImageView()
     
     private let moreImageView: UIImageView = {
         let imageView = UIImageView()
@@ -42,7 +36,6 @@ final class UserContentView: BaseView {
     
     override func setupConstraints() {
         userProfileImageView.snp.makeConstraints { make in
-            make.size.equalTo(40)
             make.leading.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerY.equalTo(safeAreaLayoutGuide)
         }

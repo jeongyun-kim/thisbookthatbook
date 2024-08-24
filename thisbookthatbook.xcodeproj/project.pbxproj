@@ -98,8 +98,11 @@
 		E0B9D1552C787AAC005858E1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */; };
 		E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */; };
 		E0B9D1612C78DC82005858E1 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1602C78DC82005858E1 /* CommentInputView.swift */; };
-		E0B9D1632C78E018005858E1 /* UIWindow + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */; };
 		E0B9D1662C78E106005858E1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E0B9D1652C78E106005858E1 /* IQKeyboardManagerSwift */; };
+		E0B9D1682C78EA59005858E1 /* CommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1672C78EA59005858E1 /* CommentQuery.swift */; };
+		E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */; };
+		E0B9D16C2C7981E5005858E1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16B2C7981E5005858E1 /* Comment.swift */; };
+		E0B9D16E2C79820F005858E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16D2C79820F005858E1 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,7 +194,10 @@
 		E0B9D1542C787AAC005858E1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E0B9D1562C78864B005858E1 /* DetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0B9D1602C78DC82005858E1 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
-		E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extension.swift"; sourceTree = "<group>"; };
+		E0B9D1672C78EA59005858E1 /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
+		E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
+		E0B9D16B2C7981E5005858E1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		E0B9D16D2C79820F005858E1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +298,7 @@
 				E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */,
 				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
 				E0B9D1602C78DC82005858E1 /* CommentInputView.swift */,
+				E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -405,7 +412,6 @@
 				E06B821D2C6BBE36009E4B40 /* UIViewController + Extension.swift */,
 				E06B82612C6C5CBE009E4B40 /* String + Extension.swift */,
 				E06B82D22C732D34009E4B40 /* UICollectionViewLayout + Extension.swift */,
-				E0B9D1622C78E018005858E1 /* UIWindow + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				E06B82A32C7071AE009E4B40 /* UploadPostQuery.swift */,
 				E06B82A72C70801B009E4B40 /* GetPostsQuery.swift */,
 				E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */,
+				E0B9D1672C78EA59005858E1 /* CommentQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -494,6 +501,8 @@
 				E06B829B2C6F9294009E4B40 /* Files.swift */,
 				E06B82A52C7074B9009E4B40 /* Posts.swift */,
 				E0B9D0DF2C747EEB005858E1 /* LikeStatus.swift */,
+				E0B9D16B2C7981E5005858E1 /* Comment.swift */,
+				E0B9D16D2C79820F005858E1 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -751,9 +760,11 @@
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
 				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
+				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
 				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,
+				E0B9D1682C78EA59005858E1 /* CommentQuery.swift in Sources */,
 				E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
 				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
@@ -761,10 +772,10 @@
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E0B9D0E22C74B772005858E1 /* TextViewToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
+				E0B9D16C2C7981E5005858E1 /* Comment.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */,
 				E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */,
-				E0B9D1632C78E018005858E1 /* UIWindow + Extension.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
 				E06B82B42C7243ED009E4B40 /* ThreeThumbnailView.swift in Sources */,
@@ -788,6 +799,7 @@
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E06B81DC2C6B7BC7009E4B40 /* BaseTableViewCell.swift in Sources */,
+				E0B9D16E2C79820F005858E1 /* User.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,
 				E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */,
 				E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */,
