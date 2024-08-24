@@ -30,6 +30,7 @@ enum Resource {
         static let camera = UIImage(systemName: "photo.badge.plus")
         static let addBook = UIImage(systemName: "text.book.closed.fill")
         static let deletePhoto = UIImage(systemName: "minus.circle.fill")
+        static let check = UIImage(systemName: "checkmark")
     }
     
     enum Fonts {

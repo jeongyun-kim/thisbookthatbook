@@ -105,6 +105,9 @@
 		E0B9D16E2C79820F005858E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16D2C79820F005858E1 /* User.swift */; };
 		E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */; };
 		E0B9D1722C79BB63005858E1 /* BookmarkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1712C79BB63005858E1 /* BookmarkStatus.swift */; };
+		E0B9D1752C79C596005858E1 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1742C79C596005858E1 /* BookViewController.swift */; };
+		E0B9D1772C79C5D3005858E1 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1762C79C5D3005858E1 /* BookView.swift */; };
+		E0B9D1792C7A34E2005858E1 /* BookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +205,9 @@
 		E0B9D16D2C79820F005858E1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkQuery.swift; sourceTree = "<group>"; };
 		E0B9D1712C79BB63005858E1 /* BookmarkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkStatus.swift; sourceTree = "<group>"; };
+		E0B9D1742C79C596005858E1 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		E0B9D1762C79C5D3005858E1 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +309,7 @@
 				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
 				E0B9D1602C78DC82005858E1 /* CommentInputView.swift */,
 				E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */,
+				E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -310,6 +317,7 @@
 		E06B81F42C6B7E07009E4B40 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D1732C79C58D005858E1 /* Book */,
 				E0B9D1082C756D3B005858E1 /* AddBook */,
 				E06B82D62C738E6A009E4B40 /* AddPost */,
 				E06B826A2C6CE589009E4B40 /* SignUp */,
@@ -657,6 +665,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E0B9D1732C79C58D005858E1 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1742C79C596005858E1 /* BookViewController.swift */,
+				E0B9D1762C79C5D3005858E1 /* BookView.swift */,
+			);
+			path = Book;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -762,6 +779,7 @@
 				E06B82852C6D0B7A009E4B40 /* SignUpViewModel.swift in Sources */,
 				E06B82A62C7074B9009E4B40 /* Posts.swift in Sources */,
 				E06B82032C6B9D14009E4B40 /* TabBarController.swift in Sources */,
+				E0B9D1792C7A34E2005858E1 /* BookInfoView.swift in Sources */,
 				E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */,
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
@@ -802,6 +820,7 @@
 				E06B826C2C6CE5A0009E4B40 /* SignUpViewController.swift in Sources */,
 				E0B9D1422C7784F1005858E1 /* ImageFetcher.swift in Sources */,
 				E0B9D1282C759347005858E1 /* SearchBookTableViewCell.swift in Sources */,
+				E0B9D1772C79C5D3005858E1 /* BookView.swift in Sources */,
 				E06B82652C6CCD59009E4B40 /* Login.swift in Sources */,
 				E06B81DA2C6B7B56009E4B40 /* BaseView.swift in Sources */,
 				E0B9D1722C79BB63005858E1 /* BookmarkStatus.swift in Sources */,
@@ -816,6 +835,7 @@
 				E06B82072C6B9E6D009E4B40 /* ProfileViewController.swift in Sources */,
 				E06B82122C6BA553009E4B40 /* LoginQuery.swift in Sources */,
 				E06B82B82C72C218009E4B40 /* OneThumbnailView.swift in Sources */,
+				E0B9D1752C79C596005858E1 /* BookViewController.swift in Sources */,
 				E06B82CF2C72F996009E4B40 /* ThumbnailView.swift in Sources */,
 				E06B82A42C7071AE009E4B40 /* UploadPostQuery.swift in Sources */,
 				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,

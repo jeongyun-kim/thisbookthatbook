@@ -88,6 +88,15 @@ final class FeedViewController: BaseViewController {
                         let vc = PostViewController(vm: PostViewModel(), postId: element.post_id)
                         owner.transition(vc)
                     }.disposed(by: cell.disposeBag)
+                
+                // 책 컬렉션뷰 내 책 선택했을 때, 선택한 책의 상세정보 present
+                cell.bookCollectionView.rx.modelSelected(String.self)
+                    .bind(with: self) { owner, value in
+                        let vc = BookViewController(data: value)
+                        vc.sheetPresentationController?.detents = [.medium(), .large()]
+                        owner.transition(vc, type: .present)
+                    }.disposed(by: cell.disposeBag)
+                
             }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리

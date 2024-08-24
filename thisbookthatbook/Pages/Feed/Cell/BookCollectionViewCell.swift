@@ -58,6 +58,7 @@ final class BookCollectionViewCell: BaseCollectionViewCell {
         bgView.layer.cornerRadius = Resource.Radius.bgView
         
         bookImageView.backgroundColor = .systemBlue
+        bookImageView.clipsToBounds = true
         bookImageView.layer.cornerRadius = Resource.Radius.book
         
         bookTitleLabel.font = Resource.Fonts.regular14
