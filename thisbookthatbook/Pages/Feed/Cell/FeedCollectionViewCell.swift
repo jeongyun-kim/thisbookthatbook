@@ -81,7 +81,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         }
         
         userContentsButton.snp.makeConstraints { make in
-            make.edges.equalTo(userContentsView)
+            make.top.leading.bottom.equalTo(userContentsView)
+            make.trailing.equalTo(userContentsView.moreButton.snp.leading)
         }
         
         contentsButton.snp.makeConstraints { make in
