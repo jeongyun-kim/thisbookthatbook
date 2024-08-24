@@ -9,30 +9,28 @@ import UIKit
 import SnapKit
 
 final class HashtagCollectionViewCell: BaseCollectionViewCell {
-    private let hashtagLabel: UILabel = {
-        let label = UILabel()
-        label.font = Resource.Fonts.regular14
-        label.textColor = Resource.Colors.lightGray
-        return label
+    private let hashtagButton: UIButton = {
+        let button = UIButton()
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = Resource.Colors.gray6
+        config.baseForegroundColor = Resource.Colors.lightGray
+        config.cornerStyle = .capsule
+        button.configuration = config
+        return button
     }()
-    
+
     override func setupHierarchy() {
-        contentView.addSubview(hashtagLabel)
+        contentView.addSubview(hashtagButton)
     }
     
     override func setupConstraints() {
-        hashtagLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(4)
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(6)
+        hashtagButton.snp.makeConstraints { make in
+            make.edges.equalTo(contentView.safeAreaLayoutGuide)
         }
     }
     
-    override func configureLayout() {
-        contentView.layer.cornerRadius = Resource.Radius.normal
-        contentView.backgroundColor = Resource.Colors.gray6
-    }
-    
     func configureCell(_ data: String) {
-        hashtagLabel.text = data
+        let attributedTitle = NSAttributedString(string: data, attributes: [.font: Resource.Fonts.regular13])
+        hashtagButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
