@@ -53,6 +53,14 @@ final class PostViewController: BaseViewController {
             .bind(with: self) { owner, value in
                 owner.main.commentTableView.reloadData()
             }.disposed(by: disposeBag)
+        
+        main.commentInputView.commentTextField.rx.controlEvent(.editingDidEndOnExit)
+            .withLatestFrom(main.commentInputView.commentTextField.rx.text.orEmpty)
+            .filter { !$0.isEmpty }
+            .map { NetworkService.shared.postComment(self.vm.postData.value!.post_id, query: $0) }
+            .bind(with: self) { owner, _ in
+                print("tapped")
+            }.disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -68,7 +76,10 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchBookTableViewCell.identifier, for: indexPath) as? SearchBookTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.identifier, for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
+        guard let data = vm.postData.value else { return cell }
+        let comment = data.comments[indexPath.row]
+        cell.configureCell(comment)
         return cell
     }
 
