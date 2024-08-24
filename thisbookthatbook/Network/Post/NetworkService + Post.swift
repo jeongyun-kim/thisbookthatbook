@@ -173,5 +173,32 @@ extension NetworkService {
             return Disposables.create()
         }
     }
+    
+    func postComment(_ id: String, query: CommentQuery) -> Single<Result<Comment, Errors>> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try PostRouter.postComment(query: query, id: id).asURLRequest()
+                self.fetchData(model: Comment.self, request: request) { statusCode, value in
+                    guard let statusCode else { return }
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value)))
+                    case 400:
+                        single(.success(.failure(.emptyContent)))
+                    case 410:
+                        single(.success(.failure(.invalidPost)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("post comment request error")
+            }
+            return Disposables.create()
+        }
+    }
 }
 

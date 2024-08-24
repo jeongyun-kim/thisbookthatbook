@@ -12,15 +12,18 @@ final class CommentInputView: BaseView {
     
     let commentTextField: UITextField = {
         let textField = UITextField()
+        textField.enablesReturnKeyAutomatically = true
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
         textField.backgroundColor = Resource.Colors.gray6
         textField.placeholder = "placeholder_comment".localized
         textField.font = Resource.Fonts.regular14
         textField.layer.cornerRadius = Resource.Radius.normal
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1))
-        textField.leftView = leftView
+        let spaceView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1))
+        textField.leftView = spaceView
         textField.leftViewMode = .always
+        textField.rightView = spaceView
+        textField.rightViewMode = .always
         return textField
     }()
     

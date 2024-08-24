@@ -11,9 +11,10 @@ import RxSwift
 import RxCocoa
 
 final class PostViewController: BaseViewController {
-    init(postId: String) {
+    init(vm: PostViewModel, postId: String) {
         super.init(nibName: nil, bundle: nil)
-        vm.postId.accept(postId)
+        self.vm = vm
+        self.vm.postId.accept(postId)
     }
     
     private let main = PostView()
@@ -23,7 +24,7 @@ final class PostViewController: BaseViewController {
         self.view = main
     }
     
-    private var vm = PostViewModel()
+    private var vm: PostViewModel!
     
     override func setupUI() {
         super.setupUI()
@@ -35,7 +36,10 @@ final class PostViewController: BaseViewController {
     }
     
     override func bind() {
-        // 에러 처리
+        let returnKeyTapped = main.commentInputView.commentTextField.rx.controlEvent(.editingDidEndOnExit)
+        let comment = main.commentInputView.commentTextField.rx.text.orEmpty
+    
+        // 포스트 가져오는데 실패했을 때의 에러 처리
         vm.isExpiredTokenError
             .asSignal()
             .emit(with: self) { owner, value in
@@ -54,13 +58,16 @@ final class PostViewController: BaseViewController {
                 owner.main.commentTableView.reloadData()
             }.disposed(by: disposeBag)
         
-        main.commentInputView.commentTextField.rx.controlEvent(.editingDidEndOnExit)
-            .withLatestFrom(main.commentInputView.commentTextField.rx.text.orEmpty)
-            .filter { !$0.isEmpty }
-            .map { NetworkService.shared.postComment(self.vm.postData.value!.post_id, query: $0) }
-            .bind(with: self) { owner, _ in
-                print("tapped")
-            }.disposed(by: disposeBag)
+        returnKeyTapped
+            .bind(with: self, onNext: { owner, _ in
+                owner.vm.returnKeyTapped.accept(())
+                owner.main.commentInputView.commentTextField.text = ""
+            })
+            .disposed(by: disposeBag)
+        
+        comment
+            .bind(to: vm.comment)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

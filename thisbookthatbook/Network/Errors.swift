@@ -25,5 +25,7 @@ extension NetworkService {
         case invalidDeletePostRequest = "toast_delete_invalidPost"
         
         case invalidLikePostRequest = "toast_like_invalidRequest"
+        
+        case emptyContent = "toast_comment_empty"
     }
 }

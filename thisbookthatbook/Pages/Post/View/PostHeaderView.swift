@@ -12,6 +12,9 @@ import RxCocoa
 
 final class PostHeaderView: UITableViewHeaderFooterView {
     private let disposeBag = DisposeBag()
+    private let filesRelay = PublishRelay<[String]>()
+    private let booksRelay = PublishRelay<[String]>()
+    private let hashtagsRelay = PublishRelay<[String]>()
     
     private lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -27,13 +30,14 @@ final class PostHeaderView: UITableViewHeaderFooterView {
     
     private let photoContentsView = UIView()
     
-    lazy var photoCollectionView: UICollectionView = {
+    private lazy var photoCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .DetailPhotoCollectionView())
         collectionView.register(DetailPhotoCollectionViewCell.self, forCellWithReuseIdentifier: DetailPhotoCollectionViewCell.identifier)
+        collectionView.tag = 0
         return collectionView
     }()
     
-    let pageControl: UIPageControl = {
+    private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
         pageControl.direction = .leftToRight
@@ -51,20 +55,18 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    let bookCollectionView = BookCollectionView()
+    private let bookCollectionView = BookCollectionView()
     
-    lazy var hashtagCollectionView: UICollectionView = {
+    private lazy var hashtagCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .hashTagCollectionView())
         collectionView.register(HashtagCollectionViewCell.self, forCellWithReuseIdentifier: HashtagCollectionViewCell.identifier)
+        collectionView.tag = 2
         return collectionView
     }()
     
-    private let commentView: UIView = {
-        let view = UIView()
-        view.layer.borderColor = Resource.Colors.gray6.cgColor
-        view.layer.borderWidth = 1
-        return view
-    }()
+    private let border = CustomBorder()
+    
+    private let commentView = UIView()
     
     private let commentLabel: UILabel = {
         let label = UILabel()
@@ -85,11 +87,13 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         setupHierarchy()
         setupConstraints()
         setupUI()
+        bind()
     }
     
     private func setupHierarchy() {
         contentView.addSubview(verticalStackView)
         contentBackView.addSubview(contentLabel)
+        commentView.addSubview(border)
         commentView.addSubview(commentLabel)
         commentView.addSubview(commentImageView)
         photoContentsView.addSubview(photoCollectionView)
@@ -100,6 +104,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         verticalStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
             make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).priority(999)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(16)
         }
         
         photoCollectionView.snp.makeConstraints { make in
@@ -126,6 +131,10 @@ final class PostHeaderView: UITableViewHeaderFooterView {
             make.height.equalTo(44)
         }
         
+        border.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(commentView)
+        }
+        
         commentImageView.snp.makeConstraints { make in
             make.centerY.equalTo(commentView)
             make.leading.equalTo(commentView.snp.leading).offset(16)
@@ -148,17 +157,33 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         isContainsHashtag(data.hashtags)
     }
     
+    private func bind() {
+        // 사진이 한 장 이상이라면 사진 컬렉션뷰 그리고
+        filesRelay
+            .bind(to: photoCollectionView.rx.items(cellIdentifier: DetailPhotoCollectionViewCell.identifier, cellType: DetailPhotoCollectionViewCell.self)) { (row, element, cell) in
+                cell.configureCell(element)
+            }.disposed(by: disposeBag)
+        
+        // 책 정보가 포함되어있다면 컬렉션뷰 그려주기
+        booksRelay
+            .bind(to: bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
+                cell.configureCell(element)
+            }.disposed(by: disposeBag)
+        
+        hashtagsRelay
+        // 해시태그가 하나라도 있다면 컬렉션뷰 그리기
+            .bind(to: hashtagCollectionView.rx.items(cellIdentifier: HashtagCollectionViewCell.identifier, cellType: HashtagCollectionViewCell.self)) { (row, element, cell) in
+                cell.configureCell(element)
+            }.disposed(by: disposeBag)
+    }
+    
     private func isContainsPhoto(_ files: [String]) {
         guard !files.isEmpty else {
             // 사진이 하나도 없다면 사진 관련 뷰 숨기기
             photoContentsView.isHidden = true
             return
         }
-        // 사진이 한 장 이상이라면 사진 컬렉션뷰 그리고
-        Observable.just(files)
-            .bind(to: photoCollectionView.rx.items(cellIdentifier: DetailPhotoCollectionViewCell.identifier, cellType: DetailPhotoCollectionViewCell.self)) { (row, element, cell) in
-                cell.configureCell(element)
-            }.disposed(by: disposeBag)
+        filesRelay.accept(files)
         // pageControl 세팅
         configurePageControl(files)
     }
@@ -171,7 +196,8 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         }
         // 사진이 두 장 이상일 때, pageControl 세팅
         pageControl.numberOfPages = files.count
-        // 곧 보여줄 셀의 정보
+        
+        // 곧 보여줄 셀의 정보 -> pageControl currentPage
         photoCollectionView.rx.willDisplayCell
             .bind(with: self) { owner, value in
                 let currentPage = value.at.row
@@ -185,11 +211,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
             bookCollectionView.isHidden = true
             return
         }
-        // 책 정보가 포함되어있다면 컬렉션뷰 그려주기
-        Observable.just(books)
-            .bind(to: bookCollectionView.rx.items(cellIdentifier: BookCollectionViewCell.identifier, cellType: BookCollectionViewCell.self)) { (row, element, cell) in
-                cell.configureCell(element)
-            }.disposed(by: disposeBag)
+        booksRelay.accept(books)
     }
    
     private func isContainsHashtag(_ hashtags: [String]) {
@@ -198,11 +220,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
             hashtagCollectionView.isHidden = true
             return
         }
-        // 해시태그가 하나라도 있다면 컬렉션뷰 그리기
-        Observable.just(hashtags)
-            .bind(to: hashtagCollectionView.rx.items(cellIdentifier: HashtagCollectionViewCell.identifier, cellType: HashtagCollectionViewCell.self)) { (row, element, cell) in
-                cell.configureCell(element)
-            }.disposed(by: disposeBag)
+        hashtagsRelay.accept(hashtags)
     }
     
     required init?(coder: NSCoder) {

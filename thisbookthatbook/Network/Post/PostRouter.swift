@@ -15,6 +15,7 @@ enum PostRouter {
     case deletePost(query: String)
     case likePost(query: LikeQuery, id: String)
     case getPostData(id: String)
+    case postComment(query: CommentQuery, id: String)
 }
 
 extension PostRouter: TargetType {
@@ -36,6 +37,8 @@ extension PostRouter: TargetType {
             return "v1/posts/\(postId)/like"
         case .getPostData(let postId):
             return "v1/posts/\(postId)"
+        case .postComment(_, let id):
+            return "v1/posts/\(id)/comments"
         }
     }
     
@@ -54,6 +57,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.contentKey: API.Headers.jsonValue]
         case .getPostData:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .postComment:
+            return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -71,6 +76,8 @@ extension PostRouter: TargetType {
             return .post
         case .getPostData:
             return .get
+        case .postComment:
+            return .post
         }
     }
     
@@ -88,6 +95,8 @@ extension PostRouter: TargetType {
             return encoding(query)
         case .getPostData:
             return nil
+        case .postComment(let query, _):
+            return encoding(query)
         }
     }
     
@@ -104,6 +113,8 @@ extension PostRouter: TargetType {
         case .likePost:
             return nil
         case .getPostData:
+            return nil
+        case .postComment:
             return nil
         }
     }

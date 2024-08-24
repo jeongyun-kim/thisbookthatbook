@@ -14,6 +14,7 @@ final class PostView: BaseView {
 
     lazy var commentTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = UITableView.automaticDimension

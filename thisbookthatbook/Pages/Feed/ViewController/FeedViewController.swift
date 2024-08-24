@@ -72,7 +72,7 @@ final class FeedViewController: BaseViewController {
                 cell.contentsButton.rx.tap
                     .asSignal()
                     .emit(with: self) { owner, _ in
-                        let vc = PostViewController(postId: element.post_id)
+                        let vc = PostViewController(vm: PostViewModel(), postId: element.post_id)
                         owner.transition(vc)
                     }.disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)

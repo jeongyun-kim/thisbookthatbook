@@ -45,7 +45,6 @@ final class SearchBookTableViewCell: BaseTableViewCell {
     }
     
     override func configureLayout() {
-        selectionStyle = .none
         contentStackView.axis = .vertical
         contentStackView.spacing = 4
         bookImageView.backgroundColor = .blue

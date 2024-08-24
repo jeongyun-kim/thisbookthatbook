@@ -14,6 +14,7 @@ class BaseTableViewCell: UITableViewCell {
         setupHierarchy()
         setupConstraints()
         configureLayout()
+        selectionStyle = .none
     }
     
     func setupHierarchy() {
