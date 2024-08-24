@@ -17,6 +17,11 @@ final class FeedViewController: BaseViewController {
     override func loadView() {
         self.view = main
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
 
     override func setupUI() {
         super.setupUI()
