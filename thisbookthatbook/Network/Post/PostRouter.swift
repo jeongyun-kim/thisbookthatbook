@@ -17,6 +17,7 @@ enum PostRouter {
     case postBookmarkPost(query: BookmarkQuery, id: String)
     case getPostData(id: String)
     case postComment(query: CommentQuery, id: String)
+    case deleteComment(postId: String, commentId: String)
 }
 
 extension PostRouter: TargetType {
@@ -42,6 +43,8 @@ extension PostRouter: TargetType {
             return "v1/posts/\(id)/comments"
         case .postBookmarkPost(_, let postId):
             return "v1/posts/\(postId)/like-2"
+        case .deleteComment(let postId, let commentId):
+            return "v1/posts/\(postId)/comments/\(commentId)"
         }
     }
     
@@ -64,6 +67,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .postBookmarkPost:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.contentKey: API.Headers.jsonValue]
+        case .deleteComment:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -85,6 +90,8 @@ extension PostRouter: TargetType {
             return .post
         case .postBookmarkPost:
             return .post
+        case .deleteComment:
+            return .delete
         }
     }
     
@@ -106,6 +113,8 @@ extension PostRouter: TargetType {
             return encoding(query)
         case .postBookmarkPost(let query, _):
             return encoding(query)
+        case .deleteComment:
+            return nil
         }
     }
     
@@ -126,6 +135,8 @@ extension PostRouter: TargetType {
         case .postComment:
             return nil
         case .postBookmarkPost:
+            return nil
+        case .deleteComment:
             return nil
         }
     }

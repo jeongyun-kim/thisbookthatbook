@@ -228,5 +228,30 @@ extension NetworkService {
             return Disposables.create()
         }
     }
+    
+    func deleteComment(postId: String, commentId: String) -> Single<Result<Void, Errors>> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try PostRouter.deleteComment(postId: postId, commentId: commentId).asURLRequest()
+                AF.request(request, interceptor: AuthInterceptor.interceptor).responseString(emptyResponseCodes: [200]) { response in
+                    let statusCode = response.response?.statusCode
+                    switch statusCode {
+                    case 200:
+                        single(.success(.success(())))
+                    case 410: // 게시글을 찾을 수 없음
+                        single(.success(.failure(.invalidDeleteCommentRequest)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default :
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("delete comment request error!")
+            }
+            return Disposables.create()
+        }
+        
+    }
 }
 

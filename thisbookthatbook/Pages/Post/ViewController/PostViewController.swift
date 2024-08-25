@@ -58,6 +58,7 @@ final class PostViewController: BaseViewController {
                 owner.main.commentTableView.reloadData()
             }.disposed(by: disposeBag)
         
+        // 댓글 입력 후 리턴 버튼 눌렀을 때
         returnKeyTapped
             .bind(with: self, onNext: { owner, _ in
                 owner.vm.returnKeyTapped.accept(())
@@ -65,6 +66,7 @@ final class PostViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        // 입력한 댓글
         comment
             .bind(to: vm.comment)
             .disposed(by: disposeBag)
@@ -87,6 +89,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         guard let data = vm.postData.value else { return cell }
         let comment = data.comments[indexPath.row]
         cell.configureCell(comment)
+        
         return cell
     }
 
@@ -95,6 +98,21 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         guard let data = vm.postData.value else { return nil }
         header.configureView(data)
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let data = vm.postData.value else { return nil }
+        let comment = data.comments[indexPath.row]
+        let creatorId = comment.creator.user_id
+        
+        // 만약 선택한 댓글의 생성자 아이디와 현재 로그인한 사용자의 아이디가 다르다면 액션 없게
+        guard creatorId == UserDefaultsManager.shared.id else { return nil }
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, _ in
+            // 댓글 작성자 = 로그인 유저라면 삭제 처리
+            self?.vm.deleteComment.accept(comment)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }
 

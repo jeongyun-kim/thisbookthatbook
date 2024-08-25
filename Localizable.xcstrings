@@ -783,6 +783,23 @@
         }
       }
     },
+    "toast_delete_inavlidComment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no comment to delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제할 댓글이 없어요"
+          }
+        }
+      }
+    },
     "toast_delete_invalidPost" : {
       "extractionState" : "manual",
       "localizations" : {
