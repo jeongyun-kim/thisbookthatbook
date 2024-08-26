@@ -10,8 +10,8 @@ import SnapKit
 import Tabman
 import Pageboy
 
-final class TabManViewController: TabmanViewController {
-    private let bar = TMBar.ButtonBar()
+final class ProfileTabManViewController: TabmanViewController {
+    private let bar = TabmanBar()
     private let viewControllers = [
         ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 0), 
         ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 1),
@@ -20,40 +20,19 @@ final class TabManViewController: TabmanViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.dataSource = self
+        
         addBar(bar, dataSource: self, at: .custom(view: self.view, layout: { bar in
             bar.snp.makeConstraints { make in
                 make.top.equalTo(self.view.safeAreaLayoutGuide)
                 make.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide).inset(24)
-               
-                make.height.equalTo(44)
             }
         }))
-        
-        setupUI()
-    }
-    
-    func setupUI() {
-        bar.backgroundView.style = .clear
-        bar.layout.transitionStyle = .snap
-        bar.layout.alignment = .leading
-        bar.layout.contentMode = .intrinsic
-        bar.layout.interButtonSpacing = 24
-    
-        bar.buttons.customize { button in
-            button.tintColor = Resource.Colors.lightGray
-            button.selectedTintColor = Resource.Colors.black
-            button.font = Resource.Fonts.regular15
-            button.selectedFont = Resource.Fonts.bold15
-        }
-   
-        bar.indicator.weight = .custom(value: 3)
-        bar.indicator.overscrollBehavior = .compress
-        bar.indicator.tintColor = Resource.Colors.primaryColor
     }
 }
 
-extension TabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
+extension ProfileTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
     func numberOfViewControllers(in pageboyViewController: Pageboy.PageboyViewController) -> Int {
         return viewControllers.count
     }

@@ -16,7 +16,7 @@ final class ProfileViewController: BaseViewController {
     private let vm = ProfileViewModel()
     private let disposeBag = DisposeBag()
     
-    private let child = TabManViewController()
+    private let child = ProfileTabManViewController()
     
     private let profileImageView = UserProfileImageView(size: .profileView)
     

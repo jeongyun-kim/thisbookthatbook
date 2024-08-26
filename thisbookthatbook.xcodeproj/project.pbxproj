@@ -111,13 +111,15 @@
 		E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D17C2C7B02E0005858E1 /* UserInfoView.swift */; };
 		E0B9D1862C7C2B53005858E1 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = E0B9D1852C7C2B53005858E1 /* Tabman */; };
 		E0B9D1882C7C2B8B005858E1 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */; };
-		E0B9D18E2C7C36D1005858E1 /* TabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */; };
+		E0B9D18E2C7C36D1005858E1 /* ProfileTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D18D2C7C36D1005858E1 /* ProfileTabManViewController.swift */; };
 		E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */; };
 		E0B9D19B2C7CAF21005858E1 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19A2C7CAF21005858E1 /* ProfileRouter.swift */; };
 		E0B9D19E2C7CAFE1005858E1 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */; };
 		E0B9D1A02C7CB077005858E1 /* NetworkService + Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */; };
 		E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */; };
 		E0B9D1A82C7CB8B2005858E1 /* ContentsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A72C7CB8B2005858E1 /* ContentsType.swift */; };
+		E0B9D1AA2C7CB935005858E1 /* FeedTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A92C7CB935005858E1 /* FeedTabManViewController.swift */; };
+		E0B9D1AC2C7CB9FD005858E1 /* TabmanBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,13 +222,15 @@
 		E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoView.swift; sourceTree = "<group>"; };
 		E0B9D17C2C7B02E0005858E1 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
-		E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManViewController.swift; sourceTree = "<group>"; };
+		E0B9D18D2C7C36D1005858E1 /* ProfileTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabManViewController.swift; sourceTree = "<group>"; };
 		E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewModel.swift; sourceTree = "<group>"; };
 		E0B9D19A2C7CAF21005858E1 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Profile.swift"; sourceTree = "<group>"; };
 		E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E0B9D1A72C7CB8B2005858E1 /* ContentsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsType.swift; sourceTree = "<group>"; };
+		E0B9D1A92C7CB935005858E1 /* FeedTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabManViewController.swift; sourceTree = "<group>"; };
+		E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,7 @@
 				E0B9D1602C78DC82005858E1 /* CommentInputView.swift */,
 				E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */,
 				E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */,
+				E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82042C6B9E5C009E4B40 /* FeedViewController.swift */,
+				E0B9D1A92C7CB935005858E1 /* FeedTabManViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -720,7 +726,7 @@
 			isa = PBXGroup;
 			children = (
 				E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */,
-				E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */,
+				E0B9D18D2C7C36D1005858E1 /* ProfileTabManViewController.swift */,
 			);
 			path = TabMan;
 			sourceTree = "<group>";
@@ -868,6 +874,7 @@
 				E0B9D1A82C7CB8B2005858E1 /* ContentsType.swift in Sources */,
 				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
 				E0B9D0ED2C756B7E005858E1 /* BookCollectionView.swift in Sources */,
+				E0B9D1AA2C7CB935005858E1 /* FeedTabManViewController.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E0B9D0E22C74B772005858E1 /* TextViewToolbarView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
@@ -905,6 +912,7 @@
 				E0B9D16E2C79820F005858E1 /* User.swift in Sources */,
 				E06B82192C6BB14E009E4B40 /* CustomTextField.swift in Sources */,
 				E06B82872C6D0F00009E4B40 /* NextButton.swift in Sources */,
+				E0B9D1AC2C7CB9FD005858E1 /* TabmanBar.swift in Sources */,
 				E06B82762C6CFCC5009E4B40 /* EmailQuery.swift in Sources */,
 				E06B81D42C6B7ADE009E4B40 /* APIKey.swift in Sources */,
 				E0B9D1462C778D1B005858E1 /* PostViewController.swift in Sources */,
@@ -917,7 +925,7 @@
 				E06B82A42C7071AE009E4B40 /* UploadPostQuery.swift in Sources */,
 				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,
 				E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */,
-				E0B9D18E2C7C36D1005858E1 /* TabManViewController.swift in Sources */,
+				E0B9D18E2C7C36D1005858E1 /* ProfileTabManViewController.swift in Sources */,
 				E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */,
 				E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */,
 				E06B82BF2C72C828009E4B40 /* InteractionView.swift in Sources */,
