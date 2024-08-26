@@ -12,8 +12,10 @@ import RxCocoa
 final class FeedViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     
+    let selectedFeedType = BehaviorRelay<RecommendType>(value: .give_recommend)
+    let reloadCollectionView = PublishRelay<Void>()
+    
     struct Input {
-        let selectedSegmentIdx: ControlProperty<Int>
         let modifyTrigger: PublishRelay<Post>
         let deleteTrigger: PublishRelay<Post>
         let addPostBtnTapped: ControlEvent<Void>
@@ -26,29 +28,18 @@ final class FeedViewModel: BaseViewModel {
         let alert: PublishRelay<Void>
         let feedResults: BehaviorRelay<[Post]>
         let addPostBtnTapped: ControlEvent<Void>
-        let selectedSegmentIdx: BehaviorRelay<Int>
     }
     
     func transform(_ input: Input) -> Output {
-        let id = UserDefaultsManager.shared.id
-        let likedPostIndex = BehaviorRelay(value: 0)
-        
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         let feedResults: BehaviorRelay<[Post]> = BehaviorRelay(value: [])
-        let selectedSegmentIdx = BehaviorRelay(value: 0)
-        
-        // 새로운 피드 카테고리 선택 인덱스 정보
-        input.selectedSegmentIdx
-            .asDriver()
-            .drive(selectedSegmentIdx)
-            .disposed(by: disposeBag)
-        
-        // 새로운 카테고리 선택될 때마다 서버 통신 -> 결과 받아오기
-        selectedSegmentIdx
+  
+        // 뷰를 새로 불러올 때마다 실시간 반영된 데이터 불러오기
+        reloadCollectionView
+            .withLatestFrom(selectedFeedType)
             .map {
-                let id = RecommendType.allCases[$0].rawValue
-                let query = GetPostsQuery(next: "0", product_id: id)
+                let query = GetPostsQuery(next: "", product_id: $0.rawValue)
                 return query
             }
             .flatMap { NetworkService.shared.getPosts(query: $0) }
@@ -81,9 +72,8 @@ final class FeedViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    // 삭제 성공했다면 서버에서 피드 데이터 다시 받아오게 현재 선택되어있던 인덱스값 전달
-                    let idx = selectedSegmentIdx.value
-                    selectedSegmentIdx.accept(idx)
+                    // 삭제 성공했다면 서버에서 피드 데이터 다시 받아오게 현재 선택되어있던 피드 타입 전달
+                    owner.reloadCollectionView.accept(())
                 case .failure(let error):
                     switch error {
                     case .expiredToken:
@@ -104,7 +94,7 @@ final class FeedViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_): // 좋아요 반영했을 때 서버 데이터 다시 받아오기
-                    selectedSegmentIdx.accept(selectedSegmentIdx.value)
+                    owner.reloadCollectionView.accept(())
                 case .failure(let error):
                     switch error {
                     case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
@@ -120,7 +110,7 @@ final class FeedViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    selectedSegmentIdx.accept(selectedSegmentIdx.value)
+                    owner.reloadCollectionView.accept(())
                 case .failure(let error):
                     switch error {
                     case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
@@ -132,8 +122,7 @@ final class FeedViewModel: BaseViewModel {
             }.disposed(by: disposeBag)
         
         let output = Output(toastMessage: toastMessage, alert: alert, 
-                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped,
-                            selectedSegmentIdx: selectedSegmentIdx)
+                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped)
         return output
     }
 }

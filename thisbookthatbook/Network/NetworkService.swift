@@ -16,7 +16,7 @@ final class NetworkService {
     func fetchData<T: Decodable>(model: T.Type, request: URLRequest, completionHandler: @escaping (Int?, T?) -> Void){
         AF.request(request, interceptor: AuthInterceptor.interceptor).responseDecodable(of: model) { response in
             let statusCode = response.response?.statusCode
-            print(#function)
+            print(#function, statusCode, model.self)
             switch response.result {
             case .success(let value):
                 completionHandler(statusCode, value)

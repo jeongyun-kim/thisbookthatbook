@@ -46,7 +46,7 @@ final class ProfilePostsViewController: BaseViewController {
     
     override func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(44)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(Resource.Tabman.height)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
         }

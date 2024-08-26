@@ -10,9 +10,19 @@ import RxSwift
 import RxCocoa
 
 final class FeedViewController: BaseViewController {
+    init(vm: FeedViewModel = FeedViewModel(), feedType: RecommendType) {
+        super.init(nibName: nil, bundle: nil)
+        self.vm = vm
+        vm.selectedFeedType.accept(feedType)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let main = FeedView()
     private let disposeBag = DisposeBag()
-    private let vm = FeedViewModel()
+    private var vm: FeedViewModel!
     
     override func loadView() {
         self.view = main
@@ -21,6 +31,7 @@ final class FeedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        vm.reloadCollectionView.accept(())
     }
 
     override func setupUI() {
@@ -36,10 +47,10 @@ final class FeedViewController: BaseViewController {
         let addPostBtnTapped = main.addPostButton.rx.tap
         let likeBtnTappedPost = PublishRelay<Post>()
         let bookmarkBtnTappedPost = PublishRelay<Post>()
-        
-        let input = FeedViewModel.Input(selectedSegmentIdx: selectedSegentIdx, modifyTrigger: modifyTrigger, 
-                                        deleteTrigger: deleteTrigger, addPostBtnTapped: addPostBtnTapped,
-                                        likeBtnTappedPost: likeBtnTappedPost, bookmarkBtnTappedPost: bookmarkBtnTappedPost)
+
+        let input = FeedViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger,
+                                        addPostBtnTapped: addPostBtnTapped, likeBtnTappedPost: likeBtnTappedPost,
+                                        bookmarkBtnTappedPost: bookmarkBtnTappedPost)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -118,7 +129,7 @@ final class FeedViewController: BaseViewController {
         output.addPostBtnTapped
             .asSignal()
             .emit(with: self) { owner, _ in
-                let type = RecommendType.allCases[output.selectedSegmentIdx.value]
+                let type = owner.vm.selectedFeedType.value
                 let vc = AddPostViewController(vm: AddPostViewModel(), type: type)
                 owner.transition(vc)
             }.disposed(by: disposeBag)

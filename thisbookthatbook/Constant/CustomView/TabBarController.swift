@@ -24,7 +24,7 @@ final class TabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = Resource.Colors.lightGray
         tabBar.backgroundColor = Resource.Colors.white
         
-        let feedView = UINavigationController(rootViewController: FeedViewController())
+        let feedView = UINavigationController(rootViewController: FeedTabManViewController())
         let profileView = UINavigationController(rootViewController: ProfileViewController())
 
         setViewControllers([feedView, profileView], animated: true)

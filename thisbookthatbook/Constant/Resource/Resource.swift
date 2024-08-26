@@ -61,4 +61,8 @@ enum Resource {
         static let zero = "0"
         static let max = "99+"
     }
+    
+    enum Tabman {
+        static let height = 44 
+    }
 }
