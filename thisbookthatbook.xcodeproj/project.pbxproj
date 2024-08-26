@@ -108,6 +108,11 @@
 		E0B9D1752C79C596005858E1 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1742C79C596005858E1 /* BookViewController.swift */; };
 		E0B9D1772C79C5D3005858E1 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1762C79C5D3005858E1 /* BookView.swift */; };
 		E0B9D1792C7A34E2005858E1 /* BookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */; };
+		E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D17C2C7B02E0005858E1 /* UserInfoView.swift */; };
+		E0B9D1862C7C2B53005858E1 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = E0B9D1852C7C2B53005858E1 /* Tabman */; };
+		E0B9D1882C7C2B8B005858E1 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */; };
+		E0B9D18E2C7C36D1005858E1 /* TabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */; };
+		E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -208,6 +213,10 @@
 		E0B9D1742C79C596005858E1 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		E0B9D1762C79C5D3005858E1 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoView.swift; sourceTree = "<group>"; };
+		E0B9D17C2C7B02E0005858E1 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
+		E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManViewController.swift; sourceTree = "<group>"; };
+		E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B9D1662C78E106005858E1 /* IQKeyboardManagerSwift in Frameworks */,
+				E0B9D1862C7C2B53005858E1 /* Tabman in Frameworks */,
 				E06B81E52C6B7C5C009E4B40 /* Kingfisher in Frameworks */,
 				E06B81DF2C6B7C3E009E4B40 /* Toast in Frameworks */,
 				E06B81EA2C6B7C6C009E4B40 /* RxSwift in Frameworks */,
@@ -305,6 +315,7 @@
 				E06B82BE2C72C828009E4B40 /* InteractionView.swift */,
 				E06B82CA2C72F300009E4B40 /* UserContentView.swift */,
 				E0B9D0E12C74B772005858E1 /* TextViewToolbarView.swift */,
+				E0B9D17C2C7B02E0005858E1 /* UserInfoView.swift */,
 				E0B9D0E32C74C88D005858E1 /* CustomBorder.swift */,
 				E0B9D0EC2C756B7E005858E1 /* BookCollectionView.swift */,
 				E0B9D1602C78DC82005858E1 /* CommentInputView.swift */,
@@ -363,7 +374,8 @@
 		E06B81F82C6B7E44009E4B40 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */,
+				E0B9D1912C7C6A27005858E1 /* ViewModel */,
+				E0B9D1902C7C61E9005858E1 /* ViewControllers */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -674,6 +686,32 @@
 			path = Book;
 			sourceTree = "<group>";
 		};
+		E0B9D1902C7C61E9005858E1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1982C7C874B005858E1 /* TabMan */,
+				E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E0B9D1912C7C6A27005858E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E0B9D1982C7C874B005858E1 /* TabMan */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */,
+				E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */,
+			);
+			path = TabMan;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -698,6 +736,7 @@
 				E06B81E92C6B7C6C009E4B40 /* RxSwift */,
 				E06B81EC2C6B7C76009E4B40 /* SnapKit */,
 				E0B9D1652C78E106005858E1 /* IQKeyboardManagerSwift */,
+				E0B9D1852C7C2B53005858E1 /* Tabman */,
 			);
 			productName = thisbookthatbook;
 			productReference = E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */;
@@ -735,6 +774,7 @@
 				E06B81E62C6B7C6C009E4B40 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E06B81EB2C6B7C76009E4B40 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E0B9D1642C78E106005858E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				E0B9D1842C7C2B53005858E1 /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = E06B81BB2C6B7AA0009E4B40 /* Products */;
 			projectDirPath = "";
@@ -786,7 +826,9 @@
 				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
 				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
+				E0B9D1882C7C2B8B005858E1 /* ProfilePostsViewController.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
+				E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */,
 				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,
 				E0B9D1682C78EA59005858E1 /* CommentQuery.swift in Sources */,
 				E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */,
@@ -805,6 +847,7 @@
 				E06B82B42C7243ED009E4B40 /* ThreeThumbnailView.swift in Sources */,
 				E0B9D0E02C747EEB005858E1 /* LikeStatus.swift in Sources */,
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
+				E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
 				E06B829C2C6F9294009E4B40 /* Files.swift in Sources */,
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
@@ -840,6 +883,7 @@
 				E06B82A42C7071AE009E4B40 /* UploadPostQuery.swift in Sources */,
 				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,
 				E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */,
+				E0B9D18E2C7C36D1005858E1 /* TabManViewController.swift in Sources */,
 				E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */,
 				E06B82952C6F9193009E4B40 /* NetworkService + Authorization.swift in Sources */,
 				E06B82BF2C72C828009E4B40 /* InteractionView.swift in Sources */,
@@ -1131,6 +1175,14 @@
 				minimumVersion = 7.1.1;
 			};
 		};
+		E0B9D1842C7C2B53005858E1 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1168,6 +1220,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E0B9D1642C78E106005858E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		E0B9D1852C7C2B53005858E1 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0B9D1842C7C2B53005858E1 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

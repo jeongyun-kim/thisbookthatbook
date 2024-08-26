@@ -12,6 +12,7 @@ final class UserProfileImageView: UIImageView {
     enum ProfileSize: CGFloat {
         case feed = 40
         case comment = 36
+        case profileView = 70
     }
     
     init(size: ProfileSize = .feed) {
