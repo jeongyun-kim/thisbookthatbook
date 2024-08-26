@@ -113,6 +113,10 @@
 		E0B9D1882C7C2B8B005858E1 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */; };
 		E0B9D18E2C7C36D1005858E1 /* TabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */; };
 		E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */; };
+		E0B9D19B2C7CAF21005858E1 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19A2C7CAF21005858E1 /* ProfileRouter.swift */; };
+		E0B9D19E2C7CAFE1005858E1 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */; };
+		E0B9D1A02C7CB077005858E1 /* NetworkService + Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */; };
+		E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +221,10 @@
 		E0B9D1872C7C2B8B005858E1 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
 		E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManViewController.swift; sourceTree = "<group>"; };
 		E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewModel.swift; sourceTree = "<group>"; };
+		E0B9D19A2C7CAF21005858E1 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Profile.swift"; sourceTree = "<group>"; };
+		E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +409,7 @@
 		E06B820B2C6BA510009E4B40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9D1992C7CAF1A005858E1 /* Profile */,
 				E0B9D1412C7784F1005858E1 /* ImageFetcher.swift */,
 				E06B82AB2C722358009E4B40 /* AuthInterceptor.swift */,
 				E06B820C2C6BA517009E4B40 /* NetworkService.swift */,
@@ -699,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */,
+				E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -710,6 +720,24 @@
 				E0B9D18D2C7C36D1005858E1 /* TabManViewController.swift */,
 			);
 			path = TabMan;
+			sourceTree = "<group>";
+		};
+		E0B9D1992C7CAF1A005858E1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D19A2C7CAF21005858E1 /* ProfileRouter.swift */,
+				E0B9D19C2C7CAFD9005858E1 /* Model */,
+				E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E0B9D19C2C7CAFD9005858E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -823,6 +851,7 @@
 				E06B82012C6B7F0E009E4B40 /* ReusableIdentifier.swift in Sources */,
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
+				E0B9D19B2C7CAF21005858E1 /* ProfileRouter.swift in Sources */,
 				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
 				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
@@ -841,6 +870,7 @@
 				E0B9D16C2C7981E5005858E1 /* Comment.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
 				E0B9D14C2C779FD3005858E1 /* HashtagCollectionViewCell.swift in Sources */,
+				E0B9D1A02C7CB077005858E1 /* NetworkService + Profile.swift in Sources */,
 				E0B9D14A2C7793FA005858E1 /* PostViewModel.swift in Sources */,
 				E06B82172C6BAEF3009E4B40 /* LoginViewModel.swift in Sources */,
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
@@ -892,9 +922,11 @@
 				E06B82B02C723FD5009E4B40 /* BaseCollectionViewCell.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82AC2C722358009E4B40 /* AuthInterceptor.swift in Sources */,
+				E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */,
 				E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */,
 				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,
+				E0B9D19E2C7CAFE1005858E1 /* UserProfile.swift in Sources */,
 				E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */,
 				E06B81F32C6B7D56009E4B40 /* PlusButton.swift in Sources */,
 				E0B9D10C2C756D5E005858E1 /* AddBookView.swift in Sources */,

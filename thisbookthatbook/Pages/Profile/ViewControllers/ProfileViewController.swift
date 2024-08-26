@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
+import RxSwift
+import RxCocoa
 import SnapKit
+import Toast
 
 final class ProfileViewController: BaseViewController {
-    private let profileImageView = UserProfileImageView(size: .profileView)
+    private let vm = ProfileViewModel()
+    private let disposeBag = DisposeBag()
+    
     private let child = TabManViewController()
+    
+    private let profileImageView = UserProfileImageView(size: .profileView)
     
     private lazy var userContentsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -21,20 +29,9 @@ final class ProfileViewController: BaseViewController {
         return stackView
     }()
     
-    private let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = Resource.Fonts.bold18
-        label.text = ":>"
-        return label
-    }()
+    private let userNameLabel = UILabel()
     
-    private let userEmailLabel: UILabel = {
-        let label = UILabel()
-        label.font = Resource.Fonts.regular13
-        label.textColor = Resource.Colors.lightGray
-        label.text = "unknown@naver.com"
-        return label
-    }()
+    private let userEmailLabel = UILabel()
     
     private lazy var userInfoHorizontalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -92,5 +89,45 @@ final class ProfileViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         addChild(child)
+        userNameLabel.font = Resource.Fonts.bold18
+        userEmailLabel.font = Resource.Fonts.regular13
+        userEmailLabel.textColor = Resource.Colors.lightGray
+    }
+    
+    override func bind() {
+        let input = ProfileViewModel.Input()
+        let output = vm.transform(input)
+        
+        // 사용자 프로필 정보
+        output.profile
+            .bind(with: self) { owner, value in
+                owner.userNameLabel.text = value.nickname
+                owner.userEmailLabel.text = value.email
+                owner.postView.configureView(value.posts.count)
+                owner.followerView.configureView(value.followers.count)
+                owner.followingView.configureView(value.following.count)
+                owner.configureProfileImageView(value.profileImage)
+            }.disposed(by: disposeBag)
+        
+        // 토큰 만료 시
+        output.alert
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.showExpiredTokenAlert()
+            }.disposed(by: disposeBag)
+        
+        // 그 외 에러는 토스트메시지
+        output.toastMessage
+            .asSignal()
+            .emit(with: self) { owner, value in
+                owner.showToast(message: value)
+            }.disposed(by: disposeBag)
+    }
+    
+    private func configureProfileImageView(_ path: String?) {
+        guard let path else { return }
+        ImageFetcher.shared.getAnImageFromServer(path) { [weak self] imageData in
+            self?.profileImageView.kf.setImage(with: imageData.url, options: [.requestModifier(imageData.modifier)])
+        }
     }
 }

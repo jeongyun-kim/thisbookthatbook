@@ -32,7 +32,7 @@ final class UserInfoView: UIView {
         return label
     }()
     
-    let infoContentLabel: UILabel = {
+    private let infoContentLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Fonts.bold15
         label.textAlignment = .center
@@ -49,6 +49,10 @@ final class UserInfoView: UIView {
         infoStackView.snp.makeConstraints { make in
             make.center.equalTo(safeAreaLayoutGuide)
         }
+    }
+    
+    func configureView(_ data: Int) {
+        infoContentLabel.text = "\(data)"
     }
     
     required init?(coder: NSCoder) {
