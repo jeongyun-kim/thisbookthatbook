@@ -117,6 +117,7 @@
 		E0B9D19E2C7CAFE1005858E1 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */; };
 		E0B9D1A02C7CB077005858E1 /* NetworkService + Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */; };
 		E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */; };
+		E0B9D1A82C7CB8B2005858E1 /* ContentsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9D1A72C7CB8B2005858E1 /* ContentsType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +226,7 @@
 		E0B9D19D2C7CAFE1005858E1 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E0B9D19F2C7CB077005858E1 /* NetworkService + Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Profile.swift"; sourceTree = "<group>"; };
 		E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		E0B9D1A72C7CB8B2005858E1 /* ContentsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B81EF2C6B7C87009E4B40 /* Resource.swift */,
+				E0B9D1A72C7CB8B2005858E1 /* ContentsType.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				E0B9D1682C78EA59005858E1 /* CommentQuery.swift in Sources */,
 				E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
+				E0B9D1A82C7CB8B2005858E1 /* ContentsType.swift in Sources */,
 				E06B82D82C738E9F009E4B40 /* AddPostViewController.swift in Sources */,
 				E0B9D0ED2C756B7E005858E1 /* BookCollectionView.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,

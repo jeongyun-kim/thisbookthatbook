@@ -10,15 +10,7 @@ import SnapKit
 import Tabman
 import Pageboy
 
-enum UserContentsType: String, CaseIterable {
-    case post = "user_contents_posts"
-    case like = "user_contents_like"
-    case bookmark = "user_contents_bookmark"
-}
-
 final class TabManViewController: TabmanViewController {
-    
-    
     private let bar = TMBar.ButtonBar()
     private let viewControllers = [
         ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 0), 

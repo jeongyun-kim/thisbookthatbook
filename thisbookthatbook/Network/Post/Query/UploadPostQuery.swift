@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum RecommendType: String, CaseIterable {
-    case give_recommend = "tbtb_recommend"
-    case recieve_recommended = "tbtb_recommended"
-}
-
 struct UploadPostQuery: Encodable {
     var content: String
     var content1: String
