@@ -664,7 +664,7 @@
         }
       }
     },
-    "segment_give_recommend" : {
+    "tab_give_recommend" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -681,7 +681,7 @@
         }
       }
     },
-    "segment_recieve_recommend" : {
+    "tab_recieve_recommend" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

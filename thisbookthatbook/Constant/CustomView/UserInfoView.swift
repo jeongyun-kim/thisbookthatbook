@@ -10,9 +10,9 @@ import SnapKit
 
 final class UserInfoView: UIView {
     enum UserInfo: String {
-        case post = "포스트"
-        case followers = "팔로워"
-        case followings = "팔로잉"
+        case post = "user_contents_posts"
+        case followers = "user_contents_followers"
+        case followings = "user_contents_followings"
     }
     
     private lazy var infoStackView: UIStackView = {

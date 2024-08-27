@@ -41,7 +41,6 @@ final class FeedViewController: BaseViewController {
     }
     
     override func bind() {
-        let selectedSegentIdx = main.segmentControl.rx.selectedSegmentIndex
         let modifyTrigger = PublishRelay<Post>()
         let deleteTrigger = PublishRelay<Post>()
         let addPostBtnTapped = main.addPostButton.rx.tap

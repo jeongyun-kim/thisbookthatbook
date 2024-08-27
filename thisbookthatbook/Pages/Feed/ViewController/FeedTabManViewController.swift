@@ -12,8 +12,8 @@ import Pageboy
 
 final class FeedTabManViewController: TabmanViewController {
     enum FeedTitle: String, CaseIterable {
-        case give = "추천해요"
-        case receive = "추천해주세요"
+        case give = "tab_give_recommend"
+        case receive = "tab_recieve_recommend"
     }
     
     private let bar = TabmanBar()
