@@ -9,6 +9,7 @@ import Foundation
 
 struct Posts: Decodable {
     let data: [Post]
+    let next_cursor: String
 }
 
 struct Post: Decodable {

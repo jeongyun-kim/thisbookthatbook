@@ -137,7 +137,7 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let value):
-                    let result = owner.getFilteredPosts(value)
+                    let result = owner.getFilteredPosts(value.data)
                     completionHandler(result)
                 case .failure(let error):
                     switch error {

@@ -46,10 +46,11 @@ final class FeedViewController: BaseViewController {
         let addPostBtnTapped = main.addPostButton.rx.tap
         let likeBtnTappedPost = PublishRelay<Post>()
         let bookmarkBtnTappedPost = PublishRelay<Post>()
+        let feedPrefetchIdxs = main.collectionView.rx.prefetchItems
 
         let input = FeedViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger,
                                         addPostBtnTapped: addPostBtnTapped, likeBtnTappedPost: likeBtnTappedPost,
-                                        bookmarkBtnTappedPost: bookmarkBtnTappedPost)
+                                        bookmarkBtnTappedPost: bookmarkBtnTappedPost, feedPrefetchIdxs: feedPrefetchIdxs)
         let output = vm.transform(input)
         
         // 포스트 조회 결과

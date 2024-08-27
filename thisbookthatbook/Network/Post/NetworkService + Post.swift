@@ -72,7 +72,7 @@ extension NetworkService {
         }
     }
     
-    func getPosts(query: GetPostsQuery) -> Single<Result<[Post], Errors>> {
+    func getPosts(query: GetPostsQuery) -> Single<Result<Posts, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             do {
                 let request = try PostRouter.getPosts(query: query).asURLRequest()
@@ -80,7 +80,7 @@ extension NetworkService {
                     switch statusCode {
                     case 200:
                         guard let value else { return }
-                        single(.success(.success(value.data)))
+                        single(.success(.success(value)))
                     case 419:
                         // 만약 토큰이 갱신되지 않았다면 retry에서 에러를 전달하고 상태코드 419인 상태에서 에러가 발생한 것으로 처리됨
                         // -> 그러므로 리프레시 토큰이 만료되었다는 에러메시지 전달

@@ -125,7 +125,7 @@ extension PostRouter: TargetType {
         case .uploadPost:
             return nil
         case .getPosts(let query):
-            return [URLQueryItem(name: "limit", value: "5"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
+            return [URLQueryItem(name: "limit", value: "8"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
         case .deletePost:
             return nil
         case .postLikePost:

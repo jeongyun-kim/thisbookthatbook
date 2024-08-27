@@ -21,6 +21,7 @@ final class FeedViewModel: BaseViewModel {
         let addPostBtnTapped: ControlEvent<Void>
         let likeBtnTappedPost: PublishRelay<Post>
         let bookmarkBtnTappedPost: PublishRelay<Post>
+        let feedPrefetchIdxs: ControlEvent<[IndexPath]>
     }
     
     struct Output {
@@ -34,6 +35,9 @@ final class FeedViewModel: BaseViewModel {
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         let feedResults: BehaviorRelay<[Post]> = BehaviorRelay(value: [])
+        
+        // 마지막 커서는 0
+        var nextCursor = ""
   
         // 뷰를 새로 불러올 때마다 실시간 반영된 데이터 불러오기
         reloadCollectionView
@@ -46,13 +50,44 @@ final class FeedViewModel: BaseViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let value):
-                    feedResults.accept(value)
+                    nextCursor = value.next_cursor // 다음 커서 반영
+                    let posts = value.data
+                    feedResults.accept(posts)
                 case .failure(let error):
                     switch error {
                     case .expiredToken:
                         // 토큰 갱신이 불가하다면 재로그인 필요
                         alert.accept(())
                         // 재로그인할거니까 저장해뒀던 사용자 정보 모두 지우기 -> 앱을 껐다키면 로그인 화면으로 이동 
+                        UserDefaultsManager.shared.deleteAllData()
+                    default:
+                        toastMessage.accept("toast_default_error".localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 페이지네이션
+        input.feedPrefetchIdxs
+            .compactMap { $0.first }
+            .filter { $0.row == feedResults.value.count - 5 && nextCursor != "0" }
+            .withLatestFrom(selectedFeedType)
+            .map { GetPostsQuery(next: nextCursor, product_id: $0.rawValue) }
+            .flatMap { NetworkService.shared.getPosts(query: $0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let value):
+                    nextCursor = value.next_cursor // 다음 커서 반영
+                    
+                    let posts = value.data
+                    var currentList = feedResults.value
+                    currentList.append(contentsOf: posts)
+                    feedResults.accept(currentList)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        // 토큰 갱신이 불가하다면 재로그인 필요
+                        alert.accept(())
+                        // 재로그인할거니까 저장해뒀던 사용자 정보 모두 지우기 -> 앱을 껐다키면 로그인 화면으로 이동
                         UserDefaultsManager.shared.deleteAllData()
                     default:
                         toastMessage.accept("toast_default_error".localized)
@@ -105,6 +140,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // 북마크 버튼 탭했을 때
         input.bookmarkBtnTappedPost
             .flatMap { NetworkService.shared.postBookmarkPost(status: !$0.isBookmarkPost, postId: $0.post_id) }
             .bind(with: self) { owner, result in
