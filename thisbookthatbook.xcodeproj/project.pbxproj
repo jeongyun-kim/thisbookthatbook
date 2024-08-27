@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E03CF71E2C7E0C7900E420EB /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71D2C7E0C7900E420EB /* ProfileEditViewController.swift */; };
+		E03CF7202C7E0F2700E420EB /* ValidateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */; };
+		E03CF7222C7E10BD00E420EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */; };
+		E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7232C7E142900E420EB /* ProfileEditView.swift */; };
+		E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7252C7E17F700E420EB /* EditQuery.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -123,6 +128,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E03CF71D2C7E0C7900E420EB /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateButton.swift; sourceTree = "<group>"; };
+		E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		E03CF7232C7E142900E420EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		E03CF7252C7E17F700E420EB /* EditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuery.swift; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +262,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E03CF7272C7E1C9900E420EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E03CF7232C7E142900E420EB /* ProfileEditView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E06B81B12C6B7AA0009E4B40 = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +355,7 @@
 				E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */,
 				E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */,
 				E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */,
+				E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -391,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				E0B9D1912C7C6A27005858E1 /* ViewModel */,
+				E03CF7272C7E1C9900E420EB /* View */,
 				E0B9D1902C7C61E9005858E1 /* ViewControllers */,
 			);
 			path = Profile;
@@ -435,6 +455,7 @@
 				E06B82712C6CED3D009E4B40 /* SignupQuery.swift */,
 				E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */,
 				E06B82112C6BA553009E4B40 /* LoginQuery.swift */,
+				E03CF7252C7E17F700E420EB /* EditQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -709,6 +730,7 @@
 			children = (
 				E0B9D1982C7C874B005858E1 /* TabMan */,
 				E06B82062C6B9E6D009E4B40 /* ProfileViewController.swift */,
+				E03CF71D2C7E0C7900E420EB /* ProfileEditViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -718,6 +740,7 @@
 			children = (
 				E0B9D1962C7C6A8A005858E1 /* ProfilePostsViewModel.swift */,
 				E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */,
+				E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -861,6 +884,7 @@
 				E06B82A82C70801B009E4B40 /* GetPostsQuery.swift in Sources */,
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
 				E0B9D19B2C7CAF21005858E1 /* ProfileRouter.swift in Sources */,
+				E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */,
 				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
 				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
@@ -869,6 +893,7 @@
 				E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */,
 				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,
 				E0B9D1682C78EA59005858E1 /* CommentQuery.swift in Sources */,
+				E03CF71E2C7E0C7900E420EB /* ProfileEditViewController.swift in Sources */,
 				E0B9D1342C759AC3005858E1 /* NetworkService + Book.swift in Sources */,
 				E06B820F2C6BA51C009E4B40 /* AuthorizationRouter.swift in Sources */,
 				E0B9D1A82C7CB8B2005858E1 /* ContentsType.swift in Sources */,
@@ -877,6 +902,7 @@
 				E0B9D1AA2C7CB935005858E1 /* FeedTabManViewController.swift in Sources */,
 				E06B81F02C6B7C87009E4B40 /* Resource.swift in Sources */,
 				E0B9D0E22C74B772005858E1 /* TextViewToolbarView.swift in Sources */,
+				E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */,
 				E06B820D2C6BA517009E4B40 /* NetworkService.swift in Sources */,
 				E0B9D16C2C7981E5005858E1 /* Comment.swift in Sources */,
 				E06B82622C6C5CBE009E4B40 /* String + Extension.swift in Sources */,
@@ -890,6 +916,7 @@
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
 				E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
+				E03CF7202C7E0F2700E420EB /* ValidateButton.swift in Sources */,
 				E06B829C2C6F9294009E4B40 /* Files.swift in Sources */,
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */,
@@ -935,6 +962,7 @@
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82AC2C722358009E4B40 /* AuthInterceptor.swift in Sources */,
 				E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */,
+				E03CF7222C7E10BD00E420EB /* ProfileEditViewModel.swift in Sources */,
 				E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */,
 				E06B82782C6CFD1A009E4B40 /* EmailValidation.swift in Sources */,
 				E06B82742C6CF0F2009E4B40 /* Signup.swift in Sources */,

@@ -13,6 +13,7 @@ final class UserProfileImageView: UIImageView {
         case feed = 40
         case comment = 36
         case profileView = 70
+        case editProfileView = 90
     }
     
     init(size: ProfileSize = .feed) {

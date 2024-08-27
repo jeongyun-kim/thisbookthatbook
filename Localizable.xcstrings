@@ -205,23 +205,6 @@
         }
       }
     },
-    "button_title_check_email" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "validate"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "중복확인"
-          }
-        }
-      }
-    },
     "button_title_login" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -256,6 +239,23 @@
         }
       }
     },
+    "button_title_save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
     "button_title_signup" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -269,6 +269,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "회원가입"
+          }
+        }
+      }
+    },
+    "button_title_validate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "validate"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중복확인"
           }
         }
       }
@@ -524,6 +541,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "포스트 수정"
+          }
+        }
+      }
+    },
+    "navigation_title_edit_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Profile"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필 수정"
           }
         }
       }
@@ -864,6 +898,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일 또는 비밀번호를 확인해주세요"
+          }
+        }
+      }
+    },
+    "toast_signup_exist" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are already registered or your nickname is in use."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미 가입되어 있거나 닉네임이 사용중입니다"
           }
         }
       }

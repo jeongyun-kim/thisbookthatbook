@@ -13,6 +13,7 @@ final class NextButton: UIButton {
         case login = "button_title_login"
         case signup = "button_title_signup"
         case noUser = "button_title_noUser"
+        case save = "button_title_save"
     }
     
     init(title: ButtonTitle){

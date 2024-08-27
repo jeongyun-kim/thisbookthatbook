@@ -43,9 +43,17 @@ final class ProfileViewController: BaseViewController {
     }()
     
     private let nicknameLabel = UILabel()
+    
+    private let editButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = Resource.Colors.lightGray
+        button.setImage(UIImage(systemName: "square.and.pencil.circle.fill"), for: .normal)
+        return button
+    }()
 
     override func setupHierarchy() {
         view.addSubview(profileImageView)
+        view.addSubview(editButton)
         view.addSubview(userInfoHorizontalStackView)
         view.addSubview(border)
         view.addSubview(child.view)
@@ -58,7 +66,7 @@ final class ProfileViewController: BaseViewController {
         }
         
         userInfoHorizontalStackView.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.top)
+            make.centerY.equalTo(profileImageView.snp.centerY)
             make.leading.equalTo(profileImageView.snp.trailing).offset(12)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(50)
@@ -75,8 +83,14 @@ final class ProfileViewController: BaseViewController {
         }
         
         nicknameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(customNavigationView.snp.leading).offset(16)
+            make.leading.equalTo(customNavigationView.snp.leading).offset(12)
             make.centerY.equalTo(customNavigationView.snp.centerY)
+        }
+        
+        editButton.snp.makeConstraints { make in
+            make.size.equalTo(50)
+            make.top.equalTo(profileImageView.snp.centerY).offset(-6)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(-32)
         }
     }
     
@@ -113,6 +127,13 @@ final class ProfileViewController: BaseViewController {
             .asSignal()
             .emit(with: self) { owner, value in
                 owner.showToast(message: value)
+            }.disposed(by: disposeBag)
+        
+        editButton.rx.tap
+            .withLatestFrom(output.profile)
+            .bind(with: self) { owner, value in
+                let vc = ProfileEditViewController(vm: ProfileEditViewModel(), profile: value)
+                owner.transition(vc)
             }.disposed(by: disposeBag)
     }
     
