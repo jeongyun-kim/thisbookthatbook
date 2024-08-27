@@ -20,19 +20,6 @@ final class ProfileViewController: BaseViewController {
     
     private let profileImageView = UserProfileImageView(size: .profileView)
     
-    private lazy var userContentsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        stackView.addArrangedSubview(userNameLabel)
-        stackView.addArrangedSubview(userEmailLabel)
-        return stackView
-    }()
-    
-    private let userNameLabel = UILabel()
-    
-    private let userEmailLabel = UILabel()
-    
     private lazy var userInfoHorizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -48,10 +35,17 @@ final class ProfileViewController: BaseViewController {
     let followingView = UserInfoView(info: .followings)
     
     let border = CustomBorder()
+    
+    private lazy var customNavigationView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 56))
+        view.addSubview(nicknameLabel)
+        return view
+    }()
+    
+    private let nicknameLabel = UILabel()
 
     override func setupHierarchy() {
         view.addSubview(profileImageView)
-        view.addSubview(userContentsStackView)
         view.addSubview(userInfoHorizontalStackView)
         view.addSubview(border)
         view.addSubview(child.view)
@@ -63,35 +57,34 @@ final class ProfileViewController: BaseViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
         }
         
-        userContentsStackView.snp.makeConstraints { make in
-            make.centerY.equalTo(profileImageView.snp.centerY)
+        userInfoHorizontalStackView.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.top)
             make.leading.equalTo(profileImageView.snp.trailing).offset(12)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
-        }
-        
-        userInfoHorizontalStackView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(24)
-            make.top.equalTo(profileImageView.snp.bottom).offset(16)
             make.height.equalTo(50)
         }
         
         border.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(userInfoHorizontalStackView.snp.bottom).offset(12)
+            make.top.equalTo(profileImageView.snp.bottom).offset(16)
         }
         
         child.view.snp.makeConstraints { make in
             make.top.equalTo(border.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        nicknameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(customNavigationView.snp.leading).offset(16)
+            make.centerY.equalTo(customNavigationView.snp.centerY)
+        }
     }
     
     override func setupUI() {
         super.setupUI()
         addChild(child)
-        userNameLabel.font = Resource.Fonts.bold18
-        userEmailLabel.font = Resource.Fonts.regular13
-        userEmailLabel.textColor = Resource.Colors.lightGray
+        nicknameLabel.font = Resource.Fonts.bold24
+        navigationItem.titleView = customNavigationView
     }
     
     override func bind() {
@@ -101,8 +94,7 @@ final class ProfileViewController: BaseViewController {
         // 사용자 프로필 정보
         output.profile
             .bind(with: self) { owner, value in
-                owner.userNameLabel.text = value.nickname
-                owner.userEmailLabel.text = value.email
+                owner.nicknameLabel.text =  value.nickname
                 owner.postView.configureView(value.posts.count)
                 owner.followerView.configureView(value.followers.count)
                 owner.followingView.configureView(value.following.count)
