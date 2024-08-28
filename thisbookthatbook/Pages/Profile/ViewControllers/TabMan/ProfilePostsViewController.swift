@@ -57,11 +57,15 @@ final class ProfilePostsViewController: BaseViewController {
         let modifyTrigger = PublishRelay<Post>()
         let deleteTrigger = PublishRelay<Post>()
         let bookmarkBtnTappedPost = PublishRelay<Post>()
+        let prefetchIdxs = collectionView.rx.prefetchItems
+        let tappedRow = PublishRelay<Int>()
         
-        let input = ProfilePostsViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger, bookmarkBtnTappedPost: bookmarkBtnTappedPost, likeBtnTappedPost: likeBtnTappedPost)
+        let input = ProfilePostsViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger, 
+                                                bookmarkBtnTappedPost: bookmarkBtnTappedPost, likeBtnTappedPost: likeBtnTappedPost,
+                                                prefetchIdxs: prefetchIdxs, tappedRow: tappedRow)
         let output = vm.transform(input)
    
-        // 현재 선택한 탭에 따른 포스트들 
+        // 현재 선택한 탭에 따른 포스트들
         output.posts
             .asDriver()
             .drive(collectionView.rx.items(cellIdentifier: FeedCollectionViewCell.identifier, cellType: FeedCollectionViewCell.self)) { (row, element, cell) in
@@ -93,12 +97,27 @@ final class ProfilePostsViewController: BaseViewController {
                     .emit(to: likeBtnTappedPost)
                     .disposed(by: cell.disposeBag)
                 
+                // 현재 좋아요 한 포스트의 인덱스
+                cell.interactionView.likeButton.rx.tap
+                    .asSignal()
+                    .map { _ in row }
+                    .emit(to: tappedRow)
+                    .disposed(by: cell.disposeBag)
+                
                 // 북마크 버튼 탭 <- 현재 북마크 한 포스트 보내기
                 cell.interactionView.bookmarkButton.rx.tap
                     .asSignal()
                     .map { _ in element }
                     .emit(to: bookmarkBtnTappedPost)
                     .disposed(by: cell.disposeBag)
+                
+                // 현재 북마크 한 포스트의 인덱스
+                cell.interactionView.bookmarkButton.rx.tap
+                    .asSignal()
+                    .map { _ in row }
+                    .emit(to: tappedRow)
+                    .disposed(by: cell.disposeBag)
+            
             
                 // 각 포스트 상세보기로 화면전환
                 cell.contentsButton.rx.tap

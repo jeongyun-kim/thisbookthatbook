@@ -24,8 +24,8 @@ struct Post: Decodable {
     let createdAt: String
     let creator: User
     let files: [String]
-    let likes: [String]
-    let likes2: [String]
+    var likes: [String]
+    var likes2: [String]
     let hashTags: [String]
     let buyers: [String]
     let comments: [Comment]
