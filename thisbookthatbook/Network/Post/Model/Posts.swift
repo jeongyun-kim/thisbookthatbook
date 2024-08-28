@@ -22,6 +22,7 @@ struct Post: Decodable {
     let content4: String?
     let content5: String?
     let createdAt: String
+    var price: Int?
     let creator: User
     let files: [String]
     var likes: [String]
@@ -49,5 +50,11 @@ extension Post {
     var books: [String] {
         let contents = [content1, content2, content3, content4, content5]
         return contents.compactMap { $0 }.filter { !$0.isEmpty }
+    }
+    
+    var isBuyer: Bool {
+        guard let price else { return false }
+        let myId = UserDefaultsManager.shared.id
+        return buyers.contains(myId)
     }
 }

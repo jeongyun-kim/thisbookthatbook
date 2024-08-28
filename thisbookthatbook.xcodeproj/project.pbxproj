@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E03CF71E2C7E0C7900E420EB /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71D2C7E0C7900E420EB /* ProfileEditViewController.swift */; };
-		E03CF7202C7E0F2700E420EB /* ValidateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */; };
+		E03CF7202C7E0F2700E420EB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */; };
 		E03CF7222C7E10BD00E420EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */; };
 		E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7232C7E142900E420EB /* ProfileEditView.swift */; };
 		E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7252C7E17F700E420EB /* EditQuery.swift */; };
+		E03CF7352C7F6E6B00E420EB /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7342C7F6E6B00E420EB /* PayView.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -129,10 +130,11 @@
 
 /* Begin PBXFileReference section */
 		E03CF71D2C7E0C7900E420EB /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
-		E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateButton.swift; sourceTree = "<group>"; };
+		E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		E03CF7232C7E142900E420EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		E03CF7252C7E17F700E420EB /* EditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuery.swift; sourceTree = "<group>"; };
+		E03CF7342C7F6E6B00E420EB /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -355,7 +357,7 @@
 				E0B9D1692C797D09005858E1 /* UserProfileImageView.swift */,
 				E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */,
 				E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */,
-				E03CF71F2C7E0F2700E420EB /* ValidateButton.swift */,
+				E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -611,6 +613,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82B12C724018009E4B40 /* FeedCollectionViewCell.swift */,
+				E03CF7342C7F6E6B00E420EB /* PayView.swift */,
 				E06B82C02C72C962009E4B40 /* BookCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -916,7 +919,8 @@
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
 				E0B9D1972C7C6A8A005858E1 /* ProfilePostsViewModel.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
-				E03CF7202C7E0F2700E420EB /* ValidateButton.swift in Sources */,
+				E03CF7202C7E0F2700E420EB /* RoundedButton.swift in Sources */,
+				E03CF7352C7F6E6B00E420EB /* PayView.swift in Sources */,
 				E06B829C2C6F9294009E4B40 /* Files.swift in Sources */,
 				E06B827C2C6D04E5009E4B40 /* SignUpView.swift in Sources */,
 				E06B82D32C732D34009E4B40 /* UICollectionViewLayout + Extension.swift in Sources */,
