@@ -51,6 +51,7 @@ enum Resource {
         static let bgView: CGFloat = 8
         static let thumbnail: CGFloat = 10
         static let normal: CGFloat = 12
+        static let large: CGFloat = 24
     }
     
     enum TransitionType {

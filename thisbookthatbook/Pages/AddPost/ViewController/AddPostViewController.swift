@@ -47,11 +47,14 @@ final class AddPostViewController: BaseViewController {
         let removePhotoIdx = PublishRelay<Int>()
         let selectedBooks = PublishRelay<[Book]>()
         let postBtnTapped = navigationItem.rightBarButtonItem?.rx.tap
+        let addPriceBtnTapped = main.toolbar.addPriceButton.rx.tap
+        let addedPrice = PublishRelay<String?>()
         
         let input = AddPostViewModel.Input(didBeginEditing: didBeginEditing, didEndEditing: didEndEditing,
                                            content: content, addPhotoBtnTapped: addPhotoBtnTapped,
-                                           removePhotoIdx: removePhotoIdx, addBookBtnTapped: addBookBtnTapped, selectedBooks: selectedBooks, 
-                                           postBtnTapped: postBtnTapped)
+                                           removePhotoIdx: removePhotoIdx, addBookBtnTapped: addBookBtnTapped, 
+                                           selectedBooks: selectedBooks, postBtnTapped: postBtnTapped,
+                                           addPriceBtnTapped: addPriceBtnTapped, addedPrice: addedPrice)
         let output = vm.transform(input)
         
         // 텍스트뷰에 입력 시작했을 때
@@ -134,7 +137,9 @@ final class AddPostViewController: BaseViewController {
         // - 추천해주세요로부터 왔으면 책 추천 버튼 숨기기
         output.viewType
             .map { $0 == .recieve_recommended }
-            .bind(to: main.toolbar.bookButton.rx.isHidden, main.toolbar.bookStackView.rx.isHidden)
+            .bind(to: main.toolbar.bookButton.rx.isHidden,
+                  main.toolbar.bookStackView.rx.isHidden, 
+                  main.toolbar.addPriceButton.rx.isHidden)
             .disposed(by: disposeBag)
         
         // 포스트 게시 버튼 탭
@@ -167,6 +172,20 @@ final class AddPostViewController: BaseViewController {
             .emit(with: self) { owner, value in
                 owner.showToast(message: value)
             }.disposed(by: disposeBag)
+        
+        main.toolbar.addPriceButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = AddPriceViewController()
+                vc.sheetPresentationController?.detents = [.medium()]
+                vc.sendPrice = { price in
+                    addedPrice.accept(price)
+                }
+                owner.transition(vc, type: .present)
+            }.disposed(by: disposeBag)
+        
+        output.price
+            .bind(to: main.priceLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 

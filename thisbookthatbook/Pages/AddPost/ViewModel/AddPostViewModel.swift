@@ -30,6 +30,8 @@ final class AddPostViewModel: BaseViewModel {
         let addBookBtnTapped: ControlEvent<Void>
         let selectedBooks: PublishRelay<[Book]>
         let postBtnTapped: ControlEvent<()>?
+        let addPriceBtnTapped: ControlEvent<Void>
+        let addedPrice: PublishRelay<String?>
     }
     
     struct Output {
@@ -44,6 +46,7 @@ final class AddPostViewModel: BaseViewModel {
         let postBtnTapped: PublishRelay<Void>
         let toastMessage: PublishRelay<String>
         let isExpiredTokenError: PublishRelay<Bool>
+        let price: BehaviorRelay<String>
     }
     
     func transform(_ input: Input) -> Output {
@@ -55,8 +58,12 @@ final class AddPostViewModel: BaseViewModel {
         let outputPostBtnTapped = PublishRelay<Void>() // 게시 버튼 눌렀을 때
         let toastMessage = PublishRelay<String>()
         let isExpiredTokenError = PublishRelay<Bool>()
+        let priceForView = BehaviorRelay(value: "label_free".localized)
+        
+        // Data
         let content = BehaviorRelay(value: "") // 포스트 본문
         var bookList = ["", "", "", "", ""] // 저장할 책 데이터 리스트
+        let priceForSave = BehaviorRelay(value: 0) // 저장할 가격 정보
         
         
         // 포스트에 포함할 이미지 불러왔을 때
@@ -116,7 +123,23 @@ final class AddPostViewModel: BaseViewModel {
             .bind(to: content)
             .disposed(by: disposeBag)
         
-        // 게시버튼 눌렀을 대
+        // 가격이 입력됐을 때 -> Int로 변환해서 가지고 있기
+        input.addedPrice
+            .compactMap { $0 }
+            .compactMap { Int($0) }
+            .bind(to: priceForSave)
+            .disposed(by: disposeBag)
+        
+        // Int로 변환한 가격이 0원인지 확인 -> 0원이면 무료 : \(가격)P 
+        input.addedPrice
+            .withLatestFrom(priceForSave)
+            .map { $0 == 0 }
+            .map { $0 ? "label_free".localized : "\(priceForSave.value)P" }
+            .bind(to: priceForView)
+            .disposed(by: disposeBag)
+            
+        
+        // 게시버튼 눌렀을 때
         if let postBtnTapped = input.postBtnTapped {
             postBtnTapped
                 .throttle(.seconds(10), scheduler: MainScheduler.instance)
@@ -124,7 +147,8 @@ final class AddPostViewModel: BaseViewModel {
                     let files = owner.imageDatas.value // 게시할 이미지
                     let fileNames = owner.imageNames.value // 게시할 이미지명
                     let productId = owner.productId.value // product_id
-                    let query  = UploadPostQuery(content: content.value, content1: bookList[0], content2: bookList[1], content3: bookList[2], content4: bookList[3], content5: bookList[4], product_id: productId, files: fileNames)
+                    let query  = UploadPostQuery(content: content.value, content1: bookList[0], content2: bookList[1], content3: bookList[2], content4: bookList[3], content5: bookList[4], product_id: productId, price: priceForSave.value, files: fileNames)
+                    
                     NetworkService.shared.postImages(query: query, files: files, fileNames: fileNames) { error in
                         switch error {
                         case .expiredToken:
@@ -142,7 +166,8 @@ final class AddPostViewModel: BaseViewModel {
         return Output(images: outputImages, beginEditingResult: beginEditingResult, 
                       endEditingResult: endEditingResult, addPhotoBtnTapped: input.addPhotoBtnTapped,
                       addBookBtnTapped: input.addBookBtnTapped, selectedBooks: outputSelectedBooks,
-                      postBtnEnabled: postBtnEnabled, viewType: productId, postBtnTapped: outputPostBtnTapped,
-                      toastMessage: toastMessage, isExpiredTokenError: isExpiredTokenError)
+                      postBtnEnabled: postBtnEnabled, viewType: productId, 
+                      postBtnTapped: outputPostBtnTapped, toastMessage: toastMessage,
+                      isExpiredTokenError: isExpiredTokenError, price: priceForView)
     }
 }

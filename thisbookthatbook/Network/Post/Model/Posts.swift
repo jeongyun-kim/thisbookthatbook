@@ -53,8 +53,8 @@ extension Post {
     }
     
     var isBuyer: Bool {
-        guard let price else { return false }
         let myId = UserDefaultsManager.shared.id
+        guard let price, price != 0, creator.user_id != myId else { return true }
         return buyers.contains(myId)
     }
 }

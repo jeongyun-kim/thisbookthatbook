@@ -10,6 +10,13 @@ import SnapKit
 import PhotosUI
 
 final class AddPostView: BaseView {
+    let priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = Resource.Fonts.bold14
+        label.text = "label_free".localized
+        return label
+    }()
+    
     let toolbar = TextViewToolbarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
     
     lazy var contentTextView: UITextView = {
@@ -40,14 +47,20 @@ final class AddPostView: BaseView {
     let bookCollectionView = BookCollectionView()
     
     override func setupHierarchy() {
+        addSubview(priceLabel)
         addSubview(photoCollectionView)
         addSubview(contentTextView)
         addSubview(bookCollectionView)
     }
     
     override func setupConstraints() {
-        photoCollectionView.snp.makeConstraints { make in
+        priceLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
+        }
+        
+        photoCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(0)
         }

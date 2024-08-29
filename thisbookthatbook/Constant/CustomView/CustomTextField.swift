@@ -13,6 +13,7 @@ final class CustomTextField: UITextField {
         case email = "placeholder_email"
         case password = "placeholder_password"
         case nickname = "placeholder_nickname"
+        case price = "placeholder_price"
     }
     
     init(_ placeHolder: Placeholder) {

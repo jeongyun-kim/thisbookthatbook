@@ -44,7 +44,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
-        //payView.isHidden = true
+        payView.isHidden = true
         bookCollectionView.isHidden = true
         thumbnailBackView.isHidden = true
         thumbnailView.hideAllViews()
@@ -121,7 +121,8 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         interactionView.configureView(data) // 좋아요 개수 / 좋아요 상태 / 북마크 상태 / 댓글 개수 반영
         isContainsBook(data.books) // 책정보가 있는지에 따라 책 정보 컬렉션뷰 숨기거나 보여주기
         userContentsView.hideMoreButton(data.creator.user_id) // 게시글의 글쓴이가 로그인한 나라면 더보기 버튼 냅두기
-        payView.isHidden = !data.isBuyer
+        payView.configureView(data.price)
+        payView.isHidden = data.isBuyer
     }
     
     func isContainsBook(_ books: [String]) {

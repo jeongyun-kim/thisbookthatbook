@@ -21,7 +21,6 @@ final class PayView: BaseView {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Fonts.bold14
-        label.text = "100P"
         label.textAlignment = .center
         return label
     }()
@@ -40,5 +39,10 @@ final class PayView: BaseView {
     
     override func setupUI() {
         backgroundColor = Resource.Colors.white.withAlphaComponent(0.7)
+    }
+    
+    func configureView(_ data: Int?) {
+        guard let data else { return }
+        priceLabel.text = "\(data)P"
     }
 }

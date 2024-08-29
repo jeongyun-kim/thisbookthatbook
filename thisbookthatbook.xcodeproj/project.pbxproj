@@ -13,6 +13,7 @@
 		E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7232C7E142900E420EB /* ProfileEditView.swift */; };
 		E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7252C7E17F700E420EB /* EditQuery.swift */; };
 		E03CF7352C7F6E6B00E420EB /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7342C7F6E6B00E420EB /* PayView.swift */; };
+		E03CF7372C7F776900E420EB /* AddPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7362C7F776900E420EB /* AddPriceViewController.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -135,6 +136,7 @@
 		E03CF7232C7E142900E420EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		E03CF7252C7E17F700E420EB /* EditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuery.swift; sourceTree = "<group>"; };
 		E03CF7342C7F6E6B00E420EB /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		E03CF7362C7F776900E420EB /* AddPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceViewController.swift; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				E06B82D72C738E9F009E4B40 /* AddPostViewController.swift */,
+				E03CF7362C7F776900E420EB /* AddPriceViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 			files = (
 				E0B9D0E82C74E771005858E1 /* AddPostViewModel.swift in Sources */,
 				E06B82972C6F9211009E4B40 /* NetworkService + Post.swift in Sources */,
+				E03CF7372C7F776900E420EB /* AddPriceViewController.swift in Sources */,
 				E0B9D0E62C74CD49005858E1 /* PhotoCollectionViewCell.swift in Sources */,
 				E06B82CB2C72F300009E4B40 /* UserContentView.swift in Sources */,
 				E06B82722C6CED3D009E4B40 /* SignupQuery.swift in Sources */,

@@ -41,12 +41,21 @@ final class TextViewToolbarView: BaseView {
     
     private let bookLabel = UILabel()
     
+    let addPriceButton: UIButton = {
+        let button = UIButton()
+        let attributedTitle = NSAttributedString(string: "button_title_add_price".localized, attributes: [.font: Resource.Fonts.regular14])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.setTitleColor(Resource.Colors.lightGray, for: .normal)
+        return button
+    }()
+    
     override func setupHierarchy() {
         addSubview(border)
         addSubview(photoStackView)
         addSubview(photoButton)
         addSubview(bookStackView)
         addSubview(bookButton)
+        addSubview(addPriceButton)
     }
     
     override func setupConstraints() {
@@ -72,6 +81,11 @@ final class TextViewToolbarView: BaseView {
         bookButton.snp.makeConstraints { make in
             make.width.equalTo(bookStackView.snp.width)
             make.center.equalTo(bookStackView.snp.center)
+        }
+        
+        addPriceButton.snp.makeConstraints { make in
+            make.centerY.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
     
