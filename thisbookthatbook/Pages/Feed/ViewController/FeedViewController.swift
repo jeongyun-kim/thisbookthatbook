@@ -32,6 +32,7 @@ final class FeedViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         vm.reloadCollectionView.accept(())
+
     }
 
     override func setupUI() {
@@ -47,10 +48,12 @@ final class FeedViewController: BaseViewController {
         let likeBtnTappedPost = PublishRelay<Post>()
         let bookmarkBtnTappedPost = PublishRelay<Post>()
         let feedPrefetchIdxs = main.collectionView.rx.prefetchItems
+        let tappedRow = PublishRelay<Int>()
 
         let input = FeedViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger,
                                         addPostBtnTapped: addPostBtnTapped, likeBtnTappedPost: likeBtnTappedPost,
-                                        bookmarkBtnTappedPost: bookmarkBtnTappedPost, feedPrefetchIdxs: feedPrefetchIdxs)
+                                        bookmarkBtnTappedPost: bookmarkBtnTappedPost, feedPrefetchIdxs: feedPrefetchIdxs,
+                                        tappedRow: tappedRow)
         let output = vm.transform(input)
         
         // 포스트 조회 결과
@@ -85,11 +88,25 @@ final class FeedViewController: BaseViewController {
                     .emit(to: likeBtnTappedPost)
                     .disposed(by: cell.disposeBag)
                 
+                // 좋아요 버튼 누른 피드 셀 row
+                cell.interactionView.likeButton.rx.tap
+                    .asSignal()
+                    .map { _ in row }
+                    .emit(to: tappedRow)
+                    .disposed(by: cell.disposeBag)
+                
                 // 북마크 버튼 탭 <- 현재 북마크 한 포스트 보내기 
                 cell.interactionView.bookmarkButton.rx.tap
                     .asSignal()
                     .map { _ in element }
                     .emit(to: bookmarkBtnTappedPost)
+                    .disposed(by: cell.disposeBag)
+                
+                // 북마크 버튼 누른 피드 셀 row
+                cell.interactionView.bookmarkButton.rx.tap
+                    .asSignal()
+                    .map { _ in row }
+                    .emit(to: tappedRow)
                     .disposed(by: cell.disposeBag)
             
                 // 각 포스트 상세보기로 화면전환

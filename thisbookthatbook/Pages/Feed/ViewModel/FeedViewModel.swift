@@ -22,6 +22,7 @@ final class FeedViewModel: BaseViewModel {
         let likeBtnTappedPost: PublishRelay<Post>
         let bookmarkBtnTappedPost: PublishRelay<Post>
         let feedPrefetchIdxs: ControlEvent<[IndexPath]>
+        let tappedRow: PublishRelay<Int>
     }
     
     struct Output {
@@ -38,7 +39,9 @@ final class FeedViewModel: BaseViewModel {
         
         // 마지막 커서는 0
         var nextCursor = ""
-  
+        // 업데이트 할 Cell Row
+        let cellRow = BehaviorRelay(value: 0)
+        
         // 뷰를 새로 불러올 때마다 실시간 반영된 데이터 불러오기
         reloadCollectionView
             .withLatestFrom(selectedFeedType)
@@ -129,7 +132,7 @@ final class FeedViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_): // 좋아요 반영했을 때 서버 데이터 다시 받아오기
-                    owner.reloadCollectionView.accept(())
+                    owner.updateLikes(feedResults, row: cellRow.value)
                 case .failure(let error):
                     switch error {
                     case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
@@ -146,7 +149,7 @@ final class FeedViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    owner.reloadCollectionView.accept(())
+                    owner.updateLikes2(feedResults, row: cellRow.value)
                 case .failure(let error):
                     switch error {
                     case .expiredToken: // 토큰 만료 시 alert 띄우라고 신호주기
@@ -157,8 +160,39 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        input.tappedRow
+            .bind(to: cellRow)
+            .disposed(by: disposeBag)
+            
+        
         let output = Output(toastMessage: toastMessage, alert: alert, 
                             feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped)
         return output
+    }
+    
+    // 좋아요 업데이트
+    private func updateLikes(_ posts: BehaviorRelay<[Post]>, row: Int) {
+        var currentList = posts.value
+        let id = UserDefaultsManager.shared.id
+        if currentList[row].likes.contains(id) {
+            guard let idx = currentList[row].likes.firstIndex(of: id) else { return }
+            currentList[row].likes.remove(at: idx)
+        } else {
+            currentList[row].likes.append(id)
+        }
+        posts.accept(currentList)
+    }
+    
+    // 북마크 업데이트
+    private func updateLikes2(_ posts: BehaviorRelay<[Post]>, row: Int) {
+        var currentList = posts.value
+        let id = UserDefaultsManager.shared.id
+        if currentList[row].likes2.contains(id) {
+            guard let idx = currentList[row].likes2.firstIndex(of: id) else { return }
+            currentList[row].likes2.remove(at: idx)
+        } else {
+            currentList[row].likes2.append(id)
+        }
+        posts.accept(currentList)
     }
 }

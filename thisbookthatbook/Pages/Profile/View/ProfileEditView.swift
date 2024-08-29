@@ -20,7 +20,7 @@ final class ProfileEditView: BaseView {
         return label
     }()
     
-    let validateButton = ValidateButton()
+    let validateButton = RoundedButton()
     
     let saveButton = NextButton(title: .save)
     
