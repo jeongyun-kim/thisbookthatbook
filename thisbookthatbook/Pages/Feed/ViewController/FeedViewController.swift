@@ -68,7 +68,7 @@ final class FeedViewController: BaseViewController {
         output.feedResults
             .asDriver(onErrorJustReturn: [])
             .drive(main.collectionView.rx.items(cellIdentifier: FeedCollectionViewCell.identifier, cellType: FeedCollectionViewCell.self)) { (row, element, cell) in
-                print(element)
+                
                 // 셀 구성
                 cell.configureCell(element)
                 
