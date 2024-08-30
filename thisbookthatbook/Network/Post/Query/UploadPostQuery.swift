@@ -8,6 +8,7 @@
 import Foundation
 
 struct UploadPostQuery: Encodable {
+    var title: String
     var content: String
     var content1: String
     var content2: String
@@ -19,6 +20,7 @@ struct UploadPostQuery: Encodable {
     var files: [String]
     
     init(content: String, content1: String, content2: String, content3: String, content4: String, content5: String, product_id: RecommendType, price: Int, files: [String]) {
+        self.title = "tbtb_post"
         self.content = content
         self.content1 = content1
         self.content2 = content2

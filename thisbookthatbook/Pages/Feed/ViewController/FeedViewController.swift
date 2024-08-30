@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iamport_ios
 import RxSwift
 import RxCocoa
 
@@ -23,6 +24,7 @@ final class FeedViewController: BaseViewController {
     private let main = FeedView()
     private let disposeBag = DisposeBag()
     private var vm: FeedViewModel!
+  
     
     override func loadView() {
         self.view = main
@@ -32,6 +34,7 @@ final class FeedViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         vm.reloadCollectionView.accept(())
+        //Iamport.shared.close()
 
     }
 
@@ -42,25 +45,30 @@ final class FeedViewController: BaseViewController {
     }
     
     override func bind() {
+        let vc = WebViewController()
+        
         let modifyTrigger = PublishRelay<Post>()
         let deleteTrigger = PublishRelay<Post>()
         let addPostBtnTapped = main.addPostButton.rx.tap
         let likeBtnTappedPost = PublishRelay<Post>()
         let bookmarkBtnTappedPost = PublishRelay<Post>()
         let feedPrefetchIdxs = main.collectionView.rx.prefetchItems
+        let payBtnTapped = PublishRelay<Post>()
         let tappedRow = PublishRelay<Int>()
+        let paySucceed = PublishRelay<PayQuery>()
+        let iamportResponse = PublishRelay<IamportResponse?>()
 
         let input = FeedViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger,
                                         addPostBtnTapped: addPostBtnTapped, likeBtnTappedPost: likeBtnTappedPost,
                                         bookmarkBtnTappedPost: bookmarkBtnTappedPost, feedPrefetchIdxs: feedPrefetchIdxs,
-                                        tappedRow: tappedRow)
+                                        tappedRow: tappedRow, payBtnTapped: payBtnTapped, paySucceed: paySucceed, iamportResponse: iamportResponse)
         let output = vm.transform(input)
-        
+
         // 포스트 조회 결과
         output.feedResults
             .asDriver(onErrorJustReturn: [])
             .drive(main.collectionView.rx.items(cellIdentifier: FeedCollectionViewCell.identifier, cellType: FeedCollectionViewCell.self)) { (row, element, cell) in
-                
+                print(element)
                 // 셀 구성
                 cell.configureCell(element)
                 
@@ -125,6 +133,38 @@ final class FeedViewController: BaseViewController {
                         owner.transition(vc, type: .present)
                     }.disposed(by: cell.disposeBag)
                 
+                // 결제 버튼 눌렀을 때
+                cell.payView.payButton.rx.tap
+                    .map { _ in element }
+                    .bind(with: self) { owner, value in
+                        vc.modalPresentationStyle = .fullScreen
+                        owner.transition(vc, type: .present)
+                        payBtnTapped.accept(value)
+                    }.disposed(by: cell.disposeBag)
+            }.disposed(by: disposeBag)
+        
+        // 결제 버튼 눌렀을 때 구성된 payment
+        output.payment
+            .bind(with: self) { owner, payment in
+                Iamport.shared.paymentWebView(
+                    webViewMode: vc.wkWebView,
+                    userCode: API.Pay.userCode,
+                    payment: payment) { response in
+                        iamportResponse.accept(response)
+                    }
+            }.disposed(by: disposeBag)
+        
+        // 결제에 성공했는지
+        output.isSuccessPayment
+            .asSignal()
+            .emit(with: self) { owner, value in
+                if value {
+                    vc.showAlertOnlyConfirm(title: "alert_title_payment".localized, message: "alert_msg_payment".localized) { _ in
+                        vc.dismiss(animated: true)
+                    }
+                } else {
+                    vc.dismiss(animated: true)
+                }
             }.disposed(by: disposeBag)
         
         // 토큰 갱신 에러 외 에러는 토스트메시지로 처리

@@ -39,6 +39,7 @@ final class PayView: BaseView {
     
     override func setupUI() {
         backgroundColor = Resource.Colors.white.withAlphaComponent(0.7)
+        payButton.isEnabled = true
     }
     
     func configureView(_ data: Int?) {

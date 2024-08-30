@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import iamport_ios
 
 final class FeedViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
@@ -23,6 +24,9 @@ final class FeedViewModel: BaseViewModel {
         let bookmarkBtnTappedPost: PublishRelay<Post>
         let feedPrefetchIdxs: ControlEvent<[IndexPath]>
         let tappedRow: PublishRelay<Int>
+        let payBtnTapped: PublishRelay<Post>
+        let paySucceed: PublishRelay<PayQuery>
+        let iamportResponse: PublishRelay<IamportResponse?>
     }
     
     struct Output {
@@ -30,18 +34,26 @@ final class FeedViewModel: BaseViewModel {
         let alert: PublishRelay<Void>
         let feedResults: BehaviorRelay<[Post]>
         let addPostBtnTapped: ControlEvent<Void>
+        let payment: PublishRelay<IamportPayment>
+        let isSuccessPayment: PublishRelay<Bool>
     }
     
     func transform(_ input: Input) -> Output {
+        let paiedPost = BehaviorRelay<Post?>(value: nil)
+        
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         let feedResults: BehaviorRelay<[Post]> = BehaviorRelay(value: [])
+        let payment = PublishRelay<IamportPayment>()
+        let isValidPayment = PublishRelay<Bool>()
+        let validateReceipt = PublishRelay<PayQuery>()
         
         // 마지막 커서는 0
         var nextCursor = ""
         // 업데이트 할 Cell Row
         let cellRow = BehaviorRelay(value: 0)
         
+        // MARK: Reload
         // 뷰를 새로 불러올 때마다 실시간 반영된 데이터 불러오기
         reloadCollectionView
             .withLatestFrom(selectedFeedType)
@@ -69,7 +81,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        // 페이지네이션
+        // MARK: 페이지네이션
         input.feedPrefetchIdxs
             .compactMap { $0.first }
             .filter { $0.row == feedResults.value.count - 5 && nextCursor != "0" }
@@ -98,6 +110,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // MARK: 게시글 수정 / 삭제
         // 게시글 수정
         input.modifyTrigger
             .bind(with: self) { owner, value in
@@ -126,6 +139,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // MARK: 좋아요 / 북마크
         // 좋아요 버튼 탭했을 때
         input.likeBtnTappedPost
             .flatMap { NetworkService.shared.postLikePost(status: !$0.isLikePost, postId: $0.post_id) }
@@ -163,10 +177,66 @@ final class FeedViewModel: BaseViewModel {
         input.tappedRow
             .bind(to: cellRow)
             .disposed(by: disposeBag)
-            
         
+        // MARK: 결제
+        // 결제 버튼 눌렀을 때, payment 구성
+        input.payBtnTapped
+            .subscribe(with: self) { owner, value in
+                let key = API.key
+                guard let price = value.price else { return }
+                
+                let data = IamportPayment(pg: PG.html5_inicis.makePgRawName(pgId: API.Pay.pgID),
+                                             merchant_uid: "ios_\(key)_\(Int(Date().timeIntervalSince1970))", amount: "\(price)").then { payment in
+                    payment.pay_method = PayMethod.card.rawValue
+                    payment.name = "이책저책 포스트"
+                    payment.buyer_name = "김정윤"
+                    payment.app_scheme = "tbtb.sesac"
+                }
+               
+                payment.accept(data)
+            }.disposed(by: disposeBag)
+    
+        // 결제할 포스트의 정보
+        input.payBtnTapped
+            .bind(to: paiedPost)
+            .disposed(by: disposeBag)
+        
+        // 결제 응답 -> 응답값에 따라 영수증 검증 또는 결제창 내리기
+        input.iamportResponse
+            .subscribe(with: self) { owner, response in
+                guard let response, let isSuccess = response.success else { return }
+                if isSuccess {
+                    guard let uid = response.imp_uid else { return }
+                    guard let post = paiedPost.value else { return }
+                    let query = PayQuery(imp_uid: uid, post_id: post.post_id)
+                    validateReceipt.accept(query)
+                } else {
+                    isValidPayment.accept(false)
+                }
+            }.disposed(by: disposeBag)
+        
+        // 영수증 검증 -> 성공 시 Alert / 실패 시 토스트메시지 또는 Alert
+        validateReceipt
+            .flatMap { NetworkService.shared.postValidateReciept(query: $0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let value):
+                    // 영수증 검증 성공!
+                    isValidPayment.accept(true)
+                case .failure(let error):
+                    // 영수증 검증 실패
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+            
         let output = Output(toastMessage: toastMessage, alert: alert, 
-                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped)
+                            feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped,
+                            payment: payment, isSuccessPayment: isValidPayment)
         return output
     }
     

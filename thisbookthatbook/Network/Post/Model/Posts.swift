@@ -13,6 +13,7 @@ struct Posts: Decodable {
 }
 
 struct Post: Decodable {
+    let title: String
     let post_id: String
     let product_id: String
     let content: String?

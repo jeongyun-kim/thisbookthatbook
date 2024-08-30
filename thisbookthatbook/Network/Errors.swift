@@ -28,5 +28,8 @@ extension NetworkService {
         
         case emptyContent = "toast_comment_empty"
         case invalidDeleteCommentRequest = "toast_delete_inavlidComment"
+        
+        case invalidPayRequest = "toast_pay_invalid"
+        case noPostToPay = "toast_pay_no_post"
     }
 }
