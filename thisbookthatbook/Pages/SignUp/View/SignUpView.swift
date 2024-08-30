@@ -25,7 +25,7 @@ final class SignUpView: BaseView {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = Resource.Colors.gray6
         config.baseForegroundColor = Resource.Colors.black
-        config.attributedTitle = AttributedString("button_title_check_email".localized, attributes: AttributeContainer([.font: Resource.Fonts.regular15]))
+        config.attributedTitle = AttributedString("button_title_validate".localized, attributes: AttributeContainer([.font: Resource.Fonts.regular15]))
         config.cornerStyle = .medium
         button.configuration = config
         button.isEnabled = false
