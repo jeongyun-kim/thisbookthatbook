@@ -1,5 +1,5 @@
 //
-//  UserContentView.swift
+//  UserContentsView.swift
 //  thisbookthatbook
 //
 //  Created by 김정윤 on 8/19/24.
@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-final class UserContentView: BaseView {
+final class UserContentsView: BaseView {
     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Fonts.regular15
@@ -36,6 +36,10 @@ final class UserContentView: BaseView {
     }
     
     override func setupConstraints() {
+        snp.makeConstraints { make in
+            make.height.equalTo(56)
+        }
+        
         userProfileImageView.snp.makeConstraints { make in
             make.leading.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerY.equalTo(safeAreaLayoutGuide)
@@ -64,6 +68,7 @@ final class UserContentView: BaseView {
     }
     
     func configureView(_ data: User) {
+        hideMoreButton(data.user_id)
         userNameLabel.text = data.nick
         guard let path = data.profileImage else { return }
         ImageFetcher.shared.getAnImageFromServer(path) { [weak self] imageData in

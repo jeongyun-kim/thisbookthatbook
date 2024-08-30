@@ -17,12 +17,14 @@ final class PostViewModel {
     let returnKeyTapped = PublishRelay<Void>()
     let comment = BehaviorRelay(value: "")
     let deleteComment = PublishRelay<Comment>()
+    let deletePost = PublishRelay<Void>()
 
     // Output
     let postData: BehaviorRelay<Post?> = BehaviorRelay(value: nil)
     let commentsData = BehaviorRelay<[Comment]>(value: [])
     let isExpiredTokenError = PublishRelay<Bool>()
     let toastMessage = PublishRelay<String>()
+    let deletePostSucceed = PublishRelay<Void>()
    
     init() {
         let commentData = BehaviorRelay(value: "")
@@ -63,7 +65,7 @@ final class PostViewModel {
             .flatMap { NetworkService.shared.postComment(postIdData.value, query: $0) }
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(let value):
+                case .success(_):
                     owner.postId.accept(postIdData.value)
                 case .failure(let error):
                     owner.isExpiredTokenError.accept(error == .expiredToken)
@@ -78,6 +80,24 @@ final class PostViewModel {
                 switch result {
                 case .success(_):
                     owner.postId.accept(postIdData.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        owner.isExpiredTokenError.accept(true)
+                    default:
+                        owner.toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        deletePost
+            .withLatestFrom(postData)
+            .compactMap { $0 }
+            .flatMap { NetworkService.shared.deletePost(postId: $0.post_id, productId: $0.product_id) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.deletePostSucceed.accept(())
                 case .failure(let error):
                     switch error {
                     case .expiredToken:

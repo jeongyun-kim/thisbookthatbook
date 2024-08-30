@@ -20,6 +20,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 16
+        stackView.addArrangedSubview(userContentView)
         stackView.addArrangedSubview(photoContentsView)
         stackView.addArrangedSubview(contentBackView)
         stackView.addArrangedSubview(bookCollectionView)
@@ -27,6 +28,8 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         stackView.addArrangedSubview(commentView)
         return stackView
     }()
+    
+    let userContentView = UserContentsView()
     
     private let photoContentsView = UIView()
     
@@ -104,7 +107,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         verticalStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
             make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).priority(999)
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(16)
+            make.top.equalTo(contentView.safeAreaLayoutGuide)
         }
         
         photoCollectionView.snp.makeConstraints { make in
@@ -155,6 +158,7 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         isContainsPhoto(data.files)
         isContainsBook(data.books)
         isContainsHashtag(data.hashtags)
+        userContentView.configureView(data.creator)
     }
     
     private func bind() {

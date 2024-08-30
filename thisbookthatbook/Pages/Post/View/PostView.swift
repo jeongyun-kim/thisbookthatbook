@@ -33,7 +33,7 @@ final class PostView: BaseView {
     
     override func setupConstraints() {
         commentTableView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.top.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
         

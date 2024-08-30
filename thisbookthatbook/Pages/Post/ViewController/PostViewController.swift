@@ -70,6 +70,12 @@ final class PostViewController: BaseViewController {
         comment
             .bind(to: vm.comment)
             .disposed(by: disposeBag)
+        
+        vm.deletePostSucceed
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            }.disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -97,6 +103,15 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: PostHeaderView.identifier) as? PostHeaderView else { return nil }
         guard let data = vm.postData.value else { return nil }
         header.configureView(data)
+        header.userContentView.moreButton.rx.tap
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.showActionSheet { _ in
+                    
+                } deleteHandler: { _ in
+                    owner.vm.deletePost.accept(())
+                }
+            }.disposed(by: disposeBag)
         return header
     }
     
