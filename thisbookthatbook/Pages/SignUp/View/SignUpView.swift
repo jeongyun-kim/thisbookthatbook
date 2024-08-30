@@ -20,17 +20,7 @@ final class SignUpView: BaseView {
     
     let emailTextField = CustomTextField(.email)
     
-    let emailValidateButton: UIButton = {
-        let button = UIButton()
-        var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = Resource.Colors.gray6
-        config.baseForegroundColor = Resource.Colors.black
-        config.attributedTitle = AttributedString("button_title_validate".localized, attributes: AttributeContainer([.font: Resource.Fonts.regular15]))
-        config.cornerStyle = .medium
-        button.configuration = config
-        button.isEnabled = false
-        return button
-    }()
+    let emailValidateButton = RoundedButton()
     
     let emailValidationLabel: UILabel = {
         let label = UILabel()

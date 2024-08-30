@@ -290,6 +290,23 @@
         }
       }
     },
+    "button_title_pay" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "결제하기"
+          }
+        }
+      }
+    },
     "button_title_save" : {
       "extractionState" : "manual",
       "localizations" : {
