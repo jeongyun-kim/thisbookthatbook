@@ -36,14 +36,6 @@ final class ProfileViewController: BaseViewController {
     
     let border = CustomBorder()
     
-    private lazy var customNavigationView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 56))
-        view.addSubview(nicknameLabel)
-        return view
-    }()
-    
-    private let nicknameLabel = UILabel()
-    
     private let editButton: UIButton = {
         let button = UIButton()
         button.tintColor = Resource.Colors.lightGray
@@ -52,6 +44,7 @@ final class ProfileViewController: BaseViewController {
     }()
 
     override func setupHierarchy() {
+        addChild(child)
         view.addSubview(profileImageView)
         view.addSubview(editButton)
         view.addSubview(userInfoHorizontalStackView)
@@ -82,11 +75,6 @@ final class ProfileViewController: BaseViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
-        nicknameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(customNavigationView.snp.leading).offset(12)
-            make.centerY.equalTo(customNavigationView.snp.centerY)
-        }
-        
         editButton.snp.makeConstraints { make in
             make.size.equalTo(50)
             make.top.equalTo(profileImageView.snp.centerY).offset(-6)
@@ -96,9 +84,9 @@ final class ProfileViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        addChild(child)
-        nicknameLabel.font = Resource.Fonts.bold24
-        navigationItem.titleView = customNavigationView
+        let nick = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        nick.setTitleTextAttributes([.font: Resource.Fonts.bold24, .foregroundColor: Resource.Colors.black], for: .normal)
+        navigationItem.leftBarButtonItem = nick
     }
     
     override func bind() {
@@ -108,7 +96,7 @@ final class ProfileViewController: BaseViewController {
         // 사용자 프로필 정보
         output.profile
             .bind(with: self) { owner, value in
-                owner.nicknameLabel.text =  value.nickname
+                owner.navigationItem.leftBarButtonItem?.title = value.nickname
                 owner.postView.configureView(value.posts.count)
                 owner.followerView.configureView(value.followers.count)
                 owner.followingView.configureView(value.following.count)
