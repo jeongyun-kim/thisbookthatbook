@@ -44,8 +44,10 @@ extension NetworkService {
     func getRefreshToken(completionHandler: @escaping (Result<RefreshToken, Errors>) -> Void) {
         do {
             let request = try AuthorizationRouter.refreshToken.asURLRequest()
+           
             fetchData(model: RefreshToken.self, request: request) { statusCode, value in
                 guard let statusCode else { return }
+                print(#function, statusCode, value, UserDefaultsManager.shared.accessToken)
                 switch statusCode {
                 case 200:
                     guard let value else { return }
@@ -128,6 +130,39 @@ extension NetworkService {
             } catch {
                 print("withdraw request error")
             }
+            return Disposables.create()
+        }
+    }
+    
+    func putEditProfile(profileImage: Data?, nickname: String) -> Single<Result<Void, Errors>> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try AuthorizationRouter.editProfile.asURLRequest()
+                
+                AF.upload(multipartFormData: { multipartFormData in
+                    guard let nick = nickname.data(using: .utf8) else { return }
+                    multipartFormData.append(nick, withName: "nick", mimeType: "text/plain")
+                    if let profileImage {
+                        let id = UserDefaultsManager.shared.id
+                        multipartFormData.append(profileImage, withName: "profile", fileName: "profile_\(id).png", mimeType: "image/png")
+                    }
+                }, with: request).responseDecodable(of: UserProfile.self) { response in
+                    guard let statusCode = response.response?.statusCode else { return }
+                    switch statusCode {
+                    case 200:
+                        single(.success(.success(())))
+                    case 409:
+                        single(.success(.failure(.existNickname)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("edit profile request error")
+            }
+            
             return Disposables.create()
         }
     }

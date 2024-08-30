@@ -11,7 +11,6 @@
 		E03CF7202C7E0F2700E420EB /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */; };
 		E03CF7222C7E10BD00E420EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */; };
 		E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7232C7E142900E420EB /* ProfileEditView.swift */; };
-		E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7252C7E17F700E420EB /* EditQuery.swift */; };
 		E03CF7352C7F6E6B00E420EB /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7342C7F6E6B00E420EB /* PayView.swift */; };
 		E03CF7372C7F776900E420EB /* AddPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7362C7F776900E420EB /* AddPriceViewController.swift */; };
 		E03CF7402C8068C400E420EB /* Reactive + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF73F2C8068C400E420EB /* Reactive + UIViewController.swift */; };
@@ -141,7 +140,6 @@
 		E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		E03CF7232C7E142900E420EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
-		E03CF7252C7E17F700E420EB /* EditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuery.swift; sourceTree = "<group>"; };
 		E03CF7342C7F6E6B00E420EB /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		E03CF7362C7F776900E420EB /* AddPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceViewController.swift; sourceTree = "<group>"; };
 		E03CF73F2C8068C400E420EB /* Reactive + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + UIViewController.swift"; sourceTree = "<group>"; };
@@ -501,7 +499,6 @@
 				E06B82712C6CED3D009E4B40 /* SignupQuery.swift */,
 				E06B82752C6CFCC5009E4B40 /* EmailQuery.swift */,
 				E06B82112C6BA553009E4B40 /* LoginQuery.swift */,
-				E03CF7252C7E17F700E420EB /* EditQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -938,7 +935,6 @@
 				E06B82AE2C722908009E4B40 /* FeedViewModel.swift in Sources */,
 				E0B9D19B2C7CAF21005858E1 /* ProfileRouter.swift in Sources */,
 				E03CF74E2C81A06B00E420EB /* PayRouter.swift in Sources */,
-				E03CF7262C7E17F700E420EB /* EditQuery.swift in Sources */,
 				E03CF7522C81B27700E420EB /* NetworkService + Pay.swift in Sources */,
 				E0B9D1572C78864B005858E1 /* DetailPhotoCollectionViewCell.swift in Sources */,
 				E03CF7452C80CFF600E420EB /* WebViewController.swift in Sources */,

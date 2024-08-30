@@ -31,5 +31,7 @@ extension NetworkService {
         
         case invalidPayRequest = "toast_pay_invalid"
         case noPostToPay = "toast_pay_no_post"
+        
+        case existNickname = "toast_profile_exist_nickname"
     }
 }

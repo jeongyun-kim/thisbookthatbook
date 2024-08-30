@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 import SnapKit
 
 final class UserContentView: BaseView {
-    let userNameLabel: UILabel = {
+    private let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Fonts.regular15
         return label
@@ -60,5 +61,13 @@ final class UserContentView: BaseView {
         let isMyPost = id == UserDefaultsManager.shared.id
         moreButton.isHidden = !isMyPost
         moreImageView.isHidden = !isMyPost
+    }
+    
+    func configureView(_ data: User) {
+        userNameLabel.text = data.nick
+        guard let path = data.profileImage else { return }
+        ImageFetcher.shared.getAnImageFromServer(path) { [weak self] imageData in
+            self?.userProfileImageView.kf.setImage(with: imageData.url, options: [.requestModifier(imageData.modifier)])
+        }
     }
 }

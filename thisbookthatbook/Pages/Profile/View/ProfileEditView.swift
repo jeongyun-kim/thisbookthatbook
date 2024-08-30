@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
+import PhotosUI
 import SnapKit
 
 final class ProfileEditView: BaseView {
     private let profileImageView = UserProfileImageView(size: .editProfileView)
+    
+    let profileButton = UIButton()
     
     let nicknameTextField = CustomTextField(.nickname)
     
@@ -24,10 +28,18 @@ final class ProfileEditView: BaseView {
     
     let saveButton = NextButton(title: .save)
     
+    let pickerViewController: PHPickerViewController = {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .images
+        let vc = PHPickerViewController(configuration: config)
+        return vc
+    }()
+
     override func setupHierarchy() {
         addSubview(profileImageView)
+        addSubview(profileButton)
         addSubview(nicknameTextField)
-        addSubview(validateButton)
         addSubview(nicknameValidationLabel)
         addSubview(saveButton)
     }
@@ -38,16 +50,13 @@ final class ProfileEditView: BaseView {
             make.centerX.equalTo(safeAreaLayoutGuide)
         }
         
-        nicknameTextField.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(24)
-            make.leading.equalTo(safeAreaLayoutGuide).offset(24)
+        profileButton.snp.makeConstraints { make in
+            make.edges.equalTo(profileImageView)
         }
         
-        validateButton.snp.makeConstraints { make in
-            make.height.equalTo(nicknameTextField.snp.height)
-            make.centerY.equalTo(nicknameTextField.snp.centerY)
-            make.leading.equalTo(nicknameTextField.snp.trailing).offset(6)
-            make.trailing.equalTo(safeAreaLayoutGuide).inset(24)
+        nicknameTextField.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(24)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
         }
         
         nicknameValidationLabel.snp.makeConstraints { make in
@@ -58,6 +67,17 @@ final class ProfileEditView: BaseView {
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(nicknameValidationLabel.snp.bottom).offset(24)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+        }
+    }
+    
+    func configureSelectedProfileImage(_ image: UIImage?) {
+        profileImageView.image = image
+    }
+    
+    func configureSavedProfileImage(_ path: String?) {
+        guard let path else { return }
+        ImageFetcher.shared.getAnImageFromServer(path) { [weak self] imageData in
+            self?.profileImageView.kf.setImage(with: imageData.url, options: [.requestModifier(imageData.modifier)])
         }
     }
 }

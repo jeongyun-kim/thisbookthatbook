@@ -14,6 +14,7 @@ enum AuthorizationRouter {
     case refreshToken
     case singUp(query: SignupQuery)
     case withdraw
+    case editProfile
 }
 
 extension AuthorizationRouter: TargetType {
@@ -33,6 +34,8 @@ extension AuthorizationRouter: TargetType {
             return "v1/users/join"
         case .withdraw:
             return "v1/users/withdraw"
+        case .editProfile:
+            return "v1/users/me/profile"
         }
     }
     
@@ -50,6 +53,8 @@ extension AuthorizationRouter: TargetType {
             return [API.Headers.contentKey: API.Headers.jsonValue, API.Headers.sesacKey: API.key]
         case .withdraw:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .editProfile:
+            return [API.Headers.auth: accessToken, API.Headers.contentKey: API.Headers.dataValue, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -65,6 +70,8 @@ extension AuthorizationRouter: TargetType {
             return .post
         case .withdraw:
             return .get
+        case .editProfile:
+            return .put
         }
     }
     
@@ -79,6 +86,8 @@ extension AuthorizationRouter: TargetType {
         case .singUp(let query):
             return encoding(query)
         case .withdraw:
+            return nil
+        case .editProfile:
             return nil
         }
     }

@@ -21,6 +21,8 @@ final class UserProfileImageView: UIImageView {
         image = UIImage(named: "user")
         clipsToBounds = true
         layer.cornerRadius = size.rawValue / 2
+        layer.borderColor = Resource.Colors.gray6.withAlphaComponent(0.5).cgColor
+        layer.borderWidth = 1
         
         snp.makeConstraints { make in
             make.size.equalTo(size.rawValue)

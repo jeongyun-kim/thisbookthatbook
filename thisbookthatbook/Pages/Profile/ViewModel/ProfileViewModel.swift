@@ -13,13 +13,15 @@ final class ProfileViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     
     struct Input {
-        
+        let viewWillAppear: ControlEvent<Void>
+        let editBtnTapped: ControlEvent<Void>
     }
     
     struct Output {
         let profile: PublishRelay<UserProfile>
         let toastMessage: PublishRelay<String>
         let alert: PublishRelay<Void>
+        let editBtnTapped: ControlEvent<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -27,7 +29,7 @@ final class ProfileViewModel: BaseViewModel {
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         
-        Observable.just(1)
+        input.viewWillAppear
             .flatMap { _ in NetworkService.shared.getMyProfile() }
             .bind(with: self) { owner, result in
                 switch result {
@@ -43,7 +45,8 @@ final class ProfileViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        let output = Output(profile: userProfile, toastMessage: toastMessage, alert: alert)
+        let output = Output(profile: userProfile, toastMessage: toastMessage,
+                            alert: alert, editBtnTapped: input.editBtnTapped)
         return output
     }
 }
