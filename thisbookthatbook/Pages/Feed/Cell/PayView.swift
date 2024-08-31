@@ -25,7 +25,7 @@ final class PayView: BaseView {
         return label
     }()
     
-    let payButton = RoundedButton(type: .pay, font: Resource.Fonts.regular14)
+    let payButton = RoundedButton(type: .pay)
     
     override func setupHierarchy() {
         addSubview(orderStackView)
