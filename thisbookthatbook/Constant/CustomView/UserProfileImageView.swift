@@ -18,7 +18,7 @@ final class UserProfileImageView: UIImageView {
     
     init(size: ProfileSize = .feed) {
         super.init(frame: .zero)
-        image = UIImage(named: "user")
+        image = Resource.Images.user
         clipsToBounds = true
         layer.cornerRadius = size.rawValue / 2
         layer.borderColor = Resource.Colors.gray6.withAlphaComponent(0.5).cgColor

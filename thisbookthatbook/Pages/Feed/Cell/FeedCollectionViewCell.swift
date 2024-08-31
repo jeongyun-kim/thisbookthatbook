@@ -48,6 +48,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         bookCollectionView.isHidden = true
         thumbnailBackView.isHidden = true
         thumbnailView.hideAllViews()
+        userContentsView.resetView()
     }
     
     override func setupHierarchy() {
