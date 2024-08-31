@@ -30,8 +30,14 @@ final class UserContentsView: BaseView {
     
     private let followView = UIView()
     
-    let followButton = RoundedButton(type: .follow, font: Resource.Fonts.regular13)
-    let followingButton = RoundedButton(type: .following, font: Resource.Fonts.regular13)
+    let followButton: RoundedButton = RoundedButton(type: .follow)
+    
+    let unfollowButton: RoundedButton = {
+        let button = RoundedButton(type: .following)
+        button.configuration?.baseForegroundColor = Resource.Colors.lightGray
+        return button
+    }()
+    
     let followViewButton = UIButton()
     
     override func setupHierarchy() {
@@ -40,9 +46,8 @@ final class UserContentsView: BaseView {
         addSubview(moreImageView)
         addSubview(moreButton)
         addSubview(followView)
-        addSubview(followViewButton)
         followView.addSubview(followButton)
-        followView.addSubview(followingButton)
+        followView.addSubview(unfollowButton)
     }
     
     override func setupConstraints() {
@@ -75,15 +80,11 @@ final class UserContentsView: BaseView {
             make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
         }
         
-        followViewButton.snp.makeConstraints { make in
-            make.edges.equalTo(followView)
-        }
-        
         followButton.snp.makeConstraints { make in
             make.edges.equalTo(followView)
         }
         
-        followingButton.snp.makeConstraints { make in
+        unfollowButton.snp.makeConstraints { make in
             make.edges.equalTo(followView)
         }
     }
@@ -93,23 +94,21 @@ final class UserContentsView: BaseView {
         moreButton.isHidden = !isMyPost
         moreImageView.isHidden = !isMyPost
         followView.isHidden = isMyPost
-        followViewButton.isHidden = isMyPost
     }
-    
-    func configureFollowStatus(_ id: String) {
-        let isFollowing = UserDefaultsManager.shared.followings.contains(id)
-        followingButton.isHidden = !isFollowing
-        followButton.isHidden = isFollowing
-    }
-    
-    func configureView(_ data: User) {
-        configureFollowStatus(data.user_id)
-        setButtonsVisible(data.user_id)
-        userNameLabel.text = data.nick
-        guard let path = data.profileImage else { return }
+ 
+    func configureView(_ data: Post) {
+        setButtonsVisible(data.creator.user_id)
+        userNameLabel.text = data.creator.nick
+        setFollowStatus(data.isFollowings)
+        guard let path = data.creator.profileImage else { return }
         ImageFetcher.shared.getAnImageFromServer(path) { [weak self] imageData in
             self?.userProfileImageView.kf.setImage(with: imageData.url, options: [.requestModifier(imageData.modifier)])
         }
+    }
+    
+    func setFollowStatus(_ isFollowing: Bool) {
+        unfollowButton.isHidden = !isFollowing
+        followButton.isHidden = isFollowing
     }
     
     func resetView() {

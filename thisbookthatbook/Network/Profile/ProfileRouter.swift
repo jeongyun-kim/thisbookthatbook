@@ -10,6 +10,8 @@ import Alamofire
 
 enum ProfileRouter {
     case getMyProfile
+    case followUser(userId: String)
+    case unfollowUser(userId: String)
 }
 
 extension ProfileRouter: TargetType {
@@ -21,6 +23,10 @@ extension ProfileRouter: TargetType {
         switch self {
         case .getMyProfile:
             return "v1/users/me/profile"
+        case .followUser(let userId):
+            return "v1/follow/\(userId)"
+        case .unfollowUser(let userId):
+            return "v1/follow/\(userId)"
         }
     }
     
@@ -29,6 +35,10 @@ extension ProfileRouter: TargetType {
         switch self {
         case .getMyProfile:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .followUser:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .unfollowUser:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -36,22 +46,18 @@ extension ProfileRouter: TargetType {
         switch self {
         case .getMyProfile:
             return .get
+        case .followUser:
+            return .post
+        case .unfollowUser:
+            return .delete
         }
     }
     
     var body: Data? {
-        switch self {
-        case .getMyProfile:
-            return nil
-        }
+        return nil
     }
     
     var queryItems: [URLQueryItem]? {
-        switch self {
-        case .getMyProfile:
-            return nil
-        }
+        return nil
     }
-    
-    
 }

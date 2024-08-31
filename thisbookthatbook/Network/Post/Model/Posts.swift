@@ -58,4 +58,10 @@ extension Post {
         guard let price, price != 0, creator.user_id != myId else { return true }
         return buyers.contains(myId)
     }
+    
+    var isFollowings: Bool {
+        let followings = UserDefaultsManager.shared.followings
+        let id = creator.user_id
+        return followings.contains(id)
+    }
 }

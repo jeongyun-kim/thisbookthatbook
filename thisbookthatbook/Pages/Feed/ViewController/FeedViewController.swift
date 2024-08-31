@@ -57,11 +57,13 @@ final class FeedViewController: BaseViewController {
         let tappedRow = PublishRelay<Int>()
         let paySucceed = PublishRelay<PayQuery>()
         let iamportResponse = PublishRelay<IamportResponse?>()
+        let followBtnTapped = BehaviorRelay(value: "")
+        let unfollowBtnTapped = BehaviorRelay(value: "")
 
         let input = FeedViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger,
                                         addPostBtnTapped: addPostBtnTapped, likeBtnTappedPost: likeBtnTappedPost,
                                         bookmarkBtnTappedPost: bookmarkBtnTappedPost, feedPrefetchIdxs: feedPrefetchIdxs,
-                                        tappedRow: tappedRow, payBtnTapped: payBtnTapped, paySucceed: paySucceed, iamportResponse: iamportResponse)
+                                        tappedRow: tappedRow, payBtnTapped: payBtnTapped, paySucceed: paySucceed, iamportResponse: iamportResponse, followBtnTapped: followBtnTapped, unfollowBtnTapped: unfollowBtnTapped)
         let output = vm.transform(input)
 
         // 포스트 조회 결과
@@ -141,6 +143,19 @@ final class FeedViewController: BaseViewController {
                         owner.transition(vc, type: .present)
                         payBtnTapped.accept(value)
                     }.disposed(by: cell.disposeBag)
+                
+                cell.userContentsView.followButton.rx.tap
+                    .throttle(.seconds(5), scheduler: MainScheduler.instance)
+                    .map { _ in element.creator.user_id }
+                    .bind(to: followBtnTapped)
+                    .disposed(by: cell.disposeBag)
+                
+                cell.userContentsView.unfollowButton.rx.tap
+                    .throttle(.seconds(5), scheduler: MainScheduler.instance)
+                    .map { _ in element.creator.user_id }
+                    .bind(to: unfollowBtnTapped)
+                    .disposed(by: cell.disposeBag)
+
             }.disposed(by: disposeBag)
         
         // 결제 버튼 눌렀을 때 구성된 payment

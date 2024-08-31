@@ -18,6 +18,8 @@ final class PostViewModel {
     let comment = BehaviorRelay(value: "")
     let deleteComment = PublishRelay<Comment>()
     let deletePost = PublishRelay<Void>()
+    let followBtnTapped = PublishRelay<Void>()
+    let unfollowBtnTapped = PublishRelay<Void>()
 
     // Output
     let postData: BehaviorRelay<Post?> = BehaviorRelay(value: nil)
@@ -90,6 +92,7 @@ final class PostViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // 포스트 삭제
         deletePost
             .withLatestFrom(postData)
             .compactMap { $0 }
@@ -107,5 +110,61 @@ final class PostViewModel {
                     }
                 }
             }.disposed(by: disposeBag)
+        
+        // 팔로우
+        followBtnTapped
+            .withLatestFrom(postData)
+            .compactMap { $0 }
+            .map { $0.creator.user_id }
+            .flatMap { NetworkService.shared.postFollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    guard let id = owner.postData.value?.creator.user_id else { return }
+                    owner.updateFollowings(id)
+                    owner.postData.accept(owner.postData.value)
+                 
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        owner.isExpiredTokenError.accept(true)
+                    default:
+                        owner.toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 언팔로우
+        unfollowBtnTapped
+            .withLatestFrom(postData)
+            .compactMap { $0 }
+            .map { $0.creator.user_id }
+            .flatMap { NetworkService.shared.delUnfollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    guard let id = owner.postData.value?.creator.user_id else { return }
+                    owner.updateFollowings(id)
+                    owner.postData.accept(owner.postData.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        owner.isExpiredTokenError.accept(true)
+                    default:
+                        owner.toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+    }
+    
+    private func updateFollowings(_ userId: String) {
+        var list = UserDefaultsManager.shared.followings
+        if list.contains(userId) {
+            guard let idx = list.firstIndex(of: userId) else { return }
+            list.remove(at: idx)
+        } else {
+            list.append(userId)
+        }
+        UserDefaultsManager.shared.followings = list
     }
 }

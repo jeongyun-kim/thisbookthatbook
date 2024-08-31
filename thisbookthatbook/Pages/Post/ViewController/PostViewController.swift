@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import SnapKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class PostViewController: BaseViewController {
     init(vm: PostViewModel, postId: String) {
@@ -78,6 +78,22 @@ final class PostViewController: BaseViewController {
             }.disposed(by: disposeBag)
     }
     
+    @objc private func followBtnTapped(_ sender: UIButton) {
+        vm.followBtnTapped.accept(())
+    }
+    
+    @objc private func unfollowBtnTapped(_ sender: UIButton) {
+        vm.unfollowBtnTapped.accept(())
+    }
+    
+    @objc private func moreBtnTapped(_ sender: UIButton) {
+        showActionSheet { _ in
+            
+        } deleteHandler: { [weak self] _ in
+            self?.vm.deletePost.accept(())
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -98,20 +114,16 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: PostHeaderView.identifier) as? PostHeaderView else { return nil }
         guard let data = vm.postData.value else { return nil }
+        
         header.configureView(data)
-        header.userContentView.moreButton.rx.tap
-            .asSignal()
-            .emit(with: self) { owner, _ in
-                owner.showActionSheet { _ in
-                    
-                } deleteHandler: { _ in
-                    owner.vm.deletePost.accept(())
-                }
-            }.disposed(by: disposeBag)
+        header.userContentView.moreButton.addTarget(self, action: #selector(moreBtnTapped), for: .touchUpInside)
+        header.userContentView.followButton.addTarget(self, action: #selector(followBtnTapped), for: .touchUpInside)
+        header.userContentView.unfollowButton.addTarget(self, action: #selector(unfollowBtnTapped), for: .touchUpInside)
+      
         return header
     }
     
@@ -122,7 +134,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         
         // 만약 선택한 댓글의 생성자 아이디와 현재 로그인한 사용자의 아이디가 다르다면 액션 없게
         guard creatorId == UserDefaultsManager.shared.id else { return nil }
-        let delete = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, _ in
+        let delete = UIContextualAction(style: .destructive, title: "alert_action_delete_comment".localized) { [weak self] _, _, _ in
             // 댓글 작성자 = 로그인 유저라면 삭제 처리
             self?.vm.deleteComment.accept(comment)
         }

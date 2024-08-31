@@ -27,6 +27,8 @@ final class FeedViewModel: BaseViewModel {
         let payBtnTapped: PublishRelay<Post>
         let paySucceed: PublishRelay<PayQuery>
         let iamportResponse: PublishRelay<IamportResponse?>
+        let followBtnTapped: BehaviorRelay<String>
+        let unfollowBtnTapped: BehaviorRelay<String>
     }
     
     struct Output {
@@ -39,8 +41,7 @@ final class FeedViewModel: BaseViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        let paiedPost = BehaviorRelay<Post?>(value: nil)
-        
+        // Output
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
         let feedResults: BehaviorRelay<[Post]> = BehaviorRelay(value: [])
@@ -52,6 +53,8 @@ final class FeedViewModel: BaseViewModel {
         var nextCursor = ""
         // 업데이트 할 Cell Row
         let cellRow = BehaviorRelay(value: 0)
+        // 결제할 포스트 정보
+        let paiedPost = BehaviorRelay<Post?>(value: nil)
         
         // MARK: Reload
         // 뷰를 새로 불러올 때마다 실시간 반영된 데이터 불러오기
@@ -174,6 +177,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // 현재 좋아요나 북마크 한 셀 Row값
         input.tappedRow
             .bind(to: cellRow)
             .disposed(by: disposeBag)
@@ -196,7 +200,7 @@ final class FeedViewModel: BaseViewModel {
                 payment.accept(data)
             }.disposed(by: disposeBag)
     
-        // 결제할 포스트의 정보
+        // 결제할 포스트의 정보 업데이트
         input.payBtnTapped
             .bind(to: paiedPost)
             .disposed(by: disposeBag)
@@ -233,7 +237,45 @@ final class FeedViewModel: BaseViewModel {
                     }
                 }
             }.disposed(by: disposeBag)
-            
+        
+        // MARK: 팔로우 / 언팔로우
+        // 팔로우 버튼 눌렀을 때
+        input.followBtnTapped
+            .filter { !$0.isEmpty }
+            .flatMap { NetworkService.shared.postFollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.updateFollowings(input.followBtnTapped.value)
+                    feedResults.accept(feedResults.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        input.unfollowBtnTapped
+            .filter { !$0.isEmpty }
+            .flatMap { NetworkService.shared.delUnfollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.updateFollowings(input.unfollowBtnTapped.value)
+                    feedResults.accept(feedResults.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+
         let output = Output(toastMessage: toastMessage, alert: alert, 
                             feedResults: feedResults, addPostBtnTapped: input.addPostBtnTapped,
                             payment: payment, isSuccessPayment: isValidPayment)
@@ -264,5 +306,16 @@ final class FeedViewModel: BaseViewModel {
             currentList[row].likes2.append(id)
         }
         posts.accept(currentList)
+    }
+    
+    private func updateFollowings(_ userId: String) {
+        var list = UserDefaultsManager.shared.followings
+        if list.contains(userId) {
+            guard let idx = list.firstIndex(of: userId) else { return }
+            list.remove(at: idx)
+        } else {
+            list.append(userId)
+        }
+        UserDefaultsManager.shared.followings = list
     }
 }

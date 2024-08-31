@@ -35,7 +35,24 @@
         }
       }
     },
-    "alert_action_delete" : {
+    "alert_action_delete_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "alert_action_delete_post" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

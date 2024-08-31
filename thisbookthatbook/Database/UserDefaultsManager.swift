@@ -11,26 +11,29 @@ final class UserDefaultsManager {
     static let shared = UserDefaultsManager()
     private init() { }
     
-    @propertyWrapper struct UD {
+    @propertyWrapper struct UD<T> {
         var key: String
+        var defaultValue: T
         
-        init(key: String) {
+        init(key: String, defaultValue: T) {
             self.key = key
+            self.defaultValue = defaultValue
         }
         
-        var wrappedValue: String {
+        var wrappedValue: T {
             get {
-                UserDefaults.standard.string(forKey: key) ?? ""
+                UserDefaults.standard.value(forKey: key) as? T ?? defaultValue
             }
             set {
                 UserDefaults.standard.setValue(newValue, forKey: key)
             }
         }
     }
-    
-    @UD(key: "accessToken") var accessToken
-    @UD(key: "refreshToken") var refreshToken 
-    @UD(key: "id") var id
+
+    @UD(key: "accessToken", defaultValue: "") var accessToken
+    @UD(key: "refreshToken", defaultValue: "") var refreshToken
+    @UD(key: "id", defaultValue: "") var id
+    @UD(key: "followings", defaultValue: Array<String>()) var followings
     
     func deleteAllData() {
         for key in UserDefaults.standard.dictionaryRepresentation().keys {

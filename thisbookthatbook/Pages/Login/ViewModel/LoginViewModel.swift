@@ -22,7 +22,7 @@ final class LoginViewModel: BaseViewModel {
     
     struct Output {
         let toastMessage: PublishRelay<String>
-        let loginResult: PublishRelay<Void?>
+        let loginResult: PublishRelay<Void>
         let signupBtnTapped: ControlEvent<Void>
     }
     
@@ -31,7 +31,8 @@ final class LoginViewModel: BaseViewModel {
         let pw = BehaviorRelay(value: "")
         let toastMessage = PublishRelay<String>()
         let fetchLogin = PublishRelay<Void>()
-        let loginResult = PublishRelay<Void?>()
+        let loginResult = PublishRelay<Void>()
+        let getUserProfile = PublishRelay<Void>()
         
         input.email
             .bind(to: email)
@@ -45,7 +46,7 @@ final class LoginViewModel: BaseViewModel {
         input.loginBtnTapped
             .throttle(.seconds(5), scheduler: MainScheduler.instance)
             .map { email.value.trimmingCharacters(in: .whitespaces).count > 0 && pw.value.trimmingCharacters(in: .whitespaces).count > 0 }
-            .bind(with: self) { owner, value in
+            .subscribe(with: self) { owner, value in
                 if !value {
                     toastMessage.accept("toast_login_empty".localized)
                 } else {
@@ -53,12 +54,24 @@ final class LoginViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
-        // 신호받으면 로그인 통신 실행 후 사용자 정보 저장 
+        // 신호받으면 로그인 통신 실행 후 현재 로그인한 사용자의 팔로잉 목록 가져오기
         fetchLogin
             .flatMap { NetworkService.shared.postUserLogin(email: email.value, password: pw.value) }
             .subscribe(with: self) { owner, result in
                 switch result {
-                case .success(let value):
+                case .success(_):
+                    getUserProfile.accept(())
+                case .failure(let error):
+                    toastMessage.accept(error.rawValue.localized)
+                }
+            }.disposed(by: disposeBag)
+        
+        // 로그인한 사용자의 팔로잉 목록 가져온 후 Feed로 
+        getUserProfile
+            .flatMap { NetworkService.shared.getMyProfile() }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
                     loginResult.accept(())
                 case .failure(let error):
                     toastMessage.accept(error.rawValue.localized)

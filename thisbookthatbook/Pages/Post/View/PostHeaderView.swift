@@ -158,7 +158,8 @@ final class PostHeaderView: UITableViewHeaderFooterView {
         isContainsPhoto(data.files)
         isContainsBook(data.books)
         isContainsHashtag(data.hashtags)
-        userContentView.configureView(data.creator)
+        userContentView.configureView(data)
+        userContentView.setFollowStatus(data.isFollowings)
     }
     
     private func bind() {

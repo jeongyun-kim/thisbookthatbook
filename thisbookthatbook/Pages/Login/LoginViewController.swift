@@ -74,9 +74,8 @@ final class LoginViewController: BaseViewController {
         
         // 로그인 성공했을 때(true) FeedVC 불러오기 
         output.loginResult
-            .asDriver(onErrorJustReturn: nil)
-            .drive(with: self) { owner, value in
-                guard let value else { return }
+            .asSignal()
+            .emit(with: self) { owner, value in
                 let vc = TabBarController()
                 owner.setNewScene(vc)
             }.disposed(by: disposeBag)
