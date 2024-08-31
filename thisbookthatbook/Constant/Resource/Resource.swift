@@ -31,6 +31,7 @@ enum Resource {
         static let addBook = UIImage(systemName: "text.book.closed.fill")
         static let deletePhoto = UIImage(systemName: "minus.circle.fill")
         static let check = UIImage(systemName: "checkmark")
+        static let logout = UIImage(systemName: "rectangle.portrait.and.arrow.right")
     }
     
     enum Fonts {

@@ -13,13 +13,13 @@
 		E03CF7242C7E142900E420EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7232C7E142900E420EB /* ProfileEditView.swift */; };
 		E03CF7352C7F6E6B00E420EB /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7342C7F6E6B00E420EB /* PayView.swift */; };
 		E03CF7372C7F776900E420EB /* AddPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7362C7F776900E420EB /* AddPriceViewController.swift */; };
-		E03CF7402C8068C400E420EB /* Reactive + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF73F2C8068C400E420EB /* Reactive + UIViewController.swift */; };
 		E03CF7432C80C19600E420EB /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = E03CF7422C80C19600E420EB /* iamport-ios */; };
 		E03CF7452C80CFF600E420EB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7442C80CFF600E420EB /* WebViewController.swift */; };
 		E03CF7492C81920200E420EB /* PayQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7482C81920200E420EB /* PayQuery.swift */; };
 		E03CF74B2C8192DE00E420EB /* Reciept.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF74A2C8192DE00E420EB /* Reciept.swift */; };
 		E03CF74E2C81A06B00E420EB /* PayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF74D2C81A06B00E420EB /* PayRouter.swift */; };
 		E03CF7522C81B27700E420EB /* NetworkService + Pay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7512C81B27700E420EB /* NetworkService + Pay.swift */; };
+		E03CF7562C82F69000E420EB /* Reactive + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7552C82F69000E420EB /* Reactive + Extension.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -142,12 +142,12 @@
 		E03CF7232C7E142900E420EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		E03CF7342C7F6E6B00E420EB /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		E03CF7362C7F776900E420EB /* AddPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceViewController.swift; sourceTree = "<group>"; };
-		E03CF73F2C8068C400E420EB /* Reactive + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + UIViewController.swift"; sourceTree = "<group>"; };
 		E03CF7442C80CFF600E420EB /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E03CF7482C81920200E420EB /* PayQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayQuery.swift; sourceTree = "<group>"; };
 		E03CF74A2C8192DE00E420EB /* Reciept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reciept.swift; sourceTree = "<group>"; };
 		E03CF74D2C81A06B00E420EB /* PayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRouter.swift; sourceTree = "<group>"; };
 		E03CF7512C81B27700E420EB /* NetworkService + Pay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Pay.swift"; sourceTree = "<group>"; };
+		E03CF7552C82F69000E420EB /* Reactive + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + Extension.swift"; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 				E06B821D2C6BBE36009E4B40 /* UIViewController + Extension.swift */,
 				E06B82612C6C5CBE009E4B40 /* String + Extension.swift */,
 				E06B82D22C732D34009E4B40 /* UICollectionViewLayout + Extension.swift */,
-				E03CF73F2C8068C400E420EB /* Reactive + UIViewController.swift */,
+				E03CF7552C82F69000E420EB /* Reactive + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -941,6 +941,7 @@
 				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E0B9D1882C7C2B8B005858E1 /* ProfilePostsViewController.swift in Sources */,
+				E03CF7562C82F69000E420EB /* Reactive + Extension.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
 				E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */,
 				E0B9D1302C7598B7005858E1 /* BookRouter.swift in Sources */,
@@ -1024,7 +1025,6 @@
 				E0B9D19E2C7CAFE1005858E1 /* UserProfile.swift in Sources */,
 				E06B82892C6F89C0009E4B40 /* PostRouter.swift in Sources */,
 				E06B81F32C6B7D56009E4B40 /* PlusButton.swift in Sources */,
-				E03CF7402C8068C400E420EB /* Reactive + UIViewController.swift in Sources */,
 				E0B9D10C2C756D5E005858E1 /* AddBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

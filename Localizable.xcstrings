@@ -120,6 +120,23 @@
         }
       }
     },
+    "alert_msg_logout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Would you like to log out?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그아웃하시겠어요?"
+          }
+        }
+      }
+    },
     "alert_msg_payment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -201,6 +218,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "포스트 가져오기 실패"
+          }
+        }
+      }
+    },
+    "alert_title_logout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그아웃"
           }
         }
       }

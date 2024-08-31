@@ -28,7 +28,7 @@ class BaseViewController: UIViewController {
     func setupUI() {
         view.backgroundColor = .systemBackground
         navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = Resource.Colors.primaryColor
+        navigationController?.navigationBar.tintColor = Resource.Colors.black
     }
     
     func bind() {

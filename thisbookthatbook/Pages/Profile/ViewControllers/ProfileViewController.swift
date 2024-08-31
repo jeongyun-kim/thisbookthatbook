@@ -13,6 +13,15 @@ import SnapKit
 import Toast
 
 final class ProfileViewController: BaseViewController {
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        bindData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let vm = ProfileViewModel()
     private let disposeBag = DisposeBag()
     
@@ -85,12 +94,17 @@ final class ProfileViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         let nick = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        nick.setTitleTextAttributes([.font: Resource.Fonts.bold24, .foregroundColor: Resource.Colors.black], for: .normal)
+        nick.setTitleTextAttributes([.font: Resource.Fonts.bold24], for: .normal)
         navigationItem.leftBarButtonItem = nick
+        let setting = UIBarButtonItem(image: Resource.Images.logout, style: .plain, target: self, action: #selector(logoutBtnTapped))
+        navigationItem.rightBarButtonItem = setting
     }
     
-    override func bind() {
-        let input = ProfileViewModel.Input()
+    private func bindData() {
+        let viewWillAppear = rx.viewWillAppear // viewWillAppear 시마다 input
+        let editBtnTapped = editButton.rx.tap
+        
+        let input = ProfileViewModel.Input(viewWillAppear: viewWillAppear, editBtnTapped: editBtnTapped)
         let output = vm.transform(input)
         
         // 사용자 프로필 정보
@@ -117,12 +131,24 @@ final class ProfileViewController: BaseViewController {
                 owner.showToast(message: value)
             }.disposed(by: disposeBag)
         
-        editButton.rx.tap
+        // 프로필 수정으로 이동
+        output.editBtnTapped
             .withLatestFrom(output.profile)
             .bind(with: self) { owner, value in
                 let vc = ProfileEditViewController(vm: ProfileEditViewModel(), profile: value)
                 owner.transition(vc)
             }.disposed(by: disposeBag)
+    }
+    
+    @objc private func logoutBtnTapped(_ sender: UIButton) {
+        let title = "alert_title_logout".localized
+        let message = "alert_msg_logout".localized
+        showAlertTwoBtns(title: title, message: message) { [weak self] _ in
+            UserDefaultsManager.shared.deleteAllData()
+            let vc = LoginViewController()
+            let navi = UINavigationController(rootViewController: vc)
+            self?.setNewScene(navi)
+        }
     }
     
     private func configureProfileImageView(_ path: String?) {
