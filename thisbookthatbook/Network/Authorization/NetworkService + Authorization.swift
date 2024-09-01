@@ -117,6 +117,7 @@ extension NetworkService {
                     switch statusCode {
                     case 200:
                         guard let value else { return }
+                        UserDefaultsManager.shared.deleteAllData()
                         single(.success(.success(value)))
                     case 419:
                         single(.success(.failure(.expiredToken)))

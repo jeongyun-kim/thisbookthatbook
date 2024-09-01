@@ -20,6 +20,7 @@ final class ProfileEditViewModel: BaseViewModel {
         let validateBtnTapped: ControlEvent<Void>
         let saveBtnTapped: ControlEvent<Void>
         let profileBtnTapped: ControlEvent<Void>
+        let withdrawBtnTapped: PublishRelay<Void>
     }
     
     struct Output {
@@ -29,6 +30,7 @@ final class ProfileEditViewModel: BaseViewModel {
         let editEnabled: PublishRelay<Bool>
         let profileBtnTapped: ControlEvent<Void>
         let editProfileSucceed: PublishRelay<Void>
+        let withdrawSucceed: PublishRelay<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -38,6 +40,7 @@ final class ProfileEditViewModel: BaseViewModel {
         let nickname = BehaviorRelay(value: "")
         let editEnabled = PublishRelay<Bool>()
         let editProfileSucceed = PublishRelay<Void>()
+        let withdrawSucceed = PublishRelay<Void>()
         
         // 이전 뷰로부터 받아온 프로필 정보
         profile
@@ -74,11 +77,28 @@ final class ProfileEditViewModel: BaseViewModel {
                     }
                 }
             }.disposed(by: disposeBag)
+        
+        input.withdrawBtnTapped
+            .flatMap { NetworkService.shared.getWithDraw() }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    withdrawSucceed.accept(())
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
     
         
         let output = Output(userProfile: outputProfile, toastMessage: toastMessage, 
                             alert: alert, editEnabled: editEnabled,
-                            profileBtnTapped: input.profileBtnTapped, editProfileSucceed: editProfileSucceed)
+                            profileBtnTapped: input.profileBtnTapped, editProfileSucceed: editProfileSucceed,
+                            withdrawSucceed: withdrawSucceed)
         return output
     }
 }

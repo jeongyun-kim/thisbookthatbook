@@ -200,7 +200,24 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탈퇴하시면 모든 정보가 사라져요\n정말 탈퇴하시겠어요?"
+            "value" : "탈퇴하시면 모든 정보가 사라져요\n정말 탈퇴하실건가요?"
+          }
+        }
+      }
+    },
+    "alert_msg_withdraw_succeed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membership withdrawal has been completed\nReturn to the login screen!"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원탈퇴가 완료되었어요\n로그인 화면으로 돌아갑니다!"
           }
         }
       }

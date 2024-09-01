@@ -35,6 +35,14 @@ final class ProfileEditView: BaseView {
         let vc = PHPickerViewController(configuration: config)
         return vc
     }()
+    
+    let withdrawButton: UIButton = {
+        let button = UIButton()
+        let attributedTitle = NSAttributedString(string: "alert_title_withdraw".localized,
+                                                 attributes: [.font: Resource.Fonts.regular14, .foregroundColor: Resource.Colors.lightGray])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        return button
+    }()
 
     override func setupHierarchy() {
         addSubview(profileImageView)
@@ -42,6 +50,7 @@ final class ProfileEditView: BaseView {
         addSubview(nicknameTextField)
         addSubview(nicknameValidationLabel)
         addSubview(saveButton)
+        addSubview(withdrawButton)
     }
     
     override func setupConstraints() {
@@ -67,6 +76,11 @@ final class ProfileEditView: BaseView {
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(nicknameValidationLabel.snp.bottom).offset(24)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+        }
+        
+        withdrawButton.snp.makeConstraints { make in
+            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(24)
         }
     }
     

@@ -39,9 +39,10 @@ final class ProfileEditViewController: BaseViewController {
         let validateBtnTapped = main.validateButton.rx.tap
         let saveBtnTapped = main.saveButton.rx.tap
         let profileBtnTapped = main.profileButton.rx.tap
+        let withdrawBtnTapped =  PublishRelay<Void>()
         
         let input = ProfileEditViewModel.Input(nickname: nickname, validateBtnTapped: validateBtnTapped,
-                                               saveBtnTapped: saveBtnTapped, profileBtnTapped: profileBtnTapped)
+                                               saveBtnTapped: saveBtnTapped, profileBtnTapped: profileBtnTapped, withdrawBtnTapped: withdrawBtnTapped)
         let output = vm.transform(input)
         
         // 사용자 프로필 정보
@@ -81,12 +82,32 @@ final class ProfileEditViewController: BaseViewController {
                 owner.navigationController?.popViewController(animated: true)
             }.disposed(by: disposeBag)
         
+        
         output.profileBtnTapped
             .asSignal()
             .emit(with: self) { owner, _ in
                 let picker = owner.main.pickerViewController
                 picker.delegate = owner
                 owner.transition(picker, type: .present)
+            }.disposed(by: disposeBag)
+        
+        // 회원탈퇴
+        main.withdrawButton.rx.tap
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.showAlertTwoBtns(title: "alert_title_withdraw".localized, message: "alert_msg_withdraw".localized) { _ in
+                    withdrawBtnTapped.accept(())
+                }
+            }.disposed(by: disposeBag)
+        
+        // 회원탈퇴 후 로그인 화면으로 이동 
+        output.withdrawSucceed
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.showAlertOnlyConfirm(message: "alert_msg_withdraw_succeed".localized) { _ in
+                    let navi = UINavigationController(rootViewController: LoginViewController())
+                    owner.setNewScene(navi)
+                }
             }.disposed(by: disposeBag)
     }
 }
