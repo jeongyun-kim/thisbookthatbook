@@ -85,7 +85,6 @@ final class SearchViewModel: BaseViewModel {
                 switch result {
                 case .success(let value):
                     let result = value.data.filter { $0.product_id.contains(productId) }
-                    print(result)
                     nextCursor = value.next_cursor
                     posts.accept(result)
                 case .failure(let error):

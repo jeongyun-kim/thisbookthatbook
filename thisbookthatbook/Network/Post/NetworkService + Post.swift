@@ -182,7 +182,6 @@ extension NetworkService {
                 let request = try PostRouter.getPostData(id: postId).asURLRequest()
                 self?.fetchData(model: Post.self, request: request) { statusCode, value in
                     guard let statusCode else { return }
-                    print(statusCode)
                     switch statusCode {
                     case 200:
                         guard let value else { return }
