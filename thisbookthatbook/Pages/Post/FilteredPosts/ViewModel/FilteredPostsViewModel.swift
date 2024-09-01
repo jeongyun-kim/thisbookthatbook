@@ -37,6 +37,7 @@ final class FilteredPostsViewModel: BaseViewModel {
         // - viewWillAppear 시마다 다시 빈값으로 돌리기
         var giveNext = ""
         var recieveNext = ""
+        let last = "0"
         // 업데이트 할 Cell Row
         let cellRow = BehaviorRelay(value: 0)
         // Output
@@ -137,7 +138,7 @@ final class FilteredPostsViewModel: BaseViewModel {
         // 북마크 버튼 눌렀을 때
         input.bookmarkBtnTappedPost
             .flatMap { NetworkService.shared.postBookmarkPost(status: !$0.isBookmarkPost, postId: $0.post_id) }
-            .bind(with: self) { owner, result in
+            .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(_):
                     if owner.postFilterType.value == .bookmark {
@@ -199,8 +200,8 @@ final class FilteredPostsViewModel: BaseViewModel {
         // MARK: 페이지네이션
         input.prefetchIdxs
             .compactMap { $0.first }
-            .filter { $0.row == allFilteredPosts.value.count - 5 && (giveNext != "0" || recieveNext != "0") }
-            .bind(with: self) { owner, value in
+            .filter { $0.row == allFilteredPosts.value.count - 4 && (giveNext != last || recieveNext != last) }
+            .subscribe(with: self) { owner, value in
                 owner.getPosts(next: giveNext, productId: .give_recommend, toast: toastMessage, alert: alert) { (posts, next) in
                     var currentList = givePosts.value
                     currentList.append(contentsOf: posts)
@@ -254,8 +255,6 @@ final class FilteredPostsViewModel: BaseViewModel {
             return data.filter { $0.isLikePost }
         case .bookmark:
             return data.filter { $0.isBookmarkPost }
-        case .following:
-            return data.filter { $0.isFollowings }
         }
     }
     

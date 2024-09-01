@@ -11,7 +11,6 @@ enum PostFilterType: String, CaseIterable {
     case post = "user_contents_posts"
     case like = "user_contents_like"
     case bookmark = "user_contents_bookmark"
-    case following
 }
 
 enum RecommendType: String, CaseIterable {

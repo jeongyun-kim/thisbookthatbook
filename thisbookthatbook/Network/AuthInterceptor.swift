@@ -13,14 +13,11 @@ final class AuthInterceptor:  RequestInterceptor {
     static let interceptor = AuthInterceptor()
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
-        print(#function)
         var request = urlRequest
         let ud = UserDefaultsManager.shared
         
         request.setValue(ud.accessToken, forHTTPHeaderField: API.Headers.auth)
-        request.setValue(ud.refreshToken, forHTTPHeaderField: API.Headers.refresh)
-        request.setValue(API.key, forHTTPHeaderField: API.Headers.sesacKey)
-        
+    
         completion(.success(request))
     }
     

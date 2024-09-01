@@ -261,7 +261,7 @@ final class SearchViewModel: BaseViewModel {
         // MARK: 페이지네이션
         input.prefetchIdxs
             .compactMap { $0.first }
-            .filter { $0.row == posts.value.count - 5 && nextCursor != "0" }
+            .filter { $0.row == posts.value.count - 4 && nextCursor != "0" }
             .withLatestFrom(keyword)
             .map { SearchQuery(next: nextCursor, hashTag: $0) }
             .flatMap { NetworkService.shared.getSearchHashtags(query: $0) }

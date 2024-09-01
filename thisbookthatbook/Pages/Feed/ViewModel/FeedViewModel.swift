@@ -87,7 +87,7 @@ final class FeedViewModel: BaseViewModel {
         // MARK: 페이지네이션
         input.feedPrefetchIdxs
             .compactMap { $0.first }
-            .filter { $0.row == feedResults.value.count - 5 && nextCursor != "0" }
+            .filter { $0.row == feedResults.value.count - 4 && nextCursor != "0" }
             .withLatestFrom(selectedFeedType)
             .map { GetPostsQuery(next: nextCursor, product_id: $0.rawValue) }
             .flatMap { NetworkService.shared.getPosts(query: $0) }
@@ -105,10 +105,8 @@ final class FeedViewModel: BaseViewModel {
                     case .expiredToken:
                         // 토큰 갱신이 불가하다면 재로그인 필요
                         alert.accept(())
-                        // 재로그인할거니까 저장해뒀던 사용자 정보 모두 지우기 -> 앱을 껐다키면 로그인 화면으로 이동
-                        UserDefaultsManager.shared.deleteAllData()
                     default:
-                        toastMessage.accept("toast_default_error".localized)
+                        toastMessage.accept(error.rawValue.localized)
                     }
                 }
             }.disposed(by: disposeBag)
@@ -133,11 +131,8 @@ final class FeedViewModel: BaseViewModel {
                     case .expiredToken:
                         // 토큰 갱신이 불가하다면 재로그인 필요
                         alert.accept(())
-                        // 재로그인할거니까 저장해뒀던 사용자 정보 모두 지우기 -> 앱을 껐다키면 로그인 화면으로 이동
-                        UserDefaultsManager.shared.deleteAllData()
                     default:
-                        let errorMessage = error.rawValue.localized
-                        toastMessage.accept(errorMessage)
+                        toastMessage.accept(error.rawValue.localized)
                     }
                 }
             }.disposed(by: disposeBag)
@@ -224,7 +219,7 @@ final class FeedViewModel: BaseViewModel {
             .flatMap { NetworkService.shared.postValidateReciept(query: $0) }
             .subscribe(with: self) { owner, result in
                 switch result {
-                case .success(let value):
+                case .success(_):
                     // 영수증 검증 성공!
                     isValidPayment.accept(true)
                 case .failure(let error):
@@ -258,6 +253,7 @@ final class FeedViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // 언팔로우 했을 때
         input.unfollowBtnTapped
             .filter { !$0.isEmpty }
             .flatMap { NetworkService.shared.delUnfollowUser($0) }

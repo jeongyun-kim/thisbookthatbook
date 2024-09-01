@@ -134,7 +134,7 @@ extension PostRouter: TargetType {
         case .uploadPost:
             return nil
         case .getPosts(let query):
-            return [URLQueryItem(name: "limit", value: "8"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
+            return [URLQueryItem(name: "limit", value: "10"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "product_id", value: query.product_id)]
         case .deletePost:
             return nil
         case .postLikePost:
@@ -148,7 +148,7 @@ extension PostRouter: TargetType {
         case .deleteComment:
             return nil
         case .getSearchHashtag(let query):
-            return [URLQueryItem(name: "limit", value: "8"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "hashTag", value: query.hashTag)]
+            return [URLQueryItem(name: "limit", value: "10"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "hashTag", value: query.hashTag)]
         }
     }
 }

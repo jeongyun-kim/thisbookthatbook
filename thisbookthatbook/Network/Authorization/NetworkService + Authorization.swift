@@ -9,9 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-// MARK: Authorization
 extension NetworkService {
-    
     func postUserLogin(email: String, password: String) -> Single<Result<Login, Errors>> {
         return Single.create { [weak self] single -> Disposable in
             let query = LoginQuery(email: email, password: password)
@@ -47,7 +45,6 @@ extension NetworkService {
            
             fetchData(model: RefreshToken.self, request: request) { statusCode, value in
                 guard let statusCode else { return }
-                print(#function, statusCode, value, UserDefaultsManager.shared.accessToken)
                 switch statusCode {
                 case 200:
                     guard let value else { return }

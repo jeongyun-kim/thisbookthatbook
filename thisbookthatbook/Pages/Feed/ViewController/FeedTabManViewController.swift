@@ -14,7 +14,6 @@ final class FeedTabManViewController: TabmanViewController {
     enum FeedTitle: String, CaseIterable {
         case give = "tab_give_recommend"
         case receive = "tab_recieve_recommend"
-        case following = "tab_following"
     }
     
     private let bar = TabmanBar()
@@ -22,7 +21,6 @@ final class FeedTabManViewController: TabmanViewController {
     private let viewControllers = [
         FeedViewController(vm: FeedViewModel(), feedType: .give_recommend),
         FeedViewController(vm: FeedViewModel(), feedType: .recieve_recommended),
-        FilteredPostsViewController(vm: FilteredPostsViewModel(), dataType: .following)
     ]
     
     override func viewDidLoad() {
