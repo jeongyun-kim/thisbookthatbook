@@ -6,18 +6,19 @@
 //
 
 import UIKit
-import SnapKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 // - 사용자가 쓴 모든 글
 // - 사용자가 좋아요 한 글
 // - 사용자가 북마크 한 글
-final class ProfilePostsViewController: BaseViewController {
-    init(vm: ProfilePostsViewModel, viewIdx: Int) {
+// - 사용자가 팔로잉 한 사용자들의 글
+final class FilteredPostsViewController: BaseViewController {
+    init(vm: FilteredPostsViewModel, dataType: PostFilterType) {
         super.init(nibName: nil, bundle: nil)
         self.vm = vm
-        vm.currentView.accept(viewIdx)
+        vm.postFilterType.accept(dataType)
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +26,7 @@ final class ProfilePostsViewController: BaseViewController {
     }
     
     private let disposeBag = DisposeBag()
-    private var vm: ProfilePostsViewModel!
+    private var vm: FilteredPostsViewModel!
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .FeedCollectionViewLayout())
@@ -37,7 +38,7 @@ final class ProfilePostsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-        vm.viewWillAppear.accept(vm.currentView.value)
+        vm.viewWillAppear.accept(vm.postFilterType.value)
     }
     
     override func setupHierarchy() {
@@ -59,10 +60,13 @@ final class ProfilePostsViewController: BaseViewController {
         let bookmarkBtnTappedPost = PublishRelay<Post>()
         let prefetchIdxs = collectionView.rx.prefetchItems
         let tappedRow = PublishRelay<Int>()
+        let followBtnTapped = BehaviorRelay(value: "")
+        let unfollowBtnTapped = BehaviorRelay(value: "")
         
-        let input = ProfilePostsViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger, 
+        let input = FilteredPostsViewModel.Input(modifyTrigger: modifyTrigger, deleteTrigger: deleteTrigger, 
                                                 bookmarkBtnTappedPost: bookmarkBtnTappedPost, likeBtnTappedPost: likeBtnTappedPost,
-                                                prefetchIdxs: prefetchIdxs, tappedRow: tappedRow)
+                                                prefetchIdxs: prefetchIdxs, tappedRow: tappedRow, 
+                                                 followBtnTapped: followBtnTapped, unfollowBtnTapped: unfollowBtnTapped)
         let output = vm.transform(input)
    
         // 현재 선택한 탭에 따른 포스트들
@@ -118,7 +122,6 @@ final class ProfilePostsViewController: BaseViewController {
                     .emit(to: tappedRow)
                     .disposed(by: cell.disposeBag)
             
-            
                 // 각 포스트 상세보기로 화면전환
                 cell.contentsButton.rx.tap
                     .asSignal()
@@ -134,6 +137,20 @@ final class ProfilePostsViewController: BaseViewController {
                         vc.sheetPresentationController?.detents = [.medium(), .large()]
                         owner.transition(vc, type: .present)
                     }.disposed(by: cell.disposeBag)
+                
+                // 팔로우했을 때
+                cell.userContentsView.followButton.rx.tap
+                    .throttle(.seconds(5), scheduler: MainScheduler.instance)
+                    .map { _ in element.creator.user_id }
+                    .bind(to: followBtnTapped)
+                    .disposed(by: cell.disposeBag)
+                
+                // 언팔로우했을 때
+                cell.userContentsView.unfollowButton.rx.tap
+                    .throttle(.seconds(5), scheduler: MainScheduler.instance)
+                    .map { _ in element.creator.user_id }
+                    .bind(to: unfollowBtnTapped)
+                    .disposed(by: cell.disposeBag)
                 
             }.disposed(by: disposeBag)
         

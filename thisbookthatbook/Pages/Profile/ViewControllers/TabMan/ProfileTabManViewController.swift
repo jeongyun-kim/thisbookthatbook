@@ -12,10 +12,12 @@ import Pageboy
 
 final class ProfileTabManViewController: TabmanViewController {
     private let bar = TabmanBar()
+    
     private let viewControllers = [
-        ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 0), 
-        ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 1),
-        ProfilePostsViewController(vm: ProfilePostsViewModel(), viewIdx: 2)]
+        FilteredPostsViewController(vm: FilteredPostsViewModel(), dataType: .post),
+        FilteredPostsViewController(vm: FilteredPostsViewModel(), dataType: .like),
+        FilteredPostsViewController(vm: FilteredPostsViewModel(), dataType: .bookmark)
+    ]
     
     
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ extension ProfileTabManViewController: PageboyViewControllerDataSource, TMBarDat
     }
     
     func barItem(for bar: any TMBar, at index: Int) -> any TMBarItemable {
-        let title = UserContentsType.allCases[index].rawValue.localized
+        let title = PostFilterType.allCases[index].rawValue.localized
         return TMBarItem(title: title)
     }
 }

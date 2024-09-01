@@ -868,6 +868,23 @@
         }
       }
     },
+    "tab_following" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Following"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "팔로잉"
+          }
+        }
+      }
+    },
     "tab_give_recommend" : {
       "extractionState" : "manual",
       "localizations" : {

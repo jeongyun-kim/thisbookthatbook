@@ -1,5 +1,5 @@
 //
-//  ProfilePostsViewModel.swift
+//  FilteredPostsViewModel.swift
 //  thisbookthatbook
 //
 //  Created by 김정윤 on 8/26/24.
@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class ProfilePostsViewModel: BaseViewModel {
+final class FilteredPostsViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     
-    let viewWillAppear = PublishRelay<Int>()
-    let currentView = BehaviorRelay(value: 0)
+    let viewWillAppear = PublishRelay<PostFilterType>()
+    let postFilterType = BehaviorRelay<PostFilterType>(value: .post)
     
     struct Input {
         let modifyTrigger: PublishRelay<Post>
@@ -22,6 +22,8 @@ final class ProfilePostsViewModel: BaseViewModel {
         let likeBtnTappedPost: PublishRelay<Post>
         let prefetchIdxs: ControlEvent<[IndexPath]>
         let tappedRow: PublishRelay<Int>
+        let followBtnTapped: BehaviorRelay<String>
+        let unfollowBtnTapped: BehaviorRelay<String>
     }
     
     struct Output {
@@ -40,17 +42,18 @@ final class ProfilePostsViewModel: BaseViewModel {
         // Output
         let toastMessage = PublishRelay<String>()
         let alert = PublishRelay<Void>()
-        let recommendPosts = BehaviorRelay<[Post]>(value: [])
-        let recommendedPosts = BehaviorRelay<[Post]>(value: [])
-        let allUserPosts = BehaviorRelay<[Post]>(value: [])
+        let givePosts = BehaviorRelay<[Post]>(value: [])
+        let recievePosts = BehaviorRelay<[Post]>(value: [])
+        let allFilteredPosts = BehaviorRelay<[Post]>(value: [])
 
+        // MARK: 포스트 불러오기
         // 두 포스트 타입 모두 받아왔을 때
         Observable
-            .combineLatest(recommendPosts, recommendedPosts)
+            .combineLatest(givePosts, recievePosts)
             .bind(with: self) { owner, value in
                 let data = value.0 + value.1
                 let result = data.sorted { $0.createdAt > $1.createdAt }
-                allUserPosts.accept(result)
+                allFilteredPosts.accept(result)
             }.disposed(by: disposeBag)
       
         // viewWillAppear 시마다 호출
@@ -59,7 +62,7 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, _ in
                 giveNext = ""
                 owner.getPosts(next: giveNext, productId: .give_recommend, toast: toastMessage, alert: alert) { (posts, next) in
-                    recommendPosts.accept(posts)
+                    givePosts.accept(posts)
                     giveNext = next
                 }
             }.disposed(by: disposeBag)
@@ -69,11 +72,12 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, _ in
                 recieveNext = ""
                 owner.getPosts(next: recieveNext, productId: .recieve_recommended, toast: toastMessage, alert: alert) { (posts, next) in
-                    recommendedPosts.accept(posts)
+                    recievePosts.accept(posts)
                     recieveNext = next
                 }
             }.disposed(by: disposeBag)
 
+        // MARK: 포스트 수정/삭제
         // 포스트 수정
         input.modifyTrigger
             .bind(with: self) { owner, value in
@@ -86,7 +90,7 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    owner.viewWillAppear.accept(owner.currentView.value)
+                    owner.viewWillAppear.accept(owner.postFilterType.value)
                 case .failure(let error):
                     switch error {
                     case .expiredToken:
@@ -101,6 +105,7 @@ final class ProfilePostsViewModel: BaseViewModel {
                 }
             }.disposed(by: disposeBag)
         
+        // MARK: 좋아요/북마크
         // 좋아요 / 북마크 한 Cell Row
         input.tappedRow
             .bind(to: cellRow)
@@ -112,12 +117,12 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    if owner.currentView.value == 1 {
+                    if owner.postFilterType.value == .like {
                         // 좋아요 반영했을 때, 좋아요만 모아둔 곳이라면 서버 데이터 다시 받아오기
-                        owner.viewWillAppear.accept(owner.currentView.value)
+                        owner.viewWillAppear.accept(owner.postFilterType.value)
                     } else {
                         // 아니라면 서버에 데이터 전송하고 해당 셀만 UI 업데이트 
-                        owner.updateLikes(allUserPosts, row: cellRow.value)
+                        owner.updateLikes(allFilteredPosts, row: cellRow.value)
                     }
                 case .failure(let error):
                     switch error {
@@ -135,12 +140,12 @@ final class ProfilePostsViewModel: BaseViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    if owner.currentView.value == 2 {
+                    if owner.postFilterType.value == .bookmark {
                         // 북마크 반영했을 때, 북마크만 모아둔 곳이라면 서버 데이터 다시 받아오기
-                        owner.viewWillAppear.accept(owner.currentView.value)
+                        owner.viewWillAppear.accept(owner.postFilterType.value)
                     } else {
                         // 아니라면 서버에 데이터 전송하고 해당 셀만 UI 업데이트
-                        owner.updateLikes2(allUserPosts, row: cellRow.value)
+                        owner.updateLikes2(allFilteredPosts, row: cellRow.value)
                     }
                 case .failure(let error):
                     switch error {
@@ -151,27 +156,66 @@ final class ProfilePostsViewModel: BaseViewModel {
                     }
                 }
             }.disposed(by: disposeBag)
+        
+        // MARK: 팔로우/언팔로우
+        // 사용자 팔로우 했을 때
+        input.followBtnTapped
+            .filter { !$0.isEmpty }
+            .flatMap { NetworkService.shared.postFollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.updateFollowings(input.followBtnTapped.value)
+                    owner.viewWillAppear.accept(owner.postFilterType.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 사용자 언팔했을 때
+        input.unfollowBtnTapped
+            .filter { !$0.isEmpty }
+            .flatMap { NetworkService.shared.delUnfollowUser($0) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.updateFollowings(input.unfollowBtnTapped.value)
+                    owner.viewWillAppear.accept(owner.postFilterType.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        alert.accept(())
+                    default:
+                        toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
           
-        // 페이지네이션 
+        // MARK: 페이지네이션
         input.prefetchIdxs
             .compactMap { $0.first }
-            .filter { $0.row == allUserPosts.value.count - 5 && (giveNext != "0" || recieveNext != "0") }
+            .filter { $0.row == allFilteredPosts.value.count - 5 && (giveNext != "0" || recieveNext != "0") }
             .bind(with: self) { owner, value in
                 owner.getPosts(next: giveNext, productId: .give_recommend, toast: toastMessage, alert: alert) { (posts, next) in
-                    var currentList = recommendPosts.value
+                    var currentList = givePosts.value
                     currentList.append(contentsOf: posts)
-                    recommendPosts.accept(currentList)
+                    givePosts.accept(currentList)
                     giveNext = next
                 }
                 owner.getPosts(next: recieveNext, productId: .recieve_recommended, toast: toastMessage, alert: alert) { (posts, next) in
-                    var currentList = recommendedPosts.value
+                    var currentList = recievePosts.value
                     currentList.append(contentsOf: posts)
-                    recommendPosts.accept(currentList)
+                    givePosts.accept(currentList)
                     recieveNext = next
                 }
             }.disposed(by: disposeBag)
             
-        let output = Output(posts: allUserPosts, alert: alert, toastMessage: toastMessage)
+        let output = Output(posts: allFilteredPosts, alert: alert, toastMessage: toastMessage)
         return output
     }
     
@@ -202,7 +246,7 @@ final class ProfilePostsViewModel: BaseViewModel {
     
     private func getFilteredPosts(_ data: [Post]) -> [Post] {
         let id = UserDefaultsManager.shared.id
-        let contentsType = UserContentsType.allCases[currentView.value]
+        let contentsType = postFilterType.value
         switch contentsType {
         case .post:
             return data.filter { $0.creator.user_id == id }
@@ -210,6 +254,8 @@ final class ProfilePostsViewModel: BaseViewModel {
             return data.filter { $0.isLikePost }
         case .bookmark:
             return data.filter { $0.isBookmarkPost }
+        case .following:
+            return data.filter { $0.isFollowings }
         }
     }
     
@@ -235,5 +281,16 @@ final class ProfilePostsViewModel: BaseViewModel {
             currentList[row].likes2.append(id)
         }
         posts.accept(currentList)
+    }
+    
+    private func updateFollowings(_ userId: String) {
+        var list = UserDefaultsManager.shared.followings
+        if list.contains(userId) {
+            guard let idx = list.firstIndex(of: userId) else { return }
+            list.remove(at: idx)
+        } else {
+            list.append(userId)
+        }
+        UserDefaultsManager.shared.followings = list
     }
 }

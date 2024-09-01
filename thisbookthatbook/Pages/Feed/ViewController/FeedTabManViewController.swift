@@ -14,12 +14,14 @@ final class FeedTabManViewController: TabmanViewController {
     enum FeedTitle: String, CaseIterable {
         case give = "tab_give_recommend"
         case receive = "tab_recieve_recommend"
+        case following = "tab_following"
     }
     
     private let bar = TabmanBar()
     private let viewControllers = [
         FeedViewController(vm: FeedViewModel(), feedType: .give_recommend),
-        FeedViewController(vm: FeedViewModel(), feedType: .recieve_recommended)
+        FeedViewController(vm: FeedViewModel(), feedType: .recieve_recommended),
+        FilteredPostsViewController(vm: FilteredPostsViewModel(), dataType: .following)
     ]
     
     override func viewDidLoad() {
@@ -55,7 +57,5 @@ extension FeedTabManViewController: PageboyViewControllerDataSource, TMBarDataSo
     func barItem(for bar: any Tabman.TMBar, at index: Int) -> any Tabman.TMBarItemable {
         let title = FeedTitle.allCases[index].rawValue.localized
         return TMBarItem(title: title)
-    }
-    
-    
+    } 
 }
