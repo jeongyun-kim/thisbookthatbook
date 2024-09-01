@@ -9,16 +9,7 @@ import UIKit
 import SnapKit
 
 final class AddBookView: BaseView {
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.searchBarStyle = .minimal
-        searchBar.backgroundColor = Resource.Colors.gray6
-        searchBar.placeholder = "placeholder_search_books".localized
-        searchBar.layer.cornerRadius = Resource.Radius.normal
-        searchBar.searchTextField.borderStyle = .none
-        searchBar.searchTextField.backgroundColor = Resource.Colors.gray6
-        return searchBar
-    }()
+    let searchBar = CustomSearchBar("placeholder_search_books".localized)
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -38,7 +29,6 @@ final class AddBookView: BaseView {
     override func setupConstraints() {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(44)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
         }
         

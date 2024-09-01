@@ -21,6 +21,8 @@
 		E03CF7522C81B27700E420EB /* NetworkService + Pay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7512C81B27700E420EB /* NetworkService + Pay.swift */; };
 		E03CF7562C82F69000E420EB /* Reactive + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7552C82F69000E420EB /* Reactive + Extension.swift */; };
 		E03CF7582C8304DE00E420EB /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7572C8304DE00E420EB /* Follow.swift */; };
+		E03CF76E2C847C6000E420EB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF76D2C847C6000E420EB /* SearchViewController.swift */; };
+		E03CF7702C847EAE00E420EB /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF76F2C847EAE00E420EB /* CustomSearchBar.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -150,6 +152,8 @@
 		E03CF7512C81B27700E420EB /* NetworkService + Pay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Pay.swift"; sourceTree = "<group>"; };
 		E03CF7552C82F69000E420EB /* Reactive + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + Extension.swift"; sourceTree = "<group>"; };
 		E03CF7572C8304DE00E420EB /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
+		E03CF76D2C847C6000E420EB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		E03CF76F2C847EAE00E420EB /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +412,14 @@
 			path = PostDetail;
 			sourceTree = "<group>";
 		};
+		E03CF76C2C847C5100E420EB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E03CF76D2C847C6000E420EB /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		E06B81B12C6B7AA0009E4B40 = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +506,7 @@
 				E0B9D1782C7A34E2005858E1 /* BookInfoView.swift */,
 				E0B9D1AB2C7CB9FD005858E1 /* TabmanBar.swift */,
 				E03CF71F2C7E0F2700E420EB /* RoundedButton.swift */,
+				E03CF76F2C847EAE00E420EB /* CustomSearchBar.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -504,6 +517,7 @@
 				E06B826A2C6CE589009E4B40 /* SignUp */,
 				E06B81F62C6B7E12009E4B40 /* Login */,
 				E06B81F52C6B7E0C009E4B40 /* Feed */,
+				E03CF76C2C847C5100E420EB /* Search */,
 				E06B81F82C6B7E44009E4B40 /* Profile */,
 				E06B81F72C6B7E24009E4B40 /* Post */,
 				E0B9D1732C79C58D005858E1 /* Book */,
@@ -1058,6 +1072,7 @@
 				E06B826E2C6CE893009E4B40 /* RefreshToken.swift in Sources */,
 				E06B82B42C7243ED009E4B40 /* ThreeThumbnailView.swift in Sources */,
 				E0B9D0E02C747EEB005858E1 /* LikeStatus.swift in Sources */,
+				E03CF7702C847EAE00E420EB /* CustomSearchBar.swift in Sources */,
 				E06B820A2C6BA3A6009E4B40 /* UserDefaultsManager.swift in Sources */,
 				E0B9D1972C7C6A8A005858E1 /* FilteredPostsViewModel.swift in Sources */,
 				E06B82672C6CD694009E4B40 /* TargetType.swift in Sources */,
@@ -1109,6 +1124,7 @@
 				E06B82B02C723FD5009E4B40 /* BaseCollectionViewCell.swift in Sources */,
 				E06B81FC2C6B7E63009E4B40 /* LoginViewController.swift in Sources */,
 				E06B82AC2C722358009E4B40 /* AuthInterceptor.swift in Sources */,
+				E03CF76E2C847C6000E420EB /* SearchViewController.swift in Sources */,
 				E0B9D1A22C7CB194005858E1 /* ProfileViewModel.swift in Sources */,
 				E03CF7222C7E10BD00E420EB /* ProfileEditViewModel.swift in Sources */,
 				E0B9D1702C79BB24005858E1 /* BookmarkQuery.swift in Sources */,
