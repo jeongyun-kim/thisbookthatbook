@@ -54,7 +54,20 @@ final class PostViewController: BaseViewController {
         
         // 네트워크 통신으로 데이터 들어오면 tableview reload
         vm.postData
+            .compactMap { $0 }
             .bind(with: self) { owner, value in
+                let likeColor = value.isLikePost ? Resource.Colors.pink : Resource.Colors.black
+                let likeImage = value.isLikePost ? Resource.Images.heartActive : Resource.Images.heartInactive
+                let like = UIBarButtonItem(image: likeImage, style: .plain, target: self, action: #selector(owner.likeBtnTapped))
+                like.tintColor = likeColor
+                
+                let bookmarkColor = value.isBookmarkPost ? Resource.Colors.yellow : Resource.Colors.black
+                let bookmarkImage = value.isBookmarkPost ? Resource.Images.bookmarkActive : Resource.Images.bookmarkInactive
+                let bookmark = UIBarButtonItem(image: bookmarkImage, style: .plain, target: self, action: #selector(owner.bookmarkBtnTapped))
+                bookmark.tintColor = bookmarkColor
+            
+                owner.navigationItem.rightBarButtonItems = [bookmark, like]
+                
                 owner.main.commentTableView.reloadData()
             }.disposed(by: disposeBag)
         
@@ -92,6 +105,14 @@ final class PostViewController: BaseViewController {
         } deleteHandler: { [weak self] _ in
             self?.vm.deletePost.accept(())
         }
+    }
+    
+    @objc private func likeBtnTapped(_ sender: UIButton) {
+        vm.likeBtnTapped.accept(())
+    }
+    
+    @objc private func bookmarkBtnTapped(_ sender: UIButton) {
+        vm.bookmarkBtnTapped.accept(())
     }
     
     required init?(coder: NSCoder) {

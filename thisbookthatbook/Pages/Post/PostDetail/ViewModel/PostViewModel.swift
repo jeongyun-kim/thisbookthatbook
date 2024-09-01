@@ -20,6 +20,8 @@ final class PostViewModel {
     let deletePost = PublishRelay<Void>()
     let followBtnTapped = PublishRelay<Void>()
     let unfollowBtnTapped = PublishRelay<Void>()
+    let likeBtnTapped = PublishRelay<Void>()
+    let bookmarkBtnTapped = PublishRelay<Void>()
 
     // Output
     let postData: BehaviorRelay<Post?> = BehaviorRelay(value: nil)
@@ -146,6 +148,44 @@ final class PostViewModel {
                     guard let id = owner.postData.value?.creator.user_id else { return }
                     owner.updateFollowings(id)
                     owner.postData.accept(owner.postData.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        owner.isExpiredTokenError.accept(true)
+                    default:
+                        owner.toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 좋아요
+        likeBtnTapped
+            .withLatestFrom(postData)
+            .compactMap { $0 }
+            .flatMap { NetworkService.shared.postLikePost(status: !$0.isLikePost, postId: $0.post_id) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.postId.accept(postIdData.value)
+                case .failure(let error):
+                    switch error {
+                    case .expiredToken:
+                        owner.isExpiredTokenError.accept(true)
+                    default:
+                        owner.toastMessage.accept(error.rawValue.localized)
+                    }
+                }
+            }.disposed(by: disposeBag)
+        
+        // 북마크
+        bookmarkBtnTapped
+            .withLatestFrom(postData)
+            .compactMap { $0 }
+            .flatMap { NetworkService.shared.postBookmarkPost(status: !$0.isBookmarkPost, postId: $0.post_id) }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    owner.postId.accept(postIdData.value)
                 case .failure(let error):
                     switch error {
                     case .expiredToken:
