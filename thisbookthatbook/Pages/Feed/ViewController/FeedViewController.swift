@@ -34,14 +34,13 @@ final class FeedViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         vm.reloadCollectionView.accept(())
-        //Iamport.shared.close()
-
     }
 
     override func setupUI() {
         super.setupUI()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "navigation_title_feed".localized
+        
     }
     
     override func bind() {

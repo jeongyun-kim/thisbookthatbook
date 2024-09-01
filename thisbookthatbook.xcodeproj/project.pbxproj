@@ -315,6 +315,99 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E03CF7602C8454C000E420EB /* FilteredPosts */ = {
+			isa = PBXGroup;
+			children = (
+				E03CF7612C8454CC00E420EB /* ViewModel */,
+				E03CF7622C8454D300E420EB /* ViewController */,
+			);
+			path = FilteredPosts;
+			sourceTree = "<group>";
+		};
+		E03CF7612C8454CC00E420EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1962C7C6A8A005858E1 /* FilteredPostsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E03CF7622C8454D300E420EB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1872C7C2B8B005858E1 /* FilteredPostsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E03CF7632C84550E00E420EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1762C79C5D3005858E1 /* BookView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E03CF7642C84551200E420EB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1742C79C596005858E1 /* BookViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E03CF7652C84553600E420EB /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E03CF7632C84550E00E420EB /* View */,
+				E03CF7642C84551200E420EB /* ViewController */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		E03CF7662C84554C00E420EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E03CF7672C84555100E420EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D10B2C756D5E005858E1 /* AddBookView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E03CF7682C84556100E420EB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1272C759347005858E1 /* SearchBookTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E03CF7692C84556500E420EB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D1092C756D49005858E1 /* AddBookViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E03CF76A2C84559800E420EB /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9D15A2C78D230005858E1 /* ViewModel */,
+				E0B9D15B2C78D23E005858E1 /* Cell */,
+				E0B9D1592C78D228005858E1 /* View */,
+				E0B9D1582C78D21E005858E1 /* ViewController */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
 		E06B81B12C6B7AA0009E4B40 = {
 			isa = PBXGroup;
 			children = (
@@ -408,14 +501,12 @@
 		E06B81F42C6B7E07009E4B40 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1732C79C58D005858E1 /* Book */,
-				E0B9D1082C756D3B005858E1 /* AddBook */,
-				E06B82D62C738E6A009E4B40 /* AddPost */,
 				E06B826A2C6CE589009E4B40 /* SignUp */,
 				E06B81F62C6B7E12009E4B40 /* Login */,
 				E06B81F52C6B7E0C009E4B40 /* Feed */,
 				E06B81F82C6B7E44009E4B40 /* Profile */,
 				E06B81F72C6B7E24009E4B40 /* Post */,
+				E0B9D1732C79C58D005858E1 /* Book */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -443,10 +534,9 @@
 		E06B81F72C6B7E24009E4B40 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D15B2C78D23E005858E1 /* Cell */,
-				E0B9D15A2C78D230005858E1 /* ViewModel */,
-				E0B9D1592C78D228005858E1 /* View */,
-				E0B9D1582C78D21E005858E1 /* ViewController */,
+				E03CF7602C8454C000E420EB /* FilteredPosts */,
+				E06B82D62C738E6A009E4B40 /* AddPost */,
+				E03CF76A2C84559800E420EB /* PostDetail */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -711,10 +801,10 @@
 		E0B9D1082C756D3B005858E1 /* AddBook */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1092C756D49005858E1 /* AddBookViewController.swift */,
-				E0B9D10B2C756D5E005858E1 /* AddBookView.swift */,
-				E0B9D1272C759347005858E1 /* SearchBookTableViewCell.swift */,
-				E0B9D1352C75CA61005858E1 /* AddBookViewModel.swift */,
+				E03CF7662C84554C00E420EB /* ViewModel */,
+				E03CF7682C84556100E420EB /* Cell */,
+				E03CF7672C84555100E420EB /* View */,
+				E03CF7692C84556500E420EB /* ViewController */,
 			);
 			path = AddBook;
 			sourceTree = "<group>";
@@ -768,8 +858,8 @@
 		E0B9D1732C79C58D005858E1 /* Book */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1742C79C596005858E1 /* BookViewController.swift */,
-				E0B9D1762C79C5D3005858E1 /* BookView.swift */,
+				E0B9D1082C756D3B005858E1 /* AddBook */,
+				E03CF7652C84553600E420EB /* BookDetail */,
 			);
 			path = Book;
 			sourceTree = "<group>";
@@ -787,7 +877,6 @@
 		E0B9D1912C7C6A27005858E1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1962C7C6A8A005858E1 /* FilteredPostsViewModel.swift */,
 				E0B9D1A12C7CB194005858E1 /* ProfileViewModel.swift */,
 				E03CF7212C7E10BD00E420EB /* ProfileEditViewModel.swift */,
 			);
@@ -797,7 +886,6 @@
 		E0B9D1982C7C874B005858E1 /* TabMan */ = {
 			isa = PBXGroup;
 			children = (
-				E0B9D1872C7C2B8B005858E1 /* FilteredPostsViewController.swift */,
 				E0B9D18D2C7C36D1005858E1 /* ProfileTabManViewController.swift */,
 			);
 			path = TabMan;
