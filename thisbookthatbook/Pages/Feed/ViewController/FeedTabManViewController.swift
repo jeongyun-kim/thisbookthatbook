@@ -18,6 +18,7 @@ final class FeedTabManViewController: TabmanViewController {
     }
     
     private let bar = TabmanBar()
+    
     private let viewControllers = [
         FeedViewController(vm: FeedViewModel(), feedType: .give_recommend),
         FeedViewController(vm: FeedViewModel(), feedType: .recieve_recommended),
@@ -38,6 +39,7 @@ final class FeedTabManViewController: TabmanViewController {
         }))
         
         navigationItem.title = "navigation_title_feed".localized
+        navigationItem.backButtonDisplayMode = .minimal
     }
 }
 
