@@ -18,6 +18,7 @@ enum PostRouter {
     case getPostData(id: String)
     case postComment(query: CommentQuery, id: String)
     case deleteComment(postId: String, commentId: String)
+    case getSearchHashtag(query: SearchQuery)
 }
 
 extension PostRouter: TargetType {
@@ -45,6 +46,8 @@ extension PostRouter: TargetType {
             return "v1/posts/\(postId)/like-2"
         case .deleteComment(let postId, let commentId):
             return "v1/posts/\(postId)/comments/\(commentId)"
+        case .getSearchHashtag:
+            return "v1/posts/hashtags"
         }
     }
     
@@ -69,6 +72,8 @@ extension PostRouter: TargetType {
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key, API.Headers.contentKey: API.Headers.jsonValue]
         case .deleteComment:
             return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
+        case .getSearchHashtag:
+            return [API.Headers.auth: accessToken, API.Headers.sesacKey: API.key]
         }
     }
     
@@ -92,6 +97,8 @@ extension PostRouter: TargetType {
             return .post
         case .deleteComment:
             return .delete
+        case .getSearchHashtag:
+            return .get
         }
     }
     
@@ -114,6 +121,8 @@ extension PostRouter: TargetType {
         case .postBookmarkPost(let query, _):
             return encoding(query)
         case .deleteComment:
+            return nil
+        case .getSearchHashtag:
             return nil
         }
     }
@@ -138,6 +147,8 @@ extension PostRouter: TargetType {
             return nil
         case .deleteComment:
             return nil
+        case .getSearchHashtag(let query):
+            return [URLQueryItem(name: "limit", value: "8"), URLQueryItem(name: "next", value: query.next), URLQueryItem(name: "hashTag", value: query.hashTag)]
         }
     }
 }

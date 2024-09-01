@@ -23,6 +23,8 @@
 		E03CF7582C8304DE00E420EB /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7572C8304DE00E420EB /* Follow.swift */; };
 		E03CF76E2C847C6000E420EB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF76D2C847C6000E420EB /* SearchViewController.swift */; };
 		E03CF7702C847EAE00E420EB /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF76F2C847EAE00E420EB /* CustomSearchBar.swift */; };
+		E03CF7722C84851F00E420EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7712C84851F00E420EB /* SearchViewModel.swift */; };
+		E03CF7742C84859100E420EB /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03CF7732C84859100E420EB /* SearchQuery.swift */; };
 		E06B81BE2C6B7AA0009E4B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */; };
 		E06B81C02C6B7AA0009E4B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */; };
 		E06B81C72C6B7AA2009E4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B81C62C6B7AA2009E4B40 /* Assets.xcassets */; };
@@ -154,6 +156,8 @@
 		E03CF7572C8304DE00E420EB /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
 		E03CF76D2C847C6000E420EB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E03CF76F2C847EAE00E420EB /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		E03CF7712C84851F00E420EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		E03CF7732C84859100E420EB /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		E06B81BA2C6B7AA0009E4B40 /* thisbookthatbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thisbookthatbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06B81BD2C6B7AA0009E4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E06B81BF2C6B7AA0009E4B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				E03CF76D2C847C6000E420EB /* SearchViewController.swift */,
+				E03CF7712C84851F00E420EB /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				E0B9D0DD2C747DF0005858E1 /* LikeQuery.swift */,
 				E0B9D1672C78EA59005858E1 /* CommentQuery.swift */,
 				E0B9D16F2C79BB24005858E1 /* BookmarkQuery.swift */,
+				E03CF7732C84859100E420EB /* SearchQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1046,6 +1052,7 @@
 				E0B9D16A2C797D09005858E1 /* UserProfileImageView.swift in Sources */,
 				E06B81FE2C6B7ED6009E4B40 /* BaseViewModel.swift in Sources */,
 				E0B9D1882C7C2B8B005858E1 /* FilteredPostsViewController.swift in Sources */,
+				E03CF7742C84859100E420EB /* SearchQuery.swift in Sources */,
 				E03CF7562C82F69000E420EB /* Reactive + Extension.swift in Sources */,
 				E0B9D0EA2C74E802005858E1 /* AddPostView.swift in Sources */,
 				E0B9D17D2C7B02E0005858E1 /* UserInfoView.swift in Sources */,
@@ -1114,6 +1121,7 @@
 				E06B82CF2C72F996009E4B40 /* ThumbnailView.swift in Sources */,
 				E06B82A42C7071AE009E4B40 /* UploadPostQuery.swift in Sources */,
 				E06B82A02C6F9684009E4B40 /* Errors.swift in Sources */,
+				E03CF7722C84851F00E420EB /* SearchViewModel.swift in Sources */,
 				E0B9D0DE2C747DF0005858E1 /* LikeQuery.swift in Sources */,
 				E0B9D18E2C7C36D1005858E1 /* ProfileTabManViewController.swift in Sources */,
 				E0B9D12E2C7598A2005858E1 /* Book.swift in Sources */,

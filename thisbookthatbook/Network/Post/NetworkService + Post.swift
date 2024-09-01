@@ -47,7 +47,7 @@ extension NetworkService {
                     completionHandler(Errors.defaultError)
                 }
             }
-        
+            
         } catch {
             print("post image request error")
         }
@@ -251,7 +251,28 @@ extension NetworkService {
             }
             return Disposables.create()
         }
-        
+    }
+    
+    func getSearchHashtags(query: SearchQuery) -> Single<Result<Posts, Errors>> {
+        return Single.create { [weak self] single -> Disposable in
+            do {
+                let request = try PostRouter.getSearchHashtag(query: query).asURLRequest()
+                self?.fetchData(model: Posts.self, request: request) { statusCode, value in
+                    switch statusCode {
+                    case 200:
+                        guard let value else { return }
+                        single(.success(.success(value)))
+                    case 419:
+                        single(.success(.failure(.expiredToken)))
+                    default:
+                        single(.success(.failure(.defaultError)))
+                    }
+                }
+            } catch {
+                print("search hashtag request error")
+            }
+            return Disposables.create()
+        }
     }
 }
 

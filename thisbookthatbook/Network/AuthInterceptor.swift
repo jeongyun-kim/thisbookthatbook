@@ -29,7 +29,7 @@ final class AuthInterceptor:  RequestInterceptor {
             completion(.doNotRetry)
             return
         }
-        print(#function)
+
         NetworkService.shared.getRefreshToken { result in
             switch result {
             case .success(let value):
@@ -38,6 +38,7 @@ final class AuthInterceptor:  RequestInterceptor {
             case .failure(let error):
                 // 만약 상태코드가 419라 토큰 리프레시를 진행하려고 했는데, 에러가 발생했다면
                 // refreshToken이 만료된 것 -> 로그인을 다시 해달라고 알려야 함 
+                UserDefaultsManager.shared.deleteAllData()
                 completion(.doNotRetryWithError(error))
             }
         }

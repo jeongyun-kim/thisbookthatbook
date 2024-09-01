@@ -749,6 +749,23 @@
         }
       }
     },
+    "navigitaion_title_search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Posts"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 검색"
+          }
+        }
+      }
+    },
     "placeholder_comment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -847,6 +864,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "책을 검색해보세요"
+          }
+        }
+      }
+    },
+    "placeholder_search_hashtags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search with hashtags"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해시태그명으로 검색해보세요"
           }
         }
       }
