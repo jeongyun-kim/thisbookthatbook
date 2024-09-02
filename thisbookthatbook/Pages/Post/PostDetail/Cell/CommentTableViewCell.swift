@@ -32,6 +32,11 @@ final class CommentTableViewCell: BaseTableViewCell {
         return label
     }()
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        userProfileImageView.image = Resource.Images.user
+    }
+    
     override func setupHierarchy() {
         contentView.addSubview(userProfileImageView)
         contentView.addSubview(userNameLabel)

@@ -30,7 +30,7 @@ extension UICollectionViewLayout {
     
     // 피드 레이아웃
     static func FeedCollectionViewLayout() -> UICollectionViewLayout {
-        let spacing: CGFloat = 20
+        let spacing: CGFloat = 12
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

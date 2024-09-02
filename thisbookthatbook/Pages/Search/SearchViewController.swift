@@ -34,6 +34,11 @@ final class SearchViewController: BaseViewController {
          return collectionView
      }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func setupHierarchy() {
         view.addSubview(searchBar)
         view.addSubview(collectionView)
