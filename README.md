@@ -38,6 +38,7 @@
 - UI : UIKit, SnapKit, Kingfisher, Toast, Tabman, Pageboy, IQKeyboardManager
 - Database : UserDefaults
 - Network : Alamofire
+- Reactive: RxSwift
 - Design Pattern: Singletone, Router, Input-Output, MVVM
 - etc: Iamport, NaverAPI
 
