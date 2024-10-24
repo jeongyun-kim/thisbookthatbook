@@ -11,12 +11,12 @@
     <td>결제</td>
   </tr>
   <tr line-height:0 width="19%" height="300">
-    <td><img src="https://github.com/user-attachments/assets/00868797-fa76-41ed-a66e-7bbbf619e0ce" width="120" height="300"></td>
-    <td><img src="https://github.com/user-attachments/assets/9dc67c5d-de66-4a02-991c-04c07360d6f1" width="120" height="300"></td>
-    <td><img src="https://github.com/user-attachments/assets/e01e43f8-197f-431d-a3ec-30a4e47db1dc" width="120" height="300"></td>
-    <td><img src="https://github.com/user-attachments/assets/0701f0c1-58a5-402e-a7cd-80e3cfacccc2" width="120" height="300"></td>
-    <td><img src="https://github.com/user-attachments/assets/d50a693d-f468-4a46-95e9-3378265667a9" width="120" height="300"></td>
-    <td><img src="https://github.com/user-attachments/assets/ebb8b0c9-57ad-46ae-a107-69304a0a4a36" width="120" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/00868797-fa76-41ed-a66e-7bbbf619e0ce" width="120" height="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/9dc67c5d-de66-4a02-991c-04c07360d6f1" width="120" height="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/e01e43f8-197f-431d-a3ec-30a4e47db1dc" width="120" height="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/0701f0c1-58a5-402e-a7cd-80e3cfacccc2" width="120" height="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/d50a693d-f468-4a46-95e9-3378265667a9" width="120" height="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/ebb8b0c9-57ad-46ae-a107-69304a0a4a36" width="120" height="250"></td>
   </tr>
 </table>
 
