@@ -32,12 +32,12 @@
 
 ### 👩🏼‍💻 주요 기술
 
-- UI : UIKit, SnapKit, Kingfisher, Toast, Tabman, Pageboy, IQKeyboardManager
-- Database : UserDefaults
-- Network : Alamofire
-- Reactive: RxSwift
-- Design Pattern: Singletone, Router, Input-Output, MVVM
-- etc: Iamport, NaverAPI
+- UI : ```UIKit```, ```SnapKit```, ```Kingfisher```, ```Toast```, ```Tabman```, ```Pageboy```, ```IQKeyboardManager```
+- Database : ```UserDefaults```
+- Network : ```Alamofire```
+- Reactive: ```RxSwift```
+- Design Pattern: ```Singleton```, ```Router```, ```Input-Output```, ```MVVM```
+- etc: ```Iamport```, ```NaverAPI```
 
 ---
 
@@ -58,16 +58,16 @@
 - API 과호출 방지를 위한 버튼 내 쓰로틀링 기법 적용
 - 통신 실패 시, 적절한 피드백 제공을 위한 상태코드를 통한 에러 핸들링
 - 다양한 사용자 경험을 위한 다국어 지원
-- 토큰 갱신 시, 요청의 일관성을 위한 Alamofire의 requestInterceptor 활용
-- 코드의 재사용성과 유지보수성을 위해 URLRequestConvertible 프로토콜을 채택한 TargetType을 활용 및 RouterPattern 구성 및 추상화
-- 통신 결과, 성공 여부에 따른 분기 처리를 위한 Result Type 활용
-- 코드의 재사용성과 유지보수성을 위해 Generic과 PropertyWrapper 활용하여 UserDefaults 내 데이터 저장 및 로드
+- 토큰 갱신 시, 요청의 일관성을 위한 ```Alamofire의 requestInterceptor``` 활용
+- 코드의 재사용성과 유지보수성을 위해 ```URLRequestConvertible``` 프로토콜을 채택한 ```TargetType```을 활용 및 ```RouterPattern``` 구성 및 추상화
+- 통신 결과, 성공 여부에 따른 분기 처리를 위한 ```Result Type``` 활용
+- 코드의 재사용성과 유지보수성을 위해 ```Generic```과 ```PropertyWrapper``` 활용하여 ```UserDefaults``` 내 데이터 저장 및 로드
 - 메모리 사용 최적화를 위한 뷰 스택의 루트뷰 관리
-- 메모리 릭 방지를 위한 Instruments-Leaks 활용
-- 코드의 명확성과 재사용성을 고려한 MVVM 내 Input-Output Pattern 활용
+- 메모리 릭 방지를 위한 ```Instruments-Leaks``` 활용
+- 코드의 명확성과 재사용성을 고려한 ```MVVM 내 Input-Output Pattern``` 활용
 - ViewModel의 구조 일관성과 유지보수성을 위한 프로토콜 활용
 - 메모리 낭비 방지와 유지보수성를 위한 자주 사용되는 리소스 관리 구조 구축
-- 코드의 재사용성과 일관성을 위한 BaseView 활용
+- 코드의 재사용성과 일관성을 위한 ```BaseView``` 활용
 
 ---
 
@@ -134,7 +134,7 @@ final class AuthInterceptor:  RequestInterceptor {
 
 **- 해결** 
 <br>
-코드의 재사용성을 고려하여 Kingfisher의 Modifier를 구성하고 해당 Modifier를 통해 이미지를 받아오도록 하는 ImageFetcher를 Singletone으로 구현하였습니다.
+코드의 재사용성을 고려하여 Kingfisher의 Modifier를 구성하고 해당 Modifier를 통해 이미지를 받아오도록 하는 ImageFetcher를 Singleton으로 구현하였습니다.
 ```swift
 final class ImageFetcher { 
   ...
