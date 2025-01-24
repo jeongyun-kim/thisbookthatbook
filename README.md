@@ -78,7 +78,7 @@
     
 **- 개요**
 <br>
-  서버와의 통신으로 419 상태코드가 날아오는 것은 Access Token이 만료된 상태로 Access Token을 Refresh Token을 통해 갱신시켜줘야 했습니다. 그리하여 처음에는 419 상태코드가 올 때마다 토큰을 갱신시켜주는 메서드를 포스트 Access Token 검증을 거치는 메서드 내에서 매번 실행해주고 다시 이전의 통신을 재개하려 하였습니다. <br>
+  서버와의 통신으로 419 상태코드가 날아오는 것은  ```Access Token```이 만료된 상태로  ```Access Token```을  ```Refresh Token```을 통해 갱신시켜줘야 했습니다. 그리하여 처음에는 419 상태코드가 올 때마다 토큰을 갱신시켜주는 메서드를 포스트  ```Access Token``` 검증을 거치는 메서드 내에서 매번 실행해주고 다시 이전의 통신을 재개하려 하였습니다. <br>
 <br>
 **- 문제점**
 <br>
@@ -86,7 +86,7 @@
 <br>
 **- 해결**
 <br>
-그리하여 이러한 문제들을 해결하기 위해 Alamofire의 Interceptor를 이용해 우선적으로 현상태에서 서버와의 통신이 성공적인지 확인하고 만약 상태코드가 419가 날아왔을 때에는 Token을 갱신시켜주도록 했습니다. 만약 이 때에 Access Token 갱신에 실패한다면 Refresh Token마저 만료된 것으로 간주하여 해당 에러를 그대로 결과로 보내주도록 하여 사용자에게 재로그인이 필요함을 알려주도록 구현하였습니다. <br>
+그리하여 이러한 문제들을 해결하기 위해  ```Alamofire의 Interceptor```를 이용해 우선적으로 현상태에서 서버와의 통신이 성공적인지 확인하고 만약 상태코드가 419가 날아왔을 때에는 Token을 갱신시켜주도록 했습니다. 만약 이 때에  ```Access Token``` 갱신에 실패한다면  ```Refresh Token```마저 만료된 것으로 간주하여 해당 에러를 그대로 결과로 보내주도록 하여 사용자에게 재로그인이 필요함을 알려주도록 구현하였습니다. <br>
 ```swift
 final class AuthInterceptor:  RequestInterceptor {
     private init() { }
@@ -129,12 +129,12 @@ final class AuthInterceptor:  RequestInterceptor {
 
 **- 문제점** 
 <br>
-서버의 이미지 URL을 이용해 이미지를 받아올 때, 평소와 같이 URL을 이용하여 이미지를 받아오려 했으나 실패하였고, 이는 이미지 로드 시 AccessToken과 Key의 부재로 일어난 문제였습니다.
+서버의 이미지 URL을 이용해 이미지를 받아올 때, 평소와 같이 URL을 이용하여 이미지를 받아오려 했으나 실패하였고, 이는 이미지 로드 시  ```AccessToken과 Key의 부재 ```로 일어난 문제였습니다.
 <br>
 
 **- 해결** 
 <br>
-코드의 재사용성을 고려하여 Kingfisher의 Modifier를 구성하고 해당 Modifier를 통해 이미지를 받아오도록 하는 ImageFetcher를 Singleton으로 구현하였습니다.
+코드의 재사용성을 고려하여  ```Kingfisher의 Modifier```를 구성하고 해당  ```Modifier를 통해 이미지를 받아오도록 하는 ImageFetcher를 Singleton ```으로 구현하였습니다.
 ```swift
 final class ImageFetcher { 
   ...
@@ -149,7 +149,7 @@ final class ImageFetcher {
   ... 
 }
 ```
-그리고 사용하는 곳에서는 completionHandler closure를 통해 이렇게 구성한 Modifier를 사용해주어 이미지를 로드하도록 하였습니다.
+그리고 사용하는 곳에서는  ```completionHandler closure```를 통해 이렇게 구성한  ```Modifier```를 사용해주어 이미지를 로드하도록 하였습니다.
 ```swift
 override func configureView(_ paths: [String]) {
     let imageViews = [thumbnailImageView1, thumbnailImageView2, thumbnailImageView3]
@@ -171,12 +171,12 @@ override func configureView(_ paths: [String]) {
 
 **- 1차 시도** 
 <br>
-CollectionView의 .visibleItemsInvalidationHandler를 이용하여 사용자가 CollectionView의 새로운 Cell로 이동하는 scrollOffset을 이용해 Segment Control 아래에 위치한 View를 이동시키도록 하였습니다.
+CollectionView의  ```.visibleItemsInvalidationHandler```를 이용하여 사용자가 CollectionView의 새로운 Cell로 이동하는  ```scrollOffset```을 이용해 Segment Control 아래에 위치한 View를 이동시키도록 하였습니다.
 <br>
 
 **- 문제점** 
 <br>
-하지만 제가 원하는 결과물은 각 카테고리의 텍스트 길이의 intrinsic content size만큼 View의 길이가 다른 것이었고 이를 구현하는 것을 현시점에서는 어렵다고 판단하게 되었습니다.
+하지만 제가 원하는 결과물은 각 카테고리의 텍스트 길이의  ```intrinsic content size```만큼 View의 길이가 다른 것이었고 이를 구현하는 것을 현시점에서는 어렵다고 판단하게 되었습니다.
 <br>
 ```swift
  section.visibleItemsInvalidationHandler = { visibleItems, scrollOffset, layoutEnvironment in
