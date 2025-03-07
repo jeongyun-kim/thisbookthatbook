@@ -129,7 +129,7 @@ final class AuthInterceptor:  RequestInterceptor {
 
 **- 문제점** 
 <br>
-서버의 이미지 URL을 이용해 이미지를 받아올 때, 평소와 같이 URL을 이용하여 이미지를 받아오려 했으나 실패하였고, 이는 이미지 로드 시  ```AccessToken과 Key의 부재 ```로 일어난 문제였습니다.
+서버의 이미지 URL을 이용해 이미지를 받아올 때, 평소와 같이 URL을 이용하여 이미지를 받아오려 했으나 실패하였고, 이는 이미지 로드 시  ```AccessToken과 Key의 부재```로 일어난 문제였습니다.
 <br>
 
 **- 해결** 
